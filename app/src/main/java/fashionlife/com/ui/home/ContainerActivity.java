@@ -1,6 +1,8 @@
 package fashionlife.com.ui.home;
 
+import android.Manifest;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.widget.RadioGroup;
 
 import fashionlife.com.R;
@@ -54,6 +56,8 @@ public class ContainerActivity extends AbsTabFragmentActivity implements RadioGr
     protected void onResume() {
         super.onResume();
         rg.getChildAt(0).performClick();
+        // TODO: 2017/10/12  关于权限的要封装起来
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, RESULT_OK);
     }
 
     @Override

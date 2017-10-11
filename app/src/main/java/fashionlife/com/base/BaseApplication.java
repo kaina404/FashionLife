@@ -2,6 +2,9 @@ package fashionlife.com.base;
 
 import android.app.Application;
 
+import fashionlife.com.util.image.FLImageLoader;
+import fashionlife.com.util.image.GlideImageLoaderFrameWork;
+
 /**
  * Created by lovexujh on 2017/9/19
  */
@@ -14,6 +17,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        FLImageLoader.getFLImageLoader().init(new GlideImageLoaderFrameWork());
     }
 
     public static BaseApplication getInstance(){
