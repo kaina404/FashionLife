@@ -216,4 +216,8 @@ public class Tool {
         }
         return path;
     }
+
+    public static boolean isEmpty(Integer integer) {
+        return integer == null;
+    }
 }

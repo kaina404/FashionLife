@@ -15,18 +15,18 @@ import fashionlife.com.ui.home.UserFragment;
  * Created by lovexujh on 2017/10/9
  */
 
-public class FragmentManager {
+public class FLFragmentManager {
 
     private static List<BaseActivity> activityList;
-    private static FragmentManager instance;
+    private static FLFragmentManager instance;
     private Map<String, FragmentRecord> fragmentRecordMap;
 
 
-    public static FragmentManager getInstance() {
+    public static FLFragmentManager getInstance() {
         if (instance == null) {
             synchronized (ActivityManager.class) {
                 if (instance == null) {
-                    instance = new FragmentManager();
+                    instance = new FLFragmentManager();
                     activityList = new ArrayList<>();
                 }
             }
@@ -34,7 +34,7 @@ public class FragmentManager {
         return instance;
     }
 
-    public FragmentManager() {
+    public FLFragmentManager() {
         fragmentRecordMap = new HashMap<>();
         initData();
     }
