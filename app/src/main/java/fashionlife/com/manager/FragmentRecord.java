@@ -1,6 +1,6 @@
 package fashionlife.com.manager;
 
-import fashionlife.com.base.AbsBaseFragment;
+import fashionlife.com.base.component.AbsBaseFragment;
 
 /**
  * Created by lovexujh on 2017/10/9

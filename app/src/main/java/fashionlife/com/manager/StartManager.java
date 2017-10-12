@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import fashionlife.com.base.BaseApplication;
+import fashionlife.com.base.component.BaseApplication;
 
 /**
  * Created by lovexujh on 2017/10/9
@@ -24,6 +24,9 @@ public class StartManager {
             }
             if (context == null) {
                 context = BaseApplication.getInstance();
+            }
+            if (intent == null) {
+                intent = new Intent();
             }
             intent.setClass(context, activityClz);
             try {

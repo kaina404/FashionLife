@@ -6,4 +6,5 @@ package fashionlife.com.comman;
 
 public class ActivityId {
     public static String Container_Activity = "ContainerActivity";
+    public static String Test_Activity = "TestActivity";
 }

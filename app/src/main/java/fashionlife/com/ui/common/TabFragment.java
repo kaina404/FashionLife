@@ -1,4 +1,4 @@
-package fashionlife.com.ui.comman;
+package fashionlife.com.ui.common;
 
 /**
  * Created by lovexujh on 2017/10/9

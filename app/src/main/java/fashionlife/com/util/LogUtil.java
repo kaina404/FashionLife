@@ -5,7 +5,7 @@ package fashionlife.com.util;
  */
 
 public class LogUtil {
-    private static final String sTag = "logg";
+    private static final String sTag = "FashionLife";
     private static final boolean debug = true;
 
     public static void d(String msg, Object... params) {

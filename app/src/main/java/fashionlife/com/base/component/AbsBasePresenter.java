@@ -1,4 +1,6 @@
-package fashionlife.com.base;
+package fashionlife.com.base.component;
+
+import fashionlife.com.base.BaseView;
 
 /**
  * Created by lovexujh on 2017/9/19

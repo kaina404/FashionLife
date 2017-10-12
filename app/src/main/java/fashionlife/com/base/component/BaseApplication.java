@@ -1,4 +1,4 @@
-package fashionlife.com.base;
+package fashionlife.com.base.component;
 
 import android.app.Application;
 

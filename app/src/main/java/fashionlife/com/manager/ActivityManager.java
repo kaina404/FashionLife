@@ -7,9 +7,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import fashionlife.com.base.BaseActivity;
+import fashionlife.com.base.component.BaseActivity;
 import fashionlife.com.comman.ActivityId;
-import fashionlife.com.ui.home.ContainerActivity;
+import fashionlife.com.test.TestActivity;
+import fashionlife.com.ui.home.activity.ContainerActivity;
 
 /**
  * Created by lovexujh on 2017/10/9
@@ -41,6 +42,7 @@ public class ActivityManager {
 
     private void initData() {
         activityRecordMap.put(ActivityId.Container_Activity, new ActivityRecord("", ContainerActivity.class));
+        activityRecordMap.put(ActivityId.Test_Activity, new ActivityRecord("", TestActivity.class));
     }
 
     /**

@@ -2,7 +2,7 @@ package fashionlife.com.manager;
 
 import android.app.Activity;
 
-import fashionlife.com.base.BaseActivity;
+import fashionlife.com.base.component.BaseActivity;
 
 /**
  * Created by lovexujh on 2017/10/9

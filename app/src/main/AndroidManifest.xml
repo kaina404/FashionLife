@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fashionlife.com">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".base.BaseApplication"
+        android:name=".base.component.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,11 +15,11 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ui.home.ContainerActivity"
-            android:theme="@style/mainTheme"
+            android:name=".ui.home.activity.ContainerActivity"
             android:configChanges="keyboardHidden|orientation|layoutDirection"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
+            android:theme="@style/mainTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
 
             <intent-filter>
@@ -37,6 +37,13 @@
             </intent-filter>
 
         </activity>
+        <activity
+            android:name=".test.TestActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

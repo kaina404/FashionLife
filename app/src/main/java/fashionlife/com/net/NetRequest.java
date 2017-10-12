@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 
+import org.apache.http.message.BasicNameValuePair;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 import fashionlife.com.listener.ProgressResponseListener;
 import fashionlife.com.util.LogUtil;
 import fashionlife.com.util.Tool;
+import fashionlife.com.util.URLEncodedUtils;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -71,18 +74,18 @@ public class NetRequest {
         return RequestBody.create(contentType, bytes);
     }
 
-    public void http(int reqeustId, String params, String url, String method, MediaType mediaType, INetCall netCall) {
+    public void http(int requestId, Object params, String url, String method, MediaType mediaType, INetCall netCall) {
 
         RequestBody body = null;
         Map<String, List<String>> headers = new HashMap<>();
         //设置Content-Type
         ArrayList<String> list = new ArrayList<>();
-        if (Method.POST.equals(method)) {
+        if (Method.POST.equals(method) && params != null && params instanceof String) {
             if (mediaType == null) {
-                body = create(JSON_TYPE, params);
+                body = create(JSON_TYPE, (String) params);
                 list.add(JSON_TYPE.type() + "/" + JSON_TYPE.subtype());
             } else {
-                body = create(mediaType, params);
+                body = create(mediaType, (String) params);
                 list.add(FORM_TYPE.type() + "/" + FORM_TYPE.subtype());
             }
         }
@@ -108,7 +111,7 @@ public class NetRequest {
         Call call = okHttpClient.newCall(requestBuilder.build());
         if (netCall != null) {
             this.netCall = netCall;
-            call.enqueue(new OkCallBack(true, url, reqeustId));
+            call.enqueue(new OkCallBack(true, url, requestId));
         } else {
             // TODO: 2017/3/28  测试null的请求是否有问题
             call.enqueue(null);
@@ -195,10 +198,10 @@ public class NetRequest {
                 File file = new File(absolutePath);
                 boolean readSuccess = Tool.inputStream2File(inputStream, file, progressListener, responseBody.contentLength());
                 inputStream.close();
-                if(readSuccess){
+                if (readSuccess) {
                     absolutePath = file.getAbsolutePath();
                     LogUtil.d("=======下载文件==" + url + "==解析失败===");
-                }else {
+                } else {
                     absolutePath = "";
                 }
                 LogUtil.d("=======下载文件====解析成功===路径是===" + absolutePath);
@@ -215,6 +218,16 @@ public class NetRequest {
 
     public void post(int requestId, String params, String url, MediaType mediaType, INetCall netCall) {
         http(requestId, params, url, Method.POST, mediaType, netCall);
+    }
+
+    public void get(int requestId, List<BasicNameValuePair> params, String url, MediaType mediaType, INetCall netCall) {
+        url = URLEncodedUtils.attachHttpGetParams(url, params);
+        http(requestId, "", url, Method.GET, mediaType, netCall);
+    }
+
+    public void get(int requestId, HashMap<String, String> params, String url, MediaType mediaType, INetCall netCall) {
+        url = URLEncodedUtils.attachHttpGetParams(url, params);
+        http(requestId, "", url, Method.GET, mediaType, netCall);
     }
 
 
@@ -252,4 +265,6 @@ public class NetRequest {
             }
         }.start();
     }
+
+
 }

@@ -1,6 +1,6 @@
 package fashionlife.com.test;
 
-import fashionlife.com.base.AbsBasePresenter;
+import fashionlife.com.base.component.AbsBasePresenter;
 
 /**
  * Created by lovexujh on 2017/9/19
@@ -17,20 +17,21 @@ public class TestPresenter extends AbsBasePresenter<TestView> {
     }
 
     public void requestData() {
-        model.reqeustData("123", new TestModel.TestModelCallBack() {
+        model.requestData(new TestModel.TestModelCallBack() {
             @Override
-            public void onGetData() {
+            public void onGetData(String response) {
                 if (view != null) {
-                    view.onSuccess("success");
+                    view.onSuccess(response);
                 }
             }
 
             @Override
-            public void onFailed() {
+            public void onFailed(String errInfo) {
                 if (view != null) {
-                    view.onFailed("failed");
+                    view.onFailed(errInfo);
                 }
             }
+
         });
     }
 

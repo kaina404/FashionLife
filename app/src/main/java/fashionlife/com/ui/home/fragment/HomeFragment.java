@@ -1,4 +1,4 @@
-package fashionlife.com.ui.home;
+package fashionlife.com.ui.home.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import fashionlife.com.R;
-import fashionlife.com.base.AbsBaseFragment;
+import fashionlife.com.base.component.AbsBaseFragment;
 import fashionlife.com.util.image.FLImageLoader;
 
 /**

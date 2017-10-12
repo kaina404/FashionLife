@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import fashionlife.com.base.BaseActivity;
+import fashionlife.com.base.component.BaseActivity;
 import fashionlife.com.comman.FragmentId;
-import fashionlife.com.ui.home.FindFragment;
-import fashionlife.com.ui.home.HomeFragment;
-import fashionlife.com.ui.home.UserFragment;
+import fashionlife.com.ui.home.fragment.FindFragment;
+import fashionlife.com.ui.home.fragment.HomeFragment;
+import fashionlife.com.ui.home.fragment.UserFragment;
 
 /**
  * Created by lovexujh on 2017/10/9
