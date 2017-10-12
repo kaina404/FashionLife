@@ -6,10 +6,8 @@ import android.widget.RadioGroup;
 import fashionlife.com.R;
 import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.component.AbsTabFragmentActivity;
-import fashionlife.com.comman.ActivityId;
 import fashionlife.com.comman.FragmentId;
 import fashionlife.com.manager.PermissionManger;
-import fashionlife.com.manager.StartManager;
 import fashionlife.com.util.Tool;
 
 /**
@@ -72,8 +70,8 @@ public class ContainerActivity extends AbsTabFragmentActivity implements RadioGr
                 break;
             case R.id.user:
                 showFragment(FragmentId.USER);
-                // TODO: 2017/10/12
-                StartManager.startActivity(ActivityId.Test_Activity, this, null);
+//                 TODO: 2017/10/12
+//                StartManager.startActivity(ActivityId.Test_Activity, this, null);
                 break;
         }
     }
