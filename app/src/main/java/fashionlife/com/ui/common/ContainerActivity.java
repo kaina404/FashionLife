@@ -6,7 +6,7 @@ import android.widget.RadioGroup;
 import fashionlife.com.R;
 import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.component.AbsTabFragmentActivity;
-import fashionlife.com.comman.FragmentId;
+import fashionlife.com.common.FragmentId;
 import fashionlife.com.manager.PermissionManger;
 import fashionlife.com.util.Tool;
 

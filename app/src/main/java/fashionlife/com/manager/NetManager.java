@@ -3,7 +3,7 @@ package fashionlife.com.manager;
 import java.util.HashMap;
 
 import fashionlife.com.app.APPConstant;
-import fashionlife.com.comman.UrlConstant;
+import fashionlife.com.common.UrlConstant;
 import fashionlife.com.net.INetCall;
 import fashionlife.com.net.NetRequest;
 

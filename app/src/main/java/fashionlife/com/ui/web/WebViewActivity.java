@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import fashionlife.com.R;
 import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.component.BaseActivity;
-import fashionlife.com.comman.IntentKeys;
+import fashionlife.com.common.IntentKeys;
 import fashionlife.com.util.NetStatusUtil;
 
 public class WebViewActivity extends BaseActivity {

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import fashionlife.com.base.component.BaseActivity;
-import fashionlife.com.comman.FragmentId;
+import fashionlife.com.common.FragmentId;
 import fashionlife.com.ui.find.FindFragment;
 import fashionlife.com.ui.home.fragment.HomeFragment;
 import fashionlife.com.ui.user.UserFragment;

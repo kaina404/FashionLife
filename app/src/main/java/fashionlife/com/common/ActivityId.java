@@ -1,4 +1,4 @@
-package fashionlife.com.comman;
+package fashionlife.com.common;
 
 /**
  * Created by lovexujh on 2017/10/9

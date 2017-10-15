@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import fashionlife.com.base.component.BaseActivity;
-import fashionlife.com.comman.ActivityId;
+import fashionlife.com.common.ActivityId;
 import fashionlife.com.test.TestActivity;
 import fashionlife.com.ui.common.ContainerActivity;
 import fashionlife.com.ui.web.WebViewActivity;
