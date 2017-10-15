@@ -37,6 +37,7 @@ public class WXNewsModel extends BaseModel<WXNewsImpl> implements INetCall {
             return;
         }
 
+        // TODO: 2017/10/15  test
         CacheDb cacheDb = new CacheDb();
         long value = cacheDb.update(AppUtils.getWXNewsKey(mCid, mPage), "你好中国");
 

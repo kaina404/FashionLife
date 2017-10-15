@@ -103,6 +103,7 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
         mDatas.addAll(result.getList());
         mAdapter.notifyDataSetChanged();
 
+        // TODO: 2017/10/15  TEST
         CacheDb cacheDb = new CacheDb();
         String cache = cacheDb.getCache(AppUtils.getWXNewsKey(mCid, mPager));
         LogUtil.d(this, "缓存是=", cache);
