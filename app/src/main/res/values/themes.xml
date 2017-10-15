@@ -10,6 +10,7 @@
     <style name="defaultTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/c_f6f6f6</item>
     </style>
 
 </resources>

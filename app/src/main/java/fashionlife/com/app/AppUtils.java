@@ -1,5 +1,7 @@
 package fashionlife.com.app;
 
+import android.util.Log;
+
 import fashionlife.com.manager.ActivityManager;
 import fashionlife.com.util.Tool;
 
@@ -14,10 +16,9 @@ public class AppUtils {
     }
 
     public static String getMobWXImgURL(String thumbnails) {
-        if(Tool.isEmpty(thumbnails)){
+        if (Tool.isEmpty(thumbnails)) {
             return null;
         }
-        // TODO: 2017/10/15
         return thumbnails.split("$")[0];
     }
 }

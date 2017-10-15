@@ -7,6 +7,7 @@
     <fashionlife.com.base.ui.BaseListView
         android:id="@+id/lv"
         android:layout_width="match_parent"
+        android:listSelector="@android:color/transparent"
         android:layout_height="match_parent"></fashionlife.com.base.ui.BaseListView>
 
 </LinearLayout>
