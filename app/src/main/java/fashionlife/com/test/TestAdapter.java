@@ -5,20 +5,19 @@ import android.content.Context;
 import java.util.List;
 
 import fashionlife.com.base.adapter.FLBaseAdapter;
-import fashionlife.com.base.viewholder.BaseViewHolder;
 
 /**
  * Created by lovexujh on 2017/10/12
  */
 
-public class TestAdapter extends FLBaseAdapter<TestBean.ResultBean> {
+public class TestAdapter extends FLBaseAdapter<TestBean.ResultBean, TestViewHolder> {
 
     public TestAdapter(Context context, List<TestBean.ResultBean> beans) {
         super(context, beans);
     }
 
     @Override
-    protected BaseViewHolder getBaseViewHolder() {
+    protected TestViewHolder getBaseViewHolder() {
         return new TestViewHolder(mContext);
     }
 

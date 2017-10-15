@@ -1,4 +1,4 @@
-package fashionlife.com.ui.home.activity;
+package fashionlife.com.ui.common;
 
 import android.os.Bundle;
 import android.widget.RadioGroup;
@@ -6,6 +6,7 @@ import android.widget.RadioGroup;
 import fashionlife.com.R;
 import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.component.AbsTabFragmentActivity;
+import fashionlife.com.base.component.IPresenter;
 import fashionlife.com.comman.FragmentId;
 import fashionlife.com.manager.PermissionManger;
 import fashionlife.com.util.Tool;
@@ -26,15 +27,16 @@ public class ContainerActivity extends AbsTabFragmentActivity implements RadioGr
         initViews();
     }
 
+    @Override
+    protected IPresenter attachPresenter() {
+        return null;
+    }
+
     private void initViews() {
         rg = (RadioGroup) findViewById(R.id.rg);
         rg.setOnCheckedChangeListener(this);
     }
 
-    @Override
-    public Object attachPresenter() {
-        return null;
-    }
 
     @Override
     protected int getLayoutId() {
@@ -70,8 +72,6 @@ public class ContainerActivity extends AbsTabFragmentActivity implements RadioGr
                 break;
             case R.id.user:
                 showFragment(FragmentId.USER);
-//                 TODO: 2017/10/12
-//                StartManager.startActivity(ActivityId.Test_Activity, this, null);
                 break;
         }
     }

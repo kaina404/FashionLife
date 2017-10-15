@@ -6,9 +6,25 @@ import fashionlife.com.base.BaseView;
  * Created by lovexujh on 2017/9/19
  */
 
-public interface BasePresenter<V extends BaseView> {
+public class BasePresenter<V extends BaseView> implements IPresenter<V> {
 
-    void attachView(V view);
+    protected V mView;
 
-    void detachView();
+    public BasePresenter(V v){
+
+    }
+
+    @Override
+    public void attachView(V view) {
+        this.mView = view;
+    }
+
+    @Override
+    public void detachView() {
+        this.mView = null;
+    }
+
+    public V getView(){
+        return this.mView;
+    }
 }

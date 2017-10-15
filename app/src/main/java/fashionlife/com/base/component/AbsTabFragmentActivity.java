@@ -18,7 +18,7 @@ import fashionlife.com.util.Tool;
 
 public abstract class AbsTabFragmentActivity extends BaseActivity {
 
-    private ArrayList<AbsBaseFragment> mFragmentList;
+    private ArrayList<BaseFragment> mFragmentList;
     protected int mFragmentIndex = -1;
     protected String mFragmentName = "";
     private Map<String, Integer> mFragmentNameMap;
@@ -40,7 +40,7 @@ public abstract class AbsTabFragmentActivity extends BaseActivity {
             if (fragmentRecord == null) {
                 break;
             }
-            Class<? extends AbsBaseFragment> fragmentClz = fragmentRecord.getFragmentClz();
+            Class<? extends BaseFragment> fragmentClz = fragmentRecord.getFragmentClz();
             if (fragmentClz == null) {
                 break;
             }

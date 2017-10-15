@@ -20,7 +20,7 @@ public class TestModel {
             }
 
             @Override
-            public void onFailure(int requestId, Object errObj) {
+            public void onFailure(int requestId, String errObj) {
                 LogUtil.d("失败 = " + errObj);
                 callBack.onFailed("加载失败");
             }

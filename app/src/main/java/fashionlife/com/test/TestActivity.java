@@ -9,22 +9,22 @@ import java.util.List;
 
 import fashionlife.com.R;
 import fashionlife.com.base.component.BaseActivity;
-import fashionlife.com.base.ui.FLListView;
+import fashionlife.com.base.ui.BaseListView;
 
 /**
  * Created by lovexujh on 2017/9/19
  */
 
-public class TestActivity extends BaseActivity<TestView, TestPresenter> implements TestView {
+public class TestActivity extends BaseActivity<TestPresenter> implements TestView {
 
-    private FLListView mListView;
+    private BaseListView mListView;
     private TestAdapter mAdapter;
     private List<TestBean.ResultBean> mDatas;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mListView = (FLListView) findViewById(R.id.lv);
+        mListView = (BaseListView) findViewById(R.id.lv);
         mDatas = new ArrayList<>();
         mAdapter = new TestAdapter(this, mDatas);
         mListView.setAdapter(mAdapter);

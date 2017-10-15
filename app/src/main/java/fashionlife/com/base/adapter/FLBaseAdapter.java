@@ -7,14 +7,14 @@ import android.widget.BaseAdapter;
 
 import java.util.List;
 
-import fashionlife.com.base.data.FLBaseBean;
+import fashionlife.com.base.data.BaseBean;
 import fashionlife.com.base.viewholder.BaseViewHolder;
 
 /**
  * Created by lovexujh on 2017/10/12
  */
 
-public abstract class FLBaseAdapter<T extends FLBaseBean> extends BaseAdapter {
+public abstract class FLBaseAdapter<T extends BaseBean,V extends BaseViewHolder<T>> extends BaseAdapter {
 
     private List<T> mBeans;
     protected Context mContext;
@@ -45,19 +45,19 @@ public abstract class FLBaseAdapter<T extends FLBaseBean> extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        BaseViewHolder<T> baseViewHolder;
+        V baseViewHolder;
         if (convertView == null) {
             baseViewHolder = getBaseViewHolder();
             convertView = baseViewHolder.getItemView();
             convertView.setTag(baseViewHolder);
         } else {
-            baseViewHolder = (BaseViewHolder<T>) convertView.getTag();
+            baseViewHolder = (V) convertView.getTag();
         }
         baseViewHolder.setData(getItem(position), position, convertView);
         return convertView;
     }
 
-    protected abstract BaseViewHolder getBaseViewHolder();
+    protected abstract V getBaseViewHolder();
 
 //    public void setData(List<T> beans) {
 //        if(this.mBeans == null){

@@ -15,7 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.List;
 
-import fashionlife.com.comman.Contants;
+import fashionlife.com.app.APPConstant;
 import fashionlife.com.listener.ProgressResponseListener;
 
 /**
@@ -24,7 +24,7 @@ import fashionlife.com.listener.ProgressResponseListener;
 
 public class Tool {
 
-    public static boolean isEmpty(List<String> urls) {
+    public static boolean isEmpty(List urls) {
         return urls == null || urls.isEmpty();
     }
 
@@ -205,7 +205,7 @@ public class Tool {
     }
 
     public static String getDefaultPath() {
-        String path = Environment.getExternalStorageDirectory().getPath() + Contants.APP_NAME;
+        String path = Environment.getExternalStorageDirectory().getPath() + APPConstant.APP_NAME;
         File dir = new File(path);
         if (!dir.exists()) {
             try {
@@ -220,4 +220,6 @@ public class Tool {
     public static boolean isEmpty(Integer integer) {
         return integer == null;
     }
+
+
 }

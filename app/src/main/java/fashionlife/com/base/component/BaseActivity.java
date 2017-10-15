@@ -11,7 +11,7 @@ import fashionlife.com.manager.ActivityManager;
  * Created by lovexujh on 2017/9/19
  */
 
-public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V>> extends FragmentActivity implements BaseView<P> {
+public abstract class BaseActivity<P extends IPresenter> extends FragmentActivity implements BaseView {
 
     protected P mPresenter;
     protected ActivityManager mActivityManager;
@@ -23,12 +23,14 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
         if (this.mPresenter == null) {
             this.mPresenter = attachPresenter();
             if (this.mPresenter != null) {
-                this.mPresenter.attachView((V) this);
+                this.mPresenter.attachView(this);
             }
         }
         mActivityManager = ActivityManager.getInstance();
         mActivityManager.addActivity(this);
     }
+
+    protected abstract P attachPresenter();
 
     protected abstract int getLayoutId();
 

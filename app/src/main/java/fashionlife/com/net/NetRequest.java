@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import fashionlife.com.app.APPConstant;
 import fashionlife.com.listener.ProgressResponseListener;
 import fashionlife.com.util.LogUtil;
 import fashionlife.com.util.Tool;
@@ -226,6 +227,15 @@ public class NetRequest {
     }
 
     public void get(int requestId, HashMap<String, String> params, String url, MediaType mediaType, INetCall netCall) {
+        url = URLEncodedUtils.attachHttpGetParams(url, params);
+        http(requestId, "", url, Method.GET, mediaType, netCall);
+    }
+
+    public void getMobAPI(int requestId, HashMap<String, String> params, String url, MediaType mediaType, INetCall netCall) {
+        if (params == null) {
+            params = new HashMap<>();
+        }
+        params.put(APPConstant.KEY_STR, APPConstant.MOBAPI_KEY);
         url = URLEncodedUtils.attachHttpGetParams(url, params);
         http(requestId, "", url, Method.GET, mediaType, netCall);
     }

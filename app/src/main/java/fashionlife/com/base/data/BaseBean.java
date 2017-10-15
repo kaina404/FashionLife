@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by lovexujh on 2017/10/12
  */
 
-public class FLBaseBean implements Serializable{
+public class BaseBean implements Serializable{
     @Override
     public String toString() {
         return JSON.toJSONString(this);

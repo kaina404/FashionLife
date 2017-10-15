@@ -7,5 +7,5 @@ package fashionlife.com.net;
 public interface INetCall {
     void onResponse(int requestId, String response);
 
-    void onFailure(int requestId, Object errObj);
+    void onFailure(int requestId, String errObj);
 }

@@ -10,7 +10,7 @@ import java.util.Map;
 import fashionlife.com.base.component.BaseActivity;
 import fashionlife.com.comman.ActivityId;
 import fashionlife.com.test.TestActivity;
-import fashionlife.com.ui.home.activity.ContainerActivity;
+import fashionlife.com.ui.common.ContainerActivity;
 
 /**
  * Created by lovexujh on 2017/10/9

@@ -13,4 +13,10 @@ public class LogUtil {
             android.util.Log.d(sTag, String.format(msg, params));
         }
     }
+
+    public static void d(Object obj, Object... params){
+        if (debug) {
+            android.util.Log.d(obj.getClass().getSimpleName(), String.format(obj.getClass().getSimpleName(), params));
+        }
+    }
 }

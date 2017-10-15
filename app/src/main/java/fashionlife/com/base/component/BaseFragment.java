@@ -13,21 +13,23 @@ import fashionlife.com.base.BaseView;
  * Created by lovexujh on 2017/9/19
  */
 
-public abstract class AbsBaseFragment<V extends BaseView, P extends BasePresenter<V>> extends Fragment implements BaseView<P> {
+public abstract class BaseFragment<P extends IPresenter> extends Fragment implements BaseView {
 
-    private P presenter;
-    private View mContainerView;
+    protected P mPresenter;
+    protected View mContainerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (this.presenter == null) {
-            this.presenter = attachPresenter();
-            if (this.presenter != null) {
-                this.presenter.attachView((V) this);
+        if (this.mPresenter == null) {
+            this.mPresenter = attachPresenter();
+            if (this.mPresenter != null) {
+                this.mPresenter.attachView(this);
             }
         }
     }
+
+    protected abstract P attachPresenter();
 
     @Nullable
     @Override
@@ -42,9 +44,9 @@ public abstract class AbsBaseFragment<V extends BaseView, P extends BasePresente
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (this.presenter != null) {
-            this.presenter.detachView();
-            this.presenter = null;
+        if (this.mPresenter != null) {
+            this.mPresenter.detachView();
+            this.mPresenter = null;
         }
     }
 }
