@@ -1,8 +1,10 @@
 package fashionlife.com.ui.home.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
 import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
@@ -14,22 +16,24 @@ import fashionlife.com.R;
 import fashionlife.com.app.APPConstant;
 import fashionlife.com.base.component.BaseFragment;
 import fashionlife.com.base.ui.BaseListView;
+import fashionlife.com.comman.ActivityId;
+import fashionlife.com.comman.IntentKeys;
+import fashionlife.com.manager.StartManager;
 import fashionlife.com.ui.home.adapter.WXNewsAdapter;
 import fashionlife.com.ui.home.data.WXNewsBean;
 import fashionlife.com.ui.home.impl.WXNewsContract;
 import fashionlife.com.ui.home.impl.WXNewsPresenter;
-import fashionlife.com.util.LogUtil;
 
 /**
  * Created by lovexujh on 2017/10/15
  */
 
-public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXNewsContract.View, BaseRefreshListener {
+public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXNewsContract.View, BaseRefreshListener, AdapterView.OnItemClickListener {
 
     private BaseListView mListView;
     private String mCid = "1";//查询新闻的cid
     private WXNewsAdapter mAdapter;
-    private List<WXNewsBean.ResultBean.ListBean> list;
+    private List<WXNewsBean.ResultBean.ListBean> mDatas;
     private PullToRefreshLayout mPullToRefresh;
     private int mPager;
     private boolean mCanLoadMore = true;
@@ -37,14 +41,15 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        list = new ArrayList<>();
+        mDatas = new ArrayList<>();
         mPullToRefresh = (PullToRefreshLayout) view.findViewById(R.id.pull_to_refresh);
         mPullToRefresh.setRefreshListener(this);
 //        mPullToRefresh.setHeaderView();
 
-        mAdapter = new WXNewsAdapter(getContext(), list);
+        mAdapter = new WXNewsAdapter(getContext(), mDatas);
         mListView = (BaseListView) view.findViewById(R.id.lv);
         mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(this);
         initData();
     }
 
@@ -90,9 +95,9 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
         mPullToRefresh.finishRefresh();
         mPullToRefresh.finishLoadMore();
         if (result.getCurPage() == 1) {
-            list.clear();
+            mDatas.clear();
         }
-        list.addAll(result.getList());
+        mDatas.addAll(result.getList());
         mAdapter.notifyDataSetChanged();
     }
 
@@ -107,5 +112,13 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
         if (mCanLoadMore) {
             mPresenter.queryWXNews(mCid, ++mPager);
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        WXNewsBean.ResultBean.ListBean listBean = mDatas.get(position);
+        Intent intent = new Intent();
+        intent.putExtra(IntentKeys.URL, listBean.getSourceUrl());
+        StartManager.startActivity(ActivityId.WEB_VIEW_ACTIVITY, getContext(), intent);
     }
 }

@@ -11,6 +11,7 @@ import fashionlife.com.base.component.BaseActivity;
 import fashionlife.com.comman.ActivityId;
 import fashionlife.com.test.TestActivity;
 import fashionlife.com.ui.common.ContainerActivity;
+import fashionlife.com.ui.web.WebViewActivity;
 
 /**
  * Created by lovexujh on 2017/10/9
@@ -43,6 +44,7 @@ public class ActivityManager {
     private void initData() {
         activityRecordMap.put(ActivityId.Container_Activity, new ActivityRecord("", ContainerActivity.class));
         activityRecordMap.put(ActivityId.Test_Activity, new ActivityRecord("", TestActivity.class));
+        activityRecordMap.put(ActivityId.WEB_VIEW_ACTIVITY, new ActivityRecord("", WebViewActivity.class));
     }
 
     /**

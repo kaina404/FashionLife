@@ -6,7 +6,6 @@ import android.widget.RadioGroup;
 import fashionlife.com.R;
 import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.component.AbsTabFragmentActivity;
-import fashionlife.com.base.component.IPresenter;
 import fashionlife.com.comman.FragmentId;
 import fashionlife.com.manager.PermissionManger;
 import fashionlife.com.util.Tool;
@@ -25,11 +24,6 @@ public class ContainerActivity extends AbsTabFragmentActivity implements RadioGr
         super.onCreate(savedInstanceState);
         PermissionManger.init(this);
         initViews();
-    }
-
-    @Override
-    protected IPresenter attachPresenter() {
-        return null;
     }
 
     private void initViews() {

@@ -1,7 +1,5 @@
 package fashionlife.com.app;
 
-import android.util.Log;
-
 import fashionlife.com.manager.ActivityManager;
 import fashionlife.com.util.Tool;
 
@@ -10,6 +8,8 @@ import fashionlife.com.util.Tool;
  */
 
 public class AppUtils {
+
+    public static final String APP_CACHE_DIRNAME = "fashionlife";
 
     public static void exitAPP() {
         ActivityManager.getInstance().finishAllActivity();

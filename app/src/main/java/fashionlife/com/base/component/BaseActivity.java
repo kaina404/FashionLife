@@ -3,6 +3,7 @@ package fashionlife.com.base.component;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 
 import fashionlife.com.base.BaseView;
 import fashionlife.com.manager.ActivityManager;
@@ -15,11 +16,13 @@ public abstract class BaseActivity<P extends IPresenter> extends FragmentActivit
 
     protected P mPresenter;
     protected ActivityManager mActivityManager;
+    protected View mContentView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
+        mContentView = View.inflate(this, getLayoutId(), null);
+        setContentView(mContentView);
         if (this.mPresenter == null) {
             this.mPresenter = attachPresenter();
             if (this.mPresenter != null) {
@@ -30,7 +33,9 @@ public abstract class BaseActivity<P extends IPresenter> extends FragmentActivit
         mActivityManager.addActivity(this);
     }
 
-    protected abstract P attachPresenter();
+    protected P attachPresenter() {
+        return null;
+    }
 
     protected abstract int getLayoutId();
 
