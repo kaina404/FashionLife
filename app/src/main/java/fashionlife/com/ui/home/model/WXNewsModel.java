@@ -20,7 +20,7 @@ public class WXNewsModel extends BaseModel<WXNewsImpl> implements INetCall {
     }
 
 
-    public void queryNews(String cid, String page) {
+    public void queryNews(String cid, int page) {
         NetManager.queryWXNews(NetId.WX_NEWS_ID, cid, page, APPConstant.WXNews.SIZE_20, this);
     }
 
@@ -34,7 +34,7 @@ public class WXNewsModel extends BaseModel<WXNewsImpl> implements INetCall {
             mModel.onError("");
             return;
         }
-        mModel.refresh(wxNewsBean.getResult().getList());
+        mModel.refresh(wxNewsBean.getResult());
 
     }
 

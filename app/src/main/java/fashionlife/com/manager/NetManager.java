@@ -72,12 +72,12 @@ public class NetManager {
      * @param cid
      * @param netCall
      */
-    public static void queryWXNews(int requestId, String cid, String page, String size, INetCall netCall) {
+    public static void queryWXNews(int requestId, String cid, int page, int size, INetCall netCall) {
         NetRequest request = new NetRequest();
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(APPConstant.WXNews.CID, cid);
-        hashMap.put(APPConstant.WXNews.PAGE, page);
-        hashMap.put(APPConstant.WXNews.SIZE, size);
+        hashMap.put(APPConstant.WXNews.PAGE, String.valueOf(page));
+        hashMap.put(APPConstant.WXNews.SIZE, String.valueOf(size));
         request.getMobAPI(requestId, hashMap, UrlConstant.WXNews_DETAIL_INFO_URL, NetRequest.JSON_TYPE, netCall);
     }
 }

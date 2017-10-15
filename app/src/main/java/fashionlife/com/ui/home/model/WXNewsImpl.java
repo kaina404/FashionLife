@@ -9,6 +9,7 @@ import fashionlife.com.ui.home.data.WXNewsBean;
  */
 
 public interface WXNewsImpl {
-    void refresh(List<WXNewsBean.ResultBean.ListBean> been);
     void onError(String errmsg);
+
+    void refresh(WXNewsBean.ResultBean result);
 }

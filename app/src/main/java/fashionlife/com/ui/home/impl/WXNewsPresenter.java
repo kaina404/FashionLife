@@ -1,7 +1,5 @@
 package fashionlife.com.ui.home.impl;
 
-import java.util.List;
-
 import fashionlife.com.base.component.BasePresenter;
 import fashionlife.com.ui.home.data.WXNewsBean;
 import fashionlife.com.ui.home.model.WXNewsImpl;
@@ -20,21 +18,23 @@ public class WXNewsPresenter extends BasePresenter<WXNewsContract.View> implemen
         mModel = new WXNewsModel(this);
     }
 
-    public void queryWXNews(String cid, String page) {
+    public void queryWXNews(String cid, int page) {
         mModel.queryNews(cid, page);
     }
 
-    @Override
-    public void refresh(List<WXNewsBean.ResultBean.ListBean> been) {// TODO: 2017/10/15  后期要分页加载
-        if(mView != null){
-            mView.onRefresh(been);
-        }
-    }
+
 
     @Override
     public void onError(String errmsg) {
         if(mView != null){
             mView.onError(errmsg);
+        }
+    }
+
+    @Override
+    public void refresh(WXNewsBean.ResultBean result) {
+        if(mView != null){
+            mView.onRefresh(result);
         }
     }
 }

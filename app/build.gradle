@@ -31,4 +31,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/httpcore.jar')
     compile 'com.xu.viewpagerflextitle:viewpagerflextitle:1.0.3'
+    compile 'com.jwenfeng.pulltorefresh:library:1.2.5'
 }

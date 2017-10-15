@@ -15,6 +15,6 @@ public class APPConstant {
         String CID = "cid";
         String PAGE = "page";
         String SIZE = "size";
-        String SIZE_20 = "20";
+        int SIZE_20 = 20;
     }
 }
