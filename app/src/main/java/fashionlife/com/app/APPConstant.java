@@ -17,4 +17,5 @@ public class APPConstant {
         String SIZE = "size";
         int SIZE_20 = 20;
     }
+
 }

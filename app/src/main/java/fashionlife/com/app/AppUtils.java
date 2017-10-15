@@ -9,6 +9,8 @@ import fashionlife.com.util.Tool;
 
 public class AppUtils {
 
+    public static final String COMMON = "fashionlife";
+
     public static final String APP_CACHE_DIRNAME = "fashionlife";
 
     public static void exitAPP() {
@@ -20,5 +22,9 @@ public class AppUtils {
             return null;
         }
         return thumbnails.split("$")[0];
+    }
+
+    public static String getWXNewsKey(String cid, int page) {
+        return COMMON + cid + "AND" + page;
     }
 }

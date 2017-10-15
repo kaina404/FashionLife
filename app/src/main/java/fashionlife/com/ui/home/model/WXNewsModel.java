@@ -1,7 +1,9 @@
 package fashionlife.com.ui.home.model;
 
 import fashionlife.com.app.APPConstant;
+import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.data.BaseModel;
+import fashionlife.com.db.CacheDb;
 import fashionlife.com.manager.NetManager;
 import fashionlife.com.net.INetCall;
 import fashionlife.com.net.NetId;
@@ -15,12 +17,17 @@ import fashionlife.com.util.JSONUtils;
 public class WXNewsModel extends BaseModel<WXNewsImpl> implements INetCall {
 
 
+    private String mCid;
+    private int mPage;
+
     public WXNewsModel(WXNewsImpl wxNews) {
         super(wxNews);
     }
 
 
     public void queryNews(String cid, int page) {
+        this.mCid = cid;
+        this.mPage = page;
         NetManager.queryWXNews(NetId.WX_NEWS_ID, cid, page, APPConstant.WXNews.SIZE_20, this);
     }
 
@@ -29,6 +36,10 @@ public class WXNewsModel extends BaseModel<WXNewsImpl> implements INetCall {
         if (mModel == null) {
             return;
         }
+
+        CacheDb cacheDb = new CacheDb();
+        long value = cacheDb.update(AppUtils.getWXNewsKey(mCid, mPage), "你好中国");
+
         WXNewsBean wxNewsBean = JSONUtils.parseObject(response, WXNewsBean.class);
         if (wxNewsBean == null || wxNewsBean.getResult() == null || wxNewsBean.getResult().getList() == null) {
             mModel.onError("");

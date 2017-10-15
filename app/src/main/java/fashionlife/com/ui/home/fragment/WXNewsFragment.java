@@ -14,15 +14,18 @@ import java.util.List;
 
 import fashionlife.com.R;
 import fashionlife.com.app.APPConstant;
+import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.component.BaseFragment;
 import fashionlife.com.base.ui.BaseListView;
 import fashionlife.com.common.ActivityId;
 import fashionlife.com.common.IntentKeys;
+import fashionlife.com.db.CacheDb;
 import fashionlife.com.manager.StartManager;
 import fashionlife.com.ui.home.adapter.WXNewsAdapter;
 import fashionlife.com.ui.home.data.WXNewsBean;
 import fashionlife.com.ui.home.impl.WXNewsContract;
 import fashionlife.com.ui.home.impl.WXNewsPresenter;
+import fashionlife.com.util.LogUtil;
 
 /**
  * Created by lovexujh on 2017/10/15
@@ -99,6 +102,10 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
         }
         mDatas.addAll(result.getList());
         mAdapter.notifyDataSetChanged();
+
+        CacheDb cacheDb = new CacheDb();
+        String cache = cacheDb.getCache(AppUtils.getWXNewsKey(mCid, mPager));
+        LogUtil.d(this, "缓存是=", cache);
     }
 
     @Override
