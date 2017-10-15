@@ -3,9 +3,13 @@ package fashionlife.com.manager;
 import java.util.HashMap;
 
 import fashionlife.com.app.APPConstant;
+import fashionlife.com.app.AppUtils;
+import fashionlife.com.common.SpConstant;
 import fashionlife.com.common.UrlConstant;
 import fashionlife.com.net.INetCall;
 import fashionlife.com.net.NetRequest;
+import fashionlife.com.util.SpUtils;
+import fashionlife.com.util.Tool;
 
 /**
  * Created by lovexujh on 2017/10/9
@@ -73,6 +77,13 @@ public class NetManager {
      * @param netCall
      */
     public static void queryWXNews(int requestId, String cid, int page, int size, INetCall netCall) {
+        //先来一波缓存
+        SpUtils spUtils = new SpUtils(SpConstant.WXNEWS);
+        String cache = spUtils.getString(AppUtils.getWXNewsKey(cid, page), "");
+        if(!Tool.isEmpty(cache)){
+            netCall.onResponse(requestId, cache);
+        }
+        //请求网络
         NetRequest request = new NetRequest();
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(APPConstant.WXNews.CID, cid);

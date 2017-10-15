@@ -13,5 +13,5 @@ public abstract class BaseCache {
 
     public abstract long deleteAll();
 
-    public abstract String getCache(String key);
+    public abstract String getCache(String key, String defaultValue);
 }

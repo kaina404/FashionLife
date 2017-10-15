@@ -19,13 +19,13 @@ import fashionlife.com.base.component.BaseFragment;
 import fashionlife.com.base.ui.BaseListView;
 import fashionlife.com.common.ActivityId;
 import fashionlife.com.common.IntentKeys;
-import fashionlife.com.db.CacheDb;
+import fashionlife.com.common.SpConstant;
 import fashionlife.com.manager.StartManager;
 import fashionlife.com.ui.home.adapter.WXNewsAdapter;
 import fashionlife.com.ui.home.data.WXNewsBean;
 import fashionlife.com.ui.home.impl.WXNewsContract;
 import fashionlife.com.ui.home.impl.WXNewsPresenter;
-import fashionlife.com.util.LogUtil;
+import fashionlife.com.util.SpUtils;
 
 /**
  * Created by lovexujh on 2017/10/15
@@ -103,10 +103,11 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
         mDatas.addAll(result.getList());
         mAdapter.notifyDataSetChanged();
 
+
         // TODO: 2017/10/15  TEST
-        CacheDb cacheDb = new CacheDb();
-        String cache = cacheDb.getCache(AppUtils.getWXNewsKey(mCid, mPager));
-        LogUtil.d(this, "缓存是=", cache);
+//        DBCache DBCache = new DBCache();
+//        String cache = DBCache.getCache(AppUtils.getWXNewsKey(mCid, mPager), "");
+//        LogUtil.d(this, "缓存是=", cache);
     }
 
     @Override

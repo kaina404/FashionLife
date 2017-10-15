@@ -5,4 +5,5 @@ package fashionlife.com.common;
  */
 
 public class SpConstant {
+    public static final String WXNEWS = "WXNEWS";
 }

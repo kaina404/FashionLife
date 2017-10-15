@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import fashionlife.com.base.component.BaseApplication;
+import fashionlife.com.base.data.BaseCache;
 
 /**
  * Created by lovexujh on 2017/10/15
  */
 
-public class SpUtils {
+public class SpUtils extends BaseCache {
+
     private SharedPreferences sharedPreferences;
 
     public SpUtils(String fileName) {
@@ -42,4 +44,32 @@ public class SpUtils {
         editor.commit();
     }
 
+    @Override
+    public long insert(String key, String value) {
+        setString(key, value);
+        return 1;
+    }
+
+    @Override
+    public long update(String key, String value) {
+        setString(key, value);
+        return 1;
+    }
+
+    @Override
+    public long delete(String key) {
+        remove(key);
+        return 1;
+    }
+
+    @Override
+    public long deleteAll() {
+        clear();
+        return 1;
+    }
+
+    @Override
+    public String getCache(String key, String defaultValue) {
+        return getString(key, defaultValue);
+    }
 }

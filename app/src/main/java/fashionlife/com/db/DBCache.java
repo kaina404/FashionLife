@@ -10,12 +10,12 @@ import fashionlife.com.base.data.BaseCache;
  * Created by lovexujh on 2017/10/15
  */
 
-public class CacheDb extends BaseCache {//CRUD
+public class DBCache extends BaseCache {//CRUD
 
 
     private SQLiteDatabase mDB;
 
-    public CacheDb() {
+    public DBCache() {
         mDB = DBUtils.getInstance().getDB();
     }
 
@@ -50,11 +50,11 @@ public class CacheDb extends BaseCache {//CRUD
     }
 
     @Override
-    public String getCache(String key) {
+    public String getCache(String key, String defaultValue) {
         String[] columns = new String[]{DBConstants.CACHE.VALUE};
         String selection = DBConstants.CACHE.KEY + "=?";
         String[] selectionArgs = new String[]{key};
-        String value = null;
+        String value = defaultValue;
         Cursor cursor = null;
 //        String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy
         try {

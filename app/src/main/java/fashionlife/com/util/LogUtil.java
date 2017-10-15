@@ -1,5 +1,7 @@
 package fashionlife.com.util;
 
+import android.util.Log;
+
 /**
  * Created by lovexujh on 2017/10/9
  */
@@ -14,9 +16,14 @@ public class LogUtil {
         }
     }
 
-    public static void d(Object obj, Object... params){
+    public static void d(Object obj, String params) {
         if (debug) {
-            android.util.Log.d(obj.getClass().getSimpleName(), String.format(obj.getClass().getSimpleName(), params));
+            if (obj instanceof String) {
+                Log.d((String) obj, params);
+            } else {
+                android.util.Log.d(obj.getClass().getSimpleName(), params);
+
+            }
         }
     }
 }
