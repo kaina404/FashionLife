@@ -100,6 +100,19 @@ public class WXNewsBean extends BaseBean {
             private String thumbnails;
             private String title;
 
+
+            public int getImageHeight() {
+                return imageHeight;
+            }
+
+            public void setImageHeight(int imageHeight) {
+                this.imageHeight = imageHeight;
+            }
+
+            private int imageHeight;
+
+
+
             public String getCid() {
                 return cid;
             }

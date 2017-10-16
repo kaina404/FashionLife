@@ -23,7 +23,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
     compile 'com.alibaba:fastjson:1.2.31'
-    compile 'jp.wasabeef:glide-transformations:2.0.2'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -32,4 +32,5 @@ dependencies {
     compile files('libs/httpcore.jar')
     compile 'com.xu.viewpagerflextitle:viewpagerflextitle:1.0.3'
     compile 'com.jwenfeng.pulltorefresh:library:1.2.5'
+    compile 'com.android.support:recyclerview-v7:21.0.+'
 }

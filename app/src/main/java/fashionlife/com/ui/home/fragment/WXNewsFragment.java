@@ -3,6 +3,8 @@ package fashionlife.com.ui.home.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -14,18 +16,14 @@ import java.util.List;
 
 import fashionlife.com.R;
 import fashionlife.com.app.APPConstant;
-import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.component.BaseFragment;
-import fashionlife.com.base.ui.BaseListView;
 import fashionlife.com.common.ActivityId;
 import fashionlife.com.common.IntentKeys;
-import fashionlife.com.common.SpConstant;
 import fashionlife.com.manager.StartManager;
-import fashionlife.com.ui.home.adapter.WXNewsAdapter;
 import fashionlife.com.ui.home.data.WXNewsBean;
 import fashionlife.com.ui.home.impl.WXNewsContract;
 import fashionlife.com.ui.home.impl.WXNewsPresenter;
-import fashionlife.com.util.SpUtils;
+import fashionlife.com.ui.home.temp.MyAdapter;
 
 /**
  * Created by lovexujh on 2017/10/15
@@ -33,13 +31,15 @@ import fashionlife.com.util.SpUtils;
 
 public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXNewsContract.View, BaseRefreshListener, AdapterView.OnItemClickListener {
 
-    private BaseListView mListView;
+//    private BaseListView mListView;
     private String mCid = "1";//查询新闻的cid
-    private WXNewsAdapter mAdapter;
+//    private WXNewsAdapter mAdapter;
     private List<WXNewsBean.ResultBean.ListBean> mDatas;
     private PullToRefreshLayout mPullToRefresh;
     private int mPager;
     private boolean mCanLoadMore = true;
+    private RecyclerView mRecyclerView;
+    private MyAdapter mRecyclerViewAdapter;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -49,10 +49,15 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
         mPullToRefresh.setRefreshListener(this);
 //        mPullToRefresh.setHeaderView();
 
-        mAdapter = new WXNewsAdapter(getContext(), mDatas);
-        mListView = (BaseListView) view.findViewById(R.id.lv);
-        mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(this);
+//        mAdapter = new WXNewsAdapter(getContext(), mDatas);
+//        mListView = (BaseListView) view.findViewById(R.id.lv);
+//        mListView.setAdapter(mAdapter);
+//        mListView.setOnItemClickListener(this);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        mRecyclerViewAdapter = new MyAdapter(getContext());
+        mRecyclerViewAdapter.setData(mDatas);
+        mRecyclerView.setAdapter(mRecyclerViewAdapter);
         initData();
     }
 
@@ -101,8 +106,9 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
             mDatas.clear();
         }
         mDatas.addAll(result.getList());
-        mAdapter.notifyDataSetChanged();
-
+//        mAdapter.notifyDataSetChanged();
+        mRecyclerViewAdapter.setData(mDatas);
+        mRecyclerViewAdapter.notifyItemInserted(mDatas.size());
 
         // TODO: 2017/10/15  TEST
 //        DBCache DBCache = new DBCache();
