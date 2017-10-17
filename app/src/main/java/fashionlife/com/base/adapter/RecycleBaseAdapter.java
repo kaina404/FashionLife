@@ -17,9 +17,8 @@ import fashionlife.com.base.viewholder.RecycleBaseViewHolder;
 public abstract class RecycleBaseAdapter<T> extends RecyclerView.Adapter<RecycleBaseViewHolder> {
 
     private int mLayoutId;
-    private View mItemView;
-    private Context mContext;
-    private List<T> mData;
+    protected Context mContext;
+    protected List<T> mData;
 
     public RecycleBaseAdapter(Context context, int layoutId, List<T> data) {
         mContext = context;
