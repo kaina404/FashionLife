@@ -17,12 +17,11 @@ import fashionlife.com.base.impl.OnRecycleViewItemClickListener;
 
 public class RecycleBaseViewHolder extends RecyclerView.ViewHolder {
 
-    private static OnRecycleViewItemClickListener mListener;
     private SparseArray<View> mViews;//用来缓存itemView中的控件
     protected Context mContext;
     private View mItemView;
     protected ViewGroup mViewGroup;
-    private static int mPosition;
+    private int mPosition;
     private OnRecycleViewItemClickListener mOnItemClickListener;
 
     public RecycleBaseViewHolder(Context context, View itemView, ViewGroup viewGroup) {

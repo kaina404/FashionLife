@@ -20,10 +20,10 @@ import fashionlife.com.base.component.BaseFragment;
 import fashionlife.com.common.ActivityId;
 import fashionlife.com.common.IntentKeys;
 import fashionlife.com.manager.StartManager;
+import fashionlife.com.ui.home.adapter.WXNewsNewAdapter;
 import fashionlife.com.ui.home.data.WXNewsBean;
 import fashionlife.com.ui.home.impl.WXNewsContract;
 import fashionlife.com.ui.home.impl.WXNewsPresenter;
-import fashionlife.com.ui.home.temp.MyAdapter;
 
 /**
  * Created by lovexujh on 2017/10/15
@@ -39,7 +39,7 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
     private int mPager;
     private boolean mCanLoadMore = true;
     private RecyclerView mRecyclerView;
-    private MyAdapter mRecyclerViewAdapter;
+    private WXNewsNewAdapter mRecyclerViewAdapter;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -55,24 +55,10 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
 //        mListView.setOnItemClickListener(this);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        mRecyclerViewAdapter = new MyAdapter(getContext());
+        mRecyclerViewAdapter = new WXNewsNewAdapter(getContext(), mDatas);
         mRecyclerViewAdapter.setData(mDatas);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
 
-        mRecyclerViewAdapter.setOnItemClickLitener(new MyAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                WXNewsBean.ResultBean.ListBean listBean = mDatas.get(position);
-                Intent intent = new Intent();
-                intent.putExtra(IntentKeys.URL, listBean.getSourceUrl());
-                StartManager.startActivity(ActivityId.WEB_VIEW_ACTIVITY, getContext(), intent);
-            }
-
-            @Override
-            public boolean onItemLongClick(View view, int position) {
-                return false;
-            }
-        });
         initData();
     }
 

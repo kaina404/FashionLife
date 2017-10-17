@@ -66,7 +66,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 //        else {
 //        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.mIv.getLayoutParams();
 //        params.height = imageHeight;
-        Glide.with(mContext).load(bean.getThumbnails()).placeholder(R.mipmap.loading).centerCrop().override(mImgWidth, imageHeight).into(holder.mIv);
+        Glide.with(mContext).load(bean.getThumbnails()).placeholder(R.mipmap.loading).override(mImgWidth, imageHeight).centerCrop().override(mImgWidth, imageHeight).into(holder.mIv);
 //        }
 
         holder.mTv.setText(bean.getSubTitle());
