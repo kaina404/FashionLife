@@ -60,9 +60,11 @@ public class RecycleBaseViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
-    public RecycleBaseViewHolder setOnClickListener(int viewId, View.OnClickListener listener) {
-        View view = findViewById(viewId);
-        view.setOnClickListener(listener);
+    public RecycleBaseViewHolder setOnClickListener(View.OnClickListener listener, int... viewId) {
+        for (int i = 0; i < viewId.length; i++) {
+            View view = findViewById(viewId[i]);
+            view.setOnClickListener(listener);
+        }
         return this;
     }
 
