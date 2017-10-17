@@ -7,13 +7,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import fashionlife.com.base.impl.OnRecycleViewItemClickListener;
 import fashionlife.com.base.viewholder.RecycleBaseViewHolder;
 
 /**
  * Created by lovexujh on 2017/10/17
  */
 
-public abstract class RecycleBaseAdapter<T> extends RecyclerView.Adapter<RecycleBaseViewHolder> {
+public abstract class RecycleBaseAdapter<T> extends RecyclerView.Adapter<RecycleBaseViewHolder> implements OnRecycleViewItemClickListener {
 
     private int mLayoutId;
     protected Context mContext;
@@ -35,6 +36,7 @@ public abstract class RecycleBaseAdapter<T> extends RecyclerView.Adapter<Recycle
 
     @Override
     public void onBindViewHolder(RecycleBaseViewHolder holder, int position) {
+        holder.setPosition(position);
         setItemData(holder, mData.get(position), position);
     }
 
@@ -44,4 +46,6 @@ public abstract class RecycleBaseAdapter<T> extends RecyclerView.Adapter<Recycle
     public int getItemCount() {
         return mData.size();
     }
+
+
 }

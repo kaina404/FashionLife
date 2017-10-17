@@ -9,16 +9,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import fashionlife.com.base.impl.OnRecycleViewItemClickListener;
+
 /**
  * Created by lovexujh on 2017/10/17
  */
 
 public class RecycleBaseViewHolder extends RecyclerView.ViewHolder {
 
+    private static OnRecycleViewItemClickListener mListener;
     private SparseArray<View> mViews;//用来缓存itemView中的控件
-    private Context mContext;
+    protected Context mContext;
     private View mItemView;
-    private ViewGroup mViewGroup;
+    protected ViewGroup mViewGroup;
+    private static int mPosition;
+    private OnRecycleViewItemClickListener mOnItemClickListener;
 
     public RecycleBaseViewHolder(Context context, View itemView, ViewGroup viewGroup) {
         super(itemView);
@@ -29,7 +34,6 @@ public class RecycleBaseViewHolder extends RecyclerView.ViewHolder {
     }
 
     public static RecycleBaseViewHolder create(Context context, ViewGroup parent, int layoutId) {
-
         View itemView = LayoutInflater.from(context).inflate(layoutId, parent, false);
         RecycleBaseViewHolder holder = new RecycleBaseViewHolder(context, itemView, parent);
         return holder;
@@ -60,10 +64,28 @@ public class RecycleBaseViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
-    public RecycleBaseViewHolder setOnClickListener(View.OnClickListener listener, int... viewId) {
-        for (int i = 0; i < viewId.length; i++) {
-            View view = findViewById(viewId[i]);
-            view.setOnClickListener(listener);
+    public RecycleBaseViewHolder setPosition(int position) {
+        mPosition = position;
+        return this;
+    }
+
+    public RecycleBaseViewHolder setOnClickListener(View.OnClickListener listener, int viewId) {
+        View view = findViewById(viewId);
+        view.setOnClickListener(listener);
+        return this;
+    }
+
+    public RecycleBaseViewHolder setOnItemClickListener(OnRecycleViewItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+        if (mOnItemClickListener != null) {
+            mItemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mOnItemClickListener != null) {
+                        mOnItemClickListener.onItemClick(mItemView, mPosition);
+                    }
+                }
+            });
         }
         return this;
     }

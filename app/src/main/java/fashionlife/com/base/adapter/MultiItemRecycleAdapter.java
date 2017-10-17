@@ -1,6 +1,7 @@
 package fashionlife.com.base.adapter;
 
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import fashionlife.com.base.viewholder.RecycleBaseViewHolder;
  * Created by lovexujh on 2017/10/17
  */
 
-public abstract class MultiItemRecycleAdapter<T> extends RecycleBaseAdapter<RecycleBaseViewHolder> {
+public abstract class MultiItemRecycleAdapter<T> extends RecycleBaseAdapter<RecycleBaseViewHolder>   {
 
 
     private MultiItemRecycle<T> mMultiItemRecycle;
@@ -34,7 +35,7 @@ public abstract class MultiItemRecycleAdapter<T> extends RecycleBaseAdapter<Recy
 
     @Override
     public RecycleBaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return RecycleBaseViewHolder.create(mContext, parent, mMultiItemRecycle.getItemLayoutId(viewType));
+        return RecycleBaseViewHolder.create(mContext, parent, mMultiItemRecycle.getItemLayoutId(viewType), this);
     }
 
 }
