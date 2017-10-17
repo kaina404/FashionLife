@@ -1,25 +1,19 @@
 package fashionlife.com.ui.home.temp;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.util.List;
 import java.util.Random;
 
 import fashionlife.com.R;
 import fashionlife.com.ui.home.data.WXNewsBean;
-import fashionlife.com.util.LogUtil;
 import fashionlife.com.util.ScreenUtils;
 import fashionlife.com.util.Tool;
-
-import static com.bumptech.glide.request.target.Target.SIZE_ORIGINAL;
 
 /**
  * Created by lovexujh on 2017/10/16
@@ -48,53 +42,51 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         return viewHolder;
     }
 
-//    private HashMap<Integer, Integer> mHeightMap = new HashMap<>();
-
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
-//        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) holder.mIv.getLayoutParams();
-//        layoutParams.width = mImgWidth;
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final WXNewsBean.ResultBean.ListBean bean = mData.get(position);
-//
-//        if (bean.getImageHeight() == 0) {
-//            bean.setImageHeight(getRandomHeight());
-//        }
-//        layoutParams.height = bean.getImageHeight();
-
-
-//        Glide.with(mContext).load(bean.getThumbnails()).asBitmap().centerCrop().override(layoutParams.width, BitmapImageViewTarget.SIZE_ORIGINAL).into(new DriverViewTarget(holder.mIv, mImgWidth));
-
         int imageHeight = bean.getImageHeight();
-//        int imageHeight = 500;
+
         if (imageHeight <= 0) {
-            LogUtil.d(this, position + " <= 0 " + imageHeight);
-            Glide.with(mContext).load(bean.getThumbnails()).asBitmap().centerCrop().override(mImgWidth, SIZE_ORIGINAL).into(new SimpleTarget<Bitmap>() {
+
+            imageHeight = getRandomHeight();
+            bean.setImageHeight(imageHeight);
+//            LogUtil.d(this, position + " <= 0 " + imageHeight);
+//            Glide.with(mContext).load(bean.getThumbnails()).asBitmap().placeholder(R.mipmap.loading).diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop().override(mImgWidth, SIZE_ORIGINAL).into(new SimpleTarget<Bitmap>() {
+//                @Override
+//                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//                    if (mData.get(position).getImageHeight() <= 0) {
+//                        int height = resource.getHeight();
+//                        mData.get(position).setImageHeight(height);
+//                    }
+//                    holder.mIv.setImageBitmap(resource);
+//                }
+//            });
+        }
+//        else {
+//        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.mIv.getLayoutParams();
+//        params.height = imageHeight;
+        Glide.with(mContext).load(bean.getThumbnails()).placeholder(R.mipmap.loading).override(mImgWidth, imageHeight).centerCrop().override(mImgWidth, imageHeight).into(holder.mIv);
+//        }
+
+        holder.mTv.setText(bean.getSubTitle());
+
+        //设置监听
+        if (null != mOnItemClickListener) {
+            holder.mItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                    if (holder.getPosition() != RecyclerView.NO_POSITION) {
-                        if (bean.getImageHeight() <= 0) {
-//                            int width = resource.getWidth();
-                            int height = resource.getHeight();
-//                            int realHeight = mScreenWidth * height / width / 2;
-                            bean.setImageHeight(height);
-//                            ViewGroup.LayoutParams lp = holder.mIv.getLayoutParams();
-//                            lp.height = height;
-//                            if (width < mScreenWidth / 2)
-//                                lp.width = mScreenWidth / 2;
-                        }
-                        holder.mIv.setImageBitmap(resource);
-                    }
+                public void onClick(View v) {
+                    mOnItemClickListener.onItemClick(holder.mItemView, position);
                 }
             });
-        } else {
-            LogUtil.d(this, position + " > 0 " + imageHeight);
-
-            Glide.with(mContext).load(bean.getThumbnails()).asBitmap().centerCrop().override(mImgWidth, imageHeight).into(holder.mIv);
+            holder.mItemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    return mOnItemClickListener.onItemLongClick(holder.mItemView, position);
+                }
+            });
         }
 
-
-//        Glide.with(mContext).load(bean.getThumbnails()).fitCenter().crossFade().into(holder.mIv);
-        holder.mTv.setText(bean.getSubTitle());
     }
 
     @Override
@@ -113,4 +105,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         int s = random.nextInt(max) % (max - min + 1) + min;
         return s;
     }
+
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+
+        boolean onItemLongClick(View view, int position);
+    }
+
+
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setOnItemClickLitener(OnItemClickListener mOnItemClickListener) {
+        this.mOnItemClickListener = mOnItemClickListener;
+    }
+
 }
