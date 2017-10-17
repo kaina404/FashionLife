@@ -49,7 +49,7 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestVie
         mDatas.clear();
         mDatas.addAll(testBean.getResult());
         mAdapter.notifyDataSetChanged();
-//        mAdapter.setData(mDatas);
+//        mAdapter.setItemData(mDatas);
     }
 
     @Override

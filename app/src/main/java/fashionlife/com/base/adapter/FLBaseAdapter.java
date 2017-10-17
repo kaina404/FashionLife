@@ -59,7 +59,7 @@ public abstract class FLBaseAdapter<T extends BaseBean,V extends BaseViewHolder<
 
     protected abstract V getBaseViewHolder();
 
-//    public void setData(List<T> beans) {
+//    public void setItemData(List<T> beans) {
 //        if(this.mBeans == null){
 //            this.mBeans = new ArrayList<>();
 //        }

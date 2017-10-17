@@ -58,6 +58,7 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
         mRecyclerViewAdapter = new MyAdapter(getContext());
         mRecyclerViewAdapter.setData(mDatas);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
+
         mRecyclerViewAdapter.setOnItemClickLitener(new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {

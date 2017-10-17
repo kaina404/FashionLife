@@ -46,7 +46,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final WXNewsBean.ResultBean.ListBean bean = mData.get(position);
         int imageHeight = bean.getImageHeight();
-
+        // TODO: 2017/10/17  图片位移的问题待解决
         if (imageHeight <= 0) {
 
             imageHeight = getRandomHeight();
@@ -66,7 +66,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 //        else {
 //        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.mIv.getLayoutParams();
 //        params.height = imageHeight;
-        Glide.with(mContext).load(bean.getThumbnails()).placeholder(R.mipmap.loading).override(mImgWidth, imageHeight).centerCrop().override(mImgWidth, imageHeight).into(holder.mIv);
+        Glide.with(mContext).load(bean.getThumbnails()).placeholder(R.mipmap.loading).centerCrop().override(mImgWidth, imageHeight).into(holder.mIv);
 //        }
 
         holder.mTv.setText(bean.getSubTitle());
