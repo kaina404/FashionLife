@@ -1,7 +1,7 @@
 package fashionlife.com.app;
 
 import fashionlife.com.manager.ActivityManager;
-import fashionlife.com.util.Tool;
+import fashionlife.com.util.Utils;
 
 /**
  * Created by lovexujh on 2017/9/19
@@ -18,7 +18,7 @@ public class AppUtils {
     }
 
     public static String getMobWXImgURL(String thumbnails) {
-        if (Tool.isEmpty(thumbnails)) {
+        if (Utils.isEmpty(thumbnails)) {
             return null;
         }
         return thumbnails.split("$")[0];

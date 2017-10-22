@@ -5,12 +5,12 @@ import fashionlife.com.base.component.BaseFragment;
 import fashionlife.com.base.component.IPresenter;
 
 /**
- * Created by lovexujh on 2017/10/9
+ * @author: lovexujh
+ * @time: 2017/10/22
+ * @descripition: 天气
  */
 
-public class FindFragment extends BaseFragment {
-
-
+public class WeatherFragment extends BaseFragment {
     @Override
     protected IPresenter attachPresenter() {
         return null;
@@ -18,7 +18,6 @@ public class FindFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_find_layout;
+        return R.layout.fragment_weather;
     }
-
 }

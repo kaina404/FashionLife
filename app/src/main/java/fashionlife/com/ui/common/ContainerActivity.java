@@ -8,7 +8,7 @@ import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.component.AbstractTabFragmentActivity;
 import fashionlife.com.common.FragmentId;
 import fashionlife.com.manager.PermissionManger;
-import fashionlife.com.util.Tool;
+import fashionlife.com.util.Utils;
 
 /**
  * 盛放Fragment
@@ -45,7 +45,7 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Ra
 
     @Override
     public String[] getFragments() {
-        return new String[]{FragmentId.HOME, FragmentId.FIND, FragmentId.USER};
+        return new String[]{FragmentId.HOME, FragmentId.WEATHER, FragmentId.USER};
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Ra
                 showFragment(FragmentId.HOME);
                 break;
             case R.id.find:
-                showFragment(FragmentId.FIND);
+                showFragment(FragmentId.WEATHER);
                 break;
             case R.id.user:
                 showFragment(FragmentId.USER);
@@ -73,7 +73,7 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Ra
 
     @Override
     public void onBackPressed() {
-        if (!Tool.isEmpty(mFragmentName) && !mFragmentName.endsWith(FragmentId.HOME)) {
+        if (!Utils.isEmpty(mFragmentName) && !mFragmentName.endsWith(FragmentId.HOME)) {
             showFragment(FragmentId.HOME);
             rg.getChildAt(mFragmentIndex).performClick();
         } else {

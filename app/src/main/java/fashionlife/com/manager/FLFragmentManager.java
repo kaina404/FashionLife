@@ -7,7 +7,7 @@ import java.util.Map;
 
 import fashionlife.com.base.component.BaseActivity;
 import fashionlife.com.common.FragmentId;
-import fashionlife.com.ui.find.FindFragment;
+import fashionlife.com.ui.find.WeatherFragment;
 import fashionlife.com.ui.home.fragment.HomeFragment;
 import fashionlife.com.ui.user.UserFragment;
 
@@ -41,7 +41,7 @@ public class FLFragmentManager {
 
     private void initData() {
         fragmentRecordMap.put(FragmentId.HOME, new FragmentRecord("", HomeFragment.class));
-        fragmentRecordMap.put(FragmentId.FIND, new FragmentRecord("", FindFragment.class));
+        fragmentRecordMap.put(FragmentId.WEATHER, new FragmentRecord("", WeatherFragment.class));
         fragmentRecordMap.put(FragmentId.USER, new FragmentRecord("", UserFragment.class));
     }
 

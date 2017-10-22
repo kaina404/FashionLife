@@ -27,4 +27,26 @@
         <item name="android:textColor">@color/c_666</item>
     </style>
 
+    <style name="text_view_fff_13sp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/c_FFFFFF</item>
+        <item name="android:textSize">@dimen/txt_13sp</item>
+    </style>
+
+    <style name="text_view_fragment_weather">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/c_FFFFFF</item>
+        <item name="android:textSize">@dimen/txt_13sp</item>
+        <item name="android:layout_below">@id/tv_temperature</item>
+    </style>
+
+    <style name="text_view_fff_16sp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/c_FFFFFF</item>
+        <item name="android:textSize">@dimen/txt_16sp</item>
+    </style>
+
 </resources>

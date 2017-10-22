@@ -13,7 +13,7 @@ import java.util.Random;
 import fashionlife.com.R;
 import fashionlife.com.ui.home.data.WXNewsBean;
 import fashionlife.com.util.ScreenUtils;
-import fashionlife.com.util.Tool;
+import fashionlife.com.util.Utils;
 
 /**
  * Created by lovexujh on 2017/10/16
@@ -91,7 +91,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (Tool.isEmpty(mData)) {
+        if (Utils.isEmpty(mData)) {
             return 0;
         }
         return mData.size();

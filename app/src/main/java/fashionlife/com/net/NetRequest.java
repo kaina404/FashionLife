@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 import fashionlife.com.app.APPConstant;
 import fashionlife.com.listener.ProgressResponseListener;
 import fashionlife.com.util.LogUtil;
-import fashionlife.com.util.Tool;
+import fashionlife.com.util.Utils;
 import fashionlife.com.util.URLEncodedUtils;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -177,7 +177,7 @@ public class NetRequest {
                 msg.obj = response.body().string();
             } else {
                 String tmp = parseDownloadFile(response, url);
-                if (!Tool.isEmpty(tmp)) {
+                if (!Utils.isEmpty(tmp)) {
                     msg.obj = tmp;
                 } else {
                     onFailure(call, new IOException("下载文件解析出错"));
@@ -195,10 +195,10 @@ public class NetRequest {
                 return "";
             }
 
-            String absolutePath = Tool.createDownloadFilePath(url);
-            if (!Tool.isEmpty(absolutePath)) {
+            String absolutePath = Utils.createDownloadFilePath(url);
+            if (!Utils.isEmpty(absolutePath)) {
                 File file = new File(absolutePath);
-                boolean readSuccess = Tool.inputStream2File(inputStream, file, progressListener, responseBody.contentLength());
+                boolean readSuccess = Utils.inputStream2File(inputStream, file, progressListener, responseBody.contentLength());
                 inputStream.close();
                 if (readSuccess) {
                     absolutePath = file.getAbsolutePath();
@@ -249,7 +249,7 @@ public class NetRequest {
      * @param netCall 回调会返回下载的文件路径
      */
     public void downloadFile(String url, INetCall netCall, final ProgressResponseListener progressListener) {
-        if (Tool.isEmpty(url)) {
+        if (Utils.isEmpty(url)) {
             return;
         }
         Request request = new Request.Builder().get().url(url).build();
@@ -261,7 +261,7 @@ public class NetRequest {
 
     // TODO: 2017/6/1 批量下载文件需要优化
     public void downloadFile(INetCall netCall, final List<String> urls) {
-        if (Tool.isEmpty(urls)) {
+        if (Utils.isEmpty(urls)) {
             return;
         }
         NetRequest.netCall = netCall;

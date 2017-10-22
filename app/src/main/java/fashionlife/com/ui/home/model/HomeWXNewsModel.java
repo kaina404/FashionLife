@@ -6,7 +6,7 @@ import fashionlife.com.net.INetCall;
 import fashionlife.com.net.NetId;
 import fashionlife.com.ui.home.data.WXNewsTitleBean;
 import fashionlife.com.util.JSONUtils;
-import fashionlife.com.util.Tool;
+import fashionlife.com.util.Utils;
 
 /**
  * 首页微信精选的标题
@@ -35,7 +35,7 @@ public class HomeWXNewsModel extends BaseModel<HomeWXNewsTitleImpl> implements I
         if (bean == null) {
             onFailure(requestId, "");
         } else {
-            if (Tool.isEmpty(bean.getResult())) {
+            if (Utils.isEmpty(bean.getResult())) {
                 mModel.onTitleEmpty();
             } else {
                 mModel.refreshTitle(bean.getResult());

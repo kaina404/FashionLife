@@ -9,7 +9,7 @@ import java.util.Map;
 
 import fashionlife.com.manager.FLFragmentManager;
 import fashionlife.com.manager.FragmentRecord;
-import fashionlife.com.util.Tool;
+import fashionlife.com.util.Utils;
 
 
 /**
@@ -68,35 +68,19 @@ public abstract class AbstractTabFragmentActivity extends BaseActivity {
     }
 
     /**
-     *
      * @return
      */
     protected abstract int getContainerViewId();
 
     /**
+     * all fragments id
      *
-     * @return all fragments id
+     * @return
      */
     public abstract String[] getFragments();
 
     public int showFragment(String fragmentName) {
-//        if (page != mFragmentIndex && page < mFragmentList.size()) {
-//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//            for (int i = 0; i < mFragmentList.size(); i++) {
-//                if (mFragmentList.get(i) != null) {
-//                    transaction.hide(mFragmentList.get(i));
-//                }
-//            }
-//            transaction.show(mFragmentList.get(page));
-//            if (!isFinishing()) {
-//                transaction.commitAllowingStateLoss();
-//                mFragmentIndex = page;
-//                return true;
-//            }
-//        } else {
-//            return true;
-//        }
-        if (Tool.isEmpty(fragmentName) || Tool.isEmpty(mFragmentNameMap.get(fragmentName)) || mFragmentNameMap.get(fragmentName) > mFragmentList.size()) {
+        if (Utils.isEmpty(fragmentName) || Utils.isEmpty(mFragmentNameMap.get(fragmentName)) || mFragmentNameMap.get(fragmentName) > mFragmentList.size()) {
             return -1;
         }
         int page = mFragmentNameMap.get(fragmentName);

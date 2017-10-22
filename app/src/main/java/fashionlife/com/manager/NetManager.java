@@ -9,7 +9,7 @@ import fashionlife.com.common.UrlConstant;
 import fashionlife.com.net.INetCall;
 import fashionlife.com.net.NetRequest;
 import fashionlife.com.util.SpUtils;
-import fashionlife.com.util.Tool;
+import fashionlife.com.util.Utils;
 
 /**
  * Created by lovexujh on 2017/10/9
@@ -23,7 +23,7 @@ public class NetManager {
 //        map.put(APPConstant.PARAMS_NAME.PAGE, page);
 //        map.put(APPConstant.PARAMS_NAME.CRYPT, APPConstant.APP.CRYPT_VALUE);
 //        map.put(APPConstant.PARAMS_NAME.UUID, APPConstant.APP.UUID_VALUE);
-//        String params = "params=" + Tool.Base64(JSON.toJSONString(map));
+//        String params = "params=" + Utils.Base64(JSON.toJSONString(map));
 //        NetRequest request = new NetRequest();
 //        request.post(NetId.QUESTPREDATATEST, params, APPConstant.URL.VIDEO_LIST, NetRequest.FORM_TYPE, netCall);
     }
@@ -42,7 +42,7 @@ public class NetManager {
 //        map.put(APPConstant.PARAMS_NAME.CRYPT, APPConstant.APP.CRYPT_VALUE);
 //
 //        String requestString = JSON.toJSONString(map);
-//        String params = "params=" + Tool.Base64(requestString);
+//        String params = "params=" + Utils.Base64(requestString);
 //
 //        NetRequest request = new NetRequest();
 //        request.post(NetId.INITLIST, params, APPConstant.URL.INIT_LIST, NetRequest.FORM_TYPE, netCall);
@@ -80,7 +80,7 @@ public class NetManager {
         //先来一波缓存
         SpUtils spUtils = new SpUtils(SpConstant.WXNEWS);
         String cache = spUtils.getString(AppUtils.getWXNewsKey(cid, page), "");
-        if(!Tool.isEmpty(cache)){
+        if(!Utils.isEmpty(cache)){
             netCall.onResponse(requestId, cache);
         }
         //请求网络

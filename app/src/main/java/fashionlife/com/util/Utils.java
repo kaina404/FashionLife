@@ -3,6 +3,7 @@ package fashionlife.com.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
+import android.support.annotation.ColorRes;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 
@@ -16,13 +17,14 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import fashionlife.com.app.APPConstant;
+import fashionlife.com.base.component.BaseApplication;
 import fashionlife.com.listener.ProgressResponseListener;
 
 /**
  * Created by lovexujh on 2017/9/19
  */
 
-public class Tool {
+public class Utils {
 
     public static boolean isEmpty(List urls) {
         return urls == null || urls.isEmpty();
@@ -153,7 +155,7 @@ public class Tool {
 
     public static String createDownloadFilePath(String url) {
         //   /data/wallpapers/
-        String fileDownloadPath = Tool.getDefaultPath() + Tool.getUrlType(url);
+        String fileDownloadPath = Utils.getDefaultPath() + Utils.getUrlType(url);
         File dir = new File(fileDownloadPath);
         boolean isCreateFileSuc = true;
         if (!dir.exists()) {
@@ -221,5 +223,8 @@ public class Tool {
         return integer == null;
     }
 
+    public static int getColor(@ColorRes int color){
+        return BaseApplication.getInstance().getResources().getColor(color);
+    }
 
 }
