@@ -111,7 +111,7 @@ public class NetRequest {
         //请求
         Call call = okHttpClient.newCall(requestBuilder.build());
         if (netCall != null) {
-            this.netCall = netCall;
+            NetRequest.netCall = netCall;
             call.enqueue(new OkCallBack(true, url, requestId));
         } else {
             // TODO: 2017/3/28  测试null的请求是否有问题
@@ -134,6 +134,7 @@ public class NetRequest {
                     String err = msg.obj == null ? "未知错误" : (String) msg.obj;
                     netCall.onFailure(msg.what, err);
                     break;
+                default:
             }
         }
     }
@@ -252,8 +253,8 @@ public class NetRequest {
             return;
         }
         Request request = new Request.Builder().get().url(url).build();
-        this.netCall = netCall;
-        this.progressListener = progressListener;
+        NetRequest.netCall = netCall;
+        NetRequest.progressListener = progressListener;
 
         okHttpClient.newCall(request).enqueue(new OkCallBack(false, url));
     }
@@ -263,7 +264,7 @@ public class NetRequest {
         if (Tool.isEmpty(urls)) {
             return;
         }
-        this.netCall = netCall;
+        NetRequest.netCall = netCall;
         new Thread() {
             @Override
             public void run() {

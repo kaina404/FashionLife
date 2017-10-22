@@ -7,17 +7,17 @@ import android.util.Log;
  */
 
 public class LogUtil {
-    private static final String sTag = "FashionLife";
-    private static final boolean debug = true;
+    private static final String Tag = "FashionLife";
+    private static final boolean DEBUG = true;
 
     public static void d(String msg, Object... params) {
-        if (debug) {
-            android.util.Log.d(sTag, String.format(msg, params));
+        if (DEBUG) {
+            android.util.Log.d(Tag, String.format(msg, params));
         }
     }
 
     public static void d(Object obj, String params) {
-        if (debug) {
+        if (DEBUG) {
             if (obj instanceof String) {
                 Log.d((String) obj, params);
             } else {

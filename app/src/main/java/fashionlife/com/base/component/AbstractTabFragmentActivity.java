@@ -16,7 +16,7 @@ import fashionlife.com.util.Tool;
  * Created by lovexujh on 2017/10/9
  */
 
-public abstract class AbsTabFragmentActivity extends BaseActivity {
+public abstract class AbstractTabFragmentActivity extends BaseActivity {
 
     private ArrayList<BaseFragment> mFragmentList;
     protected int mFragmentIndex = -1;
@@ -67,8 +67,16 @@ public abstract class AbsTabFragmentActivity extends BaseActivity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     protected abstract int getContainerViewId();
 
+    /**
+     *
+     * @return all fragments id
+     */
     public abstract String[] getFragments();
 
     public int showFragment(String fragmentName) {

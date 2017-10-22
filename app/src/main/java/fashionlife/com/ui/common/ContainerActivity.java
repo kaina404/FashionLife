@@ -5,7 +5,7 @@ import android.widget.RadioGroup;
 
 import fashionlife.com.R;
 import fashionlife.com.app.AppUtils;
-import fashionlife.com.base.component.AbsTabFragmentActivity;
+import fashionlife.com.base.component.AbstractTabFragmentActivity;
 import fashionlife.com.common.FragmentId;
 import fashionlife.com.manager.PermissionManger;
 import fashionlife.com.util.Tool;
@@ -15,7 +15,7 @@ import fashionlife.com.util.Tool;
  * Created by lovexujh on 2017/10/9
  */
 
-public class ContainerActivity extends AbsTabFragmentActivity implements RadioGroup.OnCheckedChangeListener {
+public class ContainerActivity extends AbstractTabFragmentActivity implements RadioGroup.OnCheckedChangeListener {
 
     private RadioGroup rg;
 
@@ -67,6 +67,7 @@ public class ContainerActivity extends AbsTabFragmentActivity implements RadioGr
             case R.id.user:
                 showFragment(FragmentId.USER);
                 break;
+            default:
         }
     }
 
