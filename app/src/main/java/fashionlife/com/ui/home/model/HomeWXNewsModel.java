@@ -5,7 +5,7 @@ import fashionlife.com.manager.NetManager;
 import fashionlife.com.net.INetCall;
 import fashionlife.com.net.NetId;
 import fashionlife.com.ui.home.data.WXNewsTitleBean;
-import fashionlife.com.util.JSONUtils;
+import fashionlife.com.util.JsonHelper;
 import fashionlife.com.util.Utils;
 
 /**
@@ -31,7 +31,7 @@ public class HomeWXNewsModel extends BaseModel<HomeWXNewsTitleImpl> implements I
         if (mModel == null) {
             return;
         }
-        WXNewsTitleBean bean = JSONUtils.parseObject(response, WXNewsTitleBean.class);
+        WXNewsTitleBean bean = JsonHelper.parseObject(response, WXNewsTitleBean.class);
         if (bean == null) {
             onFailure(requestId, "");
         } else {

@@ -8,7 +8,7 @@ import fashionlife.com.manager.NetManager;
 import fashionlife.com.net.INetCall;
 import fashionlife.com.net.NetId;
 import fashionlife.com.ui.home.data.WXNewsBean;
-import fashionlife.com.util.JSONUtils;
+import fashionlife.com.util.JsonHelper;
 import fashionlife.com.util.SpUtils;
 
 /**
@@ -47,7 +47,7 @@ public class WXNewsModel extends BaseModel<WXNewsImpl> implements INetCall {
         SpUtils spUtils = new SpUtils(SpConstant.WXNEWS);
         spUtils.insert(AppUtils.getWXNewsKey(mCid, mPage), mResponse);
 
-        WXNewsBean wxNewsBean = JSONUtils.parseObject(response, WXNewsBean.class);
+        WXNewsBean wxNewsBean = JsonHelper.parseObject(response, WXNewsBean.class);
         if (wxNewsBean == null || wxNewsBean.getResult() == null || wxNewsBean.getResult().getList() == null) {
             mModel.onError("");
             return;

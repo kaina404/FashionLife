@@ -48,7 +48,7 @@ public class NetManager {
 //        request.post(NetId.INITLIST, params, APPConstant.URL.INIT_LIST, NetRequest.FORM_TYPE, netCall);
     }
 
-    public static void queryCook(INetCall netCall){
+    public static void queryCook(INetCall netCall) {
         NetRequest request = new NetRequest();
         //int reqeustId, String params, String url, String method, MediaType mediaType, INetCall netCall
 //        BasicNameValuePair pair = new BasicNameValuePair("key", "1c66066891045");
@@ -57,7 +57,7 @@ public class NetManager {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("key", "1c66066891045");
 //        request.get(11, hashMap, "http://apicloud.mob.com/v1/cook/category/query",  NetRequest.JSON_TYPE, netCall);
-        request.get(11, hashMap, "http://apicloud.mob.com/wx/article/category/query",  NetRequest.JSON_TYPE, netCall);
+        request.get(11, hashMap, "http://apicloud.mob.com/wx/article/category/query", NetRequest.JSON_TYPE, netCall);
     }
 
     public static void queryWXNewsTitle(int requestId, INetCall netCall) {
@@ -67,11 +67,12 @@ public class NetManager {
 
     /**
      * key	string	是	用户申请的appkey
-        cid	string	是	分类id
-        page	int	是	分页参数，起始页
-        size	int	是	分页参数，每页记录数据
-
+     * cid	string	是	分类id
+     * page	int	是	分页参数，起始页
+     * size	int	是	分页参数，每页记录数据
+     * <p>
      * 查询微信精选详情
+     *
      * @param requestId
      * @param cid
      * @param netCall
@@ -80,7 +81,7 @@ public class NetManager {
         //先来一波缓存
         SpUtils spUtils = new SpUtils(SpConstant.WXNEWS);
         String cache = spUtils.getString(AppUtils.getWXNewsKey(cid, page), "");
-        if(!Utils.isEmpty(cache)){
+        if (!Utils.isEmpty(cache)) {
             netCall.onResponse(requestId, cache);
         }
         //请求网络
@@ -90,5 +91,11 @@ public class NetManager {
         hashMap.put(APPConstant.WXNews.PAGE, String.valueOf(page));
         hashMap.put(APPConstant.WXNews.SIZE, String.valueOf(size));
         request.getMobAPI(requestId, hashMap, UrlConstant.WXNews_DETAIL_INFO_URL, NetRequest.JSON_TYPE, netCall);
+    }
+
+    public static void queryWeatherTmp(INetCall netCall) {
+        NetRequest netRequest = new NetRequest();
+        String url = "http://apicloud.mob.com/v1/weather/query?key=1c66066891045&city=%E5%90%88%E8%82%A5&province=%E5%90%88%E8%82%A5%E5%B8%82";
+        netRequest.http(666, "", url, NetRequest.Method.GET, NetRequest.JSON_TYPE, netCall);
     }
 }

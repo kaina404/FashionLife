@@ -23,4 +23,22 @@ public class ScreenUtils {
         Display display = manager.getDefaultDisplay();
         return display.getHeight();
     }
+
+    public static int pxToDp(float px, Context context) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (px / scale + 0.5f);
+    }
+
+    public static int dpToPx(float dp, Context context)
+    {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
+    }
+
+    public static int spToPx(float sp, Context context)
+    {
+        final float scale = context.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (sp * scale + 0.5f);
+    }
+
 }

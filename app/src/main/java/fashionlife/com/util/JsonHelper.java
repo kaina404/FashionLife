@@ -3,10 +3,11 @@ package fashionlife.com.util;
 import com.alibaba.fastjson.JSON;
 
 /**
+ * @author
  * Created by lovexujh on 2017/10/15
  */
 
-public class JSONUtils {
+public class JsonHelper {
 
 
     public static <T> T parseObject(String json, Class<T> clazz) {
@@ -18,5 +19,13 @@ public class JSONUtils {
         return null;
     }
 
+    public static String toJSONString(Object object) {
+        try {
+           return JsonHelper.toJSONString(object);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

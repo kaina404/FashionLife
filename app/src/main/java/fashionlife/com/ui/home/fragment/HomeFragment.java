@@ -34,7 +34,6 @@ public class HomeFragment extends BaseFragment<HomeWXPresenter> implements HomeW
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        mPresenter.queryWXNews();
         mPresenter.queryWXNewsTitle();
     }
 
