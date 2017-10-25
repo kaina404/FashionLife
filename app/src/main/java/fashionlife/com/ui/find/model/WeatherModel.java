@@ -4,6 +4,7 @@ import java.util.List;
 
 import fashionlife.com.base.data.BaseModel;
 import fashionlife.com.common.SpConstant;
+import fashionlife.com.common.ThreadHelper;
 import fashionlife.com.manager.NetManager;
 import fashionlife.com.net.INetCall;
 import fashionlife.com.net.NetId;
@@ -33,6 +34,7 @@ import io.reactivex.schedulers.Schedulers;
 public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, LocationListenerImpl.LocationResultListener {
 
     private static final int NEED_REPLACE_LENGTH = 3;
+    private ThreadHelper mThreadHepler;
     private SupportWeatherCityBean mSupportWeatherCityBean;
     private boolean mNeedQuery = true;
     private ObservableEmitter<SupportWeatherCityBean> mSupportWeatherCityBeanObservableEmitter;
@@ -42,6 +44,7 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
         super(iWeatherModel);
         LocationHelper.getInstance().getLocationListener().setLocationResultListener(this);
         initRxData();
+        mThreadHepler = new ThreadHelper();
     }
 
     private void initRxData() {
@@ -131,12 +134,17 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
 
     public void queryWeather() {
         querySupportCity();
-        new Thread(new Runnable() {
+        mThreadHepler.executorRunnable(new Runnable() {
             @Override
             public void run() {
                 LocationHelper.getInstance().init().requestLocationOnce();
             }
-        }).start();
+        });
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//            }
+//        }).start();
     }
 
     @Override

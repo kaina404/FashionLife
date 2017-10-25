@@ -19,7 +19,15 @@ public interface WeatherContract {
          * 刷新天气view
          * @param future
          */
-        void updateView(List<WeatherBean.ResultBean.FutureBean> future);
+        void updateFutureView(List<WeatherBean.ResultBean.FutureBean> future);
+
+        /**
+         * 更新当前的天气状况，例如：
+         * 东南风 18 级
+         * 中毒污染
+         * @param resultBean
+         */
+        void updateCurDayView(WeatherBean.ResultBean resultBean);
         void onError();
 
         /**
