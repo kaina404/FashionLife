@@ -17,10 +17,10 @@ public class LocationHelper {
 
     private static LocationHelper instance;
 
-    public LocationListenerImpl mLocationListener;
+    public LocationListenerImpl mLocationListener = new LocationListenerImpl();
+    ;
 
     private LocationHelper() {
-        mLocationListener = new LocationListenerImpl();
     }
 
     public static LocationHelper getInstance() {
@@ -109,8 +109,13 @@ public class LocationHelper {
 
     public void requestLocationOnce() {
         if (mLocationClient != null) {
-            initLocation(0);
-            mLocationClient.start();
+            if (mLocationClient.isStarted()) {
+                mLocationClient.restart();
+            } else {
+                initLocation(0);
+                mLocationClient.start();
+            }
+
 //            mLocationClient.requestLocation();
         }
     }

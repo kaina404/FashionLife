@@ -11,6 +11,7 @@ import fashionlife.com.base.component.BaseFragment;
 import fashionlife.com.ui.find.data.WeatherBean;
 import fashionlife.com.ui.find.impl.WeatherContract;
 import fashionlife.com.ui.find.impl.WeatherPresenter;
+import fashionlife.com.util.LogUtil;
 import fashionlife.com.util.Utils;
 import fashionlife.com.widget.WeatherView;
 
@@ -39,11 +40,22 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mWeatherView = (WeatherView) view.findViewById(R.id.weather_view);
-        mPresenter.queryWeather();
     }
 
     @Override
-    public void updateView(List<WeatherBean.ResultBean.FutureBean> future) {
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden){
+            mPresenter.queryWeather();
+//            LogUtil.d(this, "onHiddenChanged run on "+Thread.currentThread().getName());
+//            WeatherBean weatherBean = JsonHelper.parseObject(Test.TEST_WEATHER, WeatherBean.class);
+//            mWeatherView.updateView(weatherBean.getResult().get(0).getFuture());
+        }
+    }
+
+    @Override
+    public void updateView(final List<WeatherBean.ResultBean.FutureBean> future) {
+        LogUtil.d(this, "updateView run on "+Thread.currentThread().getName());
         if (!Utils.isEmpty(future) && mWeatherView != null) {
             mWeatherView.updateView(future);
         }
@@ -51,6 +63,11 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
 
     @Override
     public void onError() {
+
+    }
+
+    @Override
+    public void updateLocationView(String city, String district) {
 
     }
 }

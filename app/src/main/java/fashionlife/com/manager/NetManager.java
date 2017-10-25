@@ -110,11 +110,6 @@ public class NetManager {
 
     public static void queryWeatherSupportCity(INetCall netCall) {
 
-        SpUtils spUtils = new SpUtils(SpConstant.QUERY_WEATHER_SUPPORT_CITY);
-        String cache = spUtils.getString(SpConstant.QUERY_WEATHER_SUPPORT_CITY, "");
-        if (!Utils.isEmpty(cache)) {
-            netCall.onResponse(NetId.QUERY_SUPPORT_CITY_WEATHER, cache);
-        }
         NetRequest netRequest = new NetRequest();
         netRequest.getMobAPI(NetId.QUERY_SUPPORT_CITY_WEATHER, null, UrlConstant.QUERY_SUPPORT_WEATHER, NetRequest.JSON_TYPE, netCall);
     }

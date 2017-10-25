@@ -301,6 +301,7 @@ public class WeatherView extends View {
         mNightControlPoints = controlPoint.getControlPointList(mNightPointFs);
 
         //重新绘制UI
+        requestLayout();
         invalidate();
     }
 
@@ -442,6 +443,9 @@ public class WeatherView extends View {
      * @param day
      */
     public void drawTemperatures(Paint paint, List<PointF> temperatures, List<PointF> location, Canvas canvas, boolean day) {
+        if(Utils.isEmpty(temperatures) || Utils.isEmpty(location)){
+            return;
+        }
         paint.setTextSize(ScreenUtils.spToPx(10, getContext()));
         for (int i = 0; i < temperatures.size(); i++) {
             canvas.drawText(String.valueOf(temperatures.get(i).y) + "°", location.get(i).x, (float) (location.get(i).y + (day ? mAscent / 2 : -mAscent * 1.2)), paint);// mAscent/2 代表上移一点位置
@@ -457,7 +461,9 @@ public class WeatherView extends View {
      * @param canvas
      */
     private void drawWeatherIcon(float top, List<String> dayWeathers, Canvas canvas) {
-
+        if(Utils.isEmpty(dayWeathers)){
+            return;
+        }
         canvas.save();
         for (int i = 0; i < dayWeathers.size(); i++) {
             float x = (2 * i + 1) * mItemPadding + mTxtLength * i;
@@ -482,7 +488,9 @@ public class WeatherView extends View {
      * @param canvas
      */
     private void drawDefaultText(List<String> strings, Paint paint, Canvas canvas) {
-
+        if(Utils.isEmpty(strings)){
+            return;
+        }
         for (int i = 0; i < strings.size(); i++) {
             String date = strings.get(i);
             float x = mItemLength / 2 + mItemLength * i;
@@ -500,7 +508,9 @@ public class WeatherView extends View {
      * @param canvas
      */
     private void drawDefaultText(List<String> strings, float y, Paint paint, Canvas canvas) {
-
+        if(Utils.isEmpty(strings)){
+            return;
+        }
         for (int i = 0; i < strings.size(); i++) {
             String date = strings.get(i);
             if (Utils.isEmpty(date)) {
@@ -519,6 +529,9 @@ public class WeatherView extends View {
      * @param paint
      */
     private void drawPoints(List<PointF> pointFs, Canvas canvas, Paint paint) {
+        if(Utils.isEmpty(pointFs)){
+            return;
+        }
         paint.setStyle(Paint.Style.FILL);
         for (int i = 0; i < pointFs.size(); i++) {
             canvas.drawCircle(pointFs.get(i).x, pointFs.get(i).y, 10f, paint);
@@ -535,6 +548,9 @@ public class WeatherView extends View {
      * @param paint
      */
     private void drawLine(List<ControlPoint> controlPoints, List<PointF> pointFs, Canvas canvas, Path path, Paint paint) {
+        if(Utils.isEmpty(controlPoints)){
+            return;
+        }
         paint.setStyle(Paint.Style.STROKE);
 
         //贝塞尔曲线获取控制点

@@ -21,6 +21,13 @@ public interface WeatherContract {
          */
         void updateView(List<WeatherBean.ResultBean.FutureBean> future);
         void onError();
+
+        /**
+         * 更新当前位置
+         * @param city 城市
+         * @param district 区
+         */
+        void updateLocationView(String city, String district);
     }
 
     interface Presenter extends IPresenter<WeatherContract.View> {
