@@ -18,4 +18,8 @@ public class APPConstant {
         int SIZE_20 = 20;
     }
 
+    public interface Weather {
+        String CITY = "city";
+        String PROVINCE = "province";
+    }
 }

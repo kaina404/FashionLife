@@ -7,10 +7,11 @@ import fashionlife.com.R;
 import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.component.AbstractTabFragmentActivity;
 import fashionlife.com.common.FragmentId;
-import fashionlife.com.manager.PermissionManger;
+import fashionlife.com.manager.PermissionMangerHelper;
 import fashionlife.com.util.Utils;
 
 /**
+ * @author
  * 盛放Fragment
  * Created by lovexujh on 2017/10/9
  */
@@ -20,9 +21,14 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Ra
     private RadioGroup rg;
 
     @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        PermissionMangerHelper.init(this);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PermissionManger.init(this);
         initViews();
     }
 

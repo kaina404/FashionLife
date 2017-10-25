@@ -25,8 +25,15 @@ public interface WeatherContract {
 
     interface Presenter extends IPresenter<WeatherContract.View> {
         /**
-         * 查询天气
+         * 查询当前位置天气
          */
         void queryWeather();
+
+        /**
+         * 查询指定位置的天气
+         * @param city 城市名（url编码）  市 合肥市
+         * @param district 当前城市的所属省份 如：北京-通州、江苏-通州（url编码）
+         */
+        void queryWeather(String city, String district);
     }
 }

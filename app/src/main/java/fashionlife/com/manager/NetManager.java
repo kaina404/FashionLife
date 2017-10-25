@@ -7,6 +7,7 @@ import fashionlife.com.app.AppUtils;
 import fashionlife.com.common.SpConstant;
 import fashionlife.com.common.UrlConstant;
 import fashionlife.com.net.INetCall;
+import fashionlife.com.net.NetId;
 import fashionlife.com.net.NetRequest;
 import fashionlife.com.util.SpUtils;
 import fashionlife.com.util.Utils;
@@ -93,9 +94,28 @@ public class NetManager {
         request.getMobAPI(requestId, hashMap, UrlConstant.WXNews_DETAIL_INFO_URL, NetRequest.JSON_TYPE, netCall);
     }
 
-    public static void queryWeatherTmp(INetCall netCall) {
+    /**
+     *
+     * @param netCall
+     * @param city 天津
+     * @param district 塘沽
+     */
+    public static void queryWeatherTmp(INetCall netCall, String city, String district) {
         NetRequest netRequest = new NetRequest();
-        String url = "http://apicloud.mob.com/v1/weather/query?key=1c66066891045&city=%E5%90%88%E8%82%A5&province=%E5%90%88%E8%82%A5%E5%B8%82";
-        netRequest.http(666, "", url, NetRequest.Method.GET, NetRequest.JSON_TYPE, netCall);
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put(APPConstant.Weather.CITY, city);
+        hashMap.put(APPConstant.Weather.PROVINCE, district);
+        netRequest.getMobAPI(NetId.QUERY_WEATHER, hashMap, UrlConstant.QUERY_WEATHER, NetRequest.JSON_TYPE, netCall);
+    }
+
+    public static void queryWeatherSupportCity(INetCall netCall) {
+
+        SpUtils spUtils = new SpUtils(SpConstant.QUERY_WEATHER_SUPPORT_CITY);
+        String cache = spUtils.getString(SpConstant.QUERY_WEATHER_SUPPORT_CITY, "");
+        if (!Utils.isEmpty(cache)) {
+            netCall.onResponse(NetId.QUERY_SUPPORT_CITY_WEATHER, cache);
+        }
+        NetRequest netRequest = new NetRequest();
+        netRequest.getMobAPI(NetId.QUERY_SUPPORT_CITY_WEATHER, null, UrlConstant.QUERY_SUPPORT_WEATHER, NetRequest.JSON_TYPE, netCall);
     }
 }

@@ -33,4 +33,9 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.View> implem
     public void queryWeather() {
         mWeatherModel.queryWeather();
     }
+
+    @Override
+    public void queryWeather(String city, String district) {
+
+    }
 }
