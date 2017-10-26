@@ -23,8 +23,8 @@
 
         <RadioButton
             android:id="@+id/home"
-            android:layout_gravity="center"
             style="@style/activity_container_bottom_home"
+            android:layout_gravity="center"
             android:text="@string/home" />
 
         <RadioButton

@@ -25,4 +25,5 @@
     <dimen name="dip200">200dp</dimen>
     <dimen name="dip25">25dp</dimen>
     <dimen name="dip35">35dp</dimen>
+    <dimen name="dip_tool_bar">25dp</dimen>
 </resources>
