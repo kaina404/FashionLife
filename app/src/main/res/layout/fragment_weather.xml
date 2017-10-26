@@ -9,13 +9,13 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="@dimen/dip_tool_bar">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/iv_bg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/dip_tool_bar" />
 
         <LinearLayout
             android:layout_width="match_parent"

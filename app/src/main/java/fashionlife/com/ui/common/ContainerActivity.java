@@ -1,6 +1,9 @@
 package fashionlife.com.ui.common;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RadioGroup;
 
 import fashionlife.com.R;
@@ -11,9 +14,8 @@ import fashionlife.com.manager.PermissionMangerHelper;
 import fashionlife.com.util.Utils;
 
 /**
- * @author
- * 盛放Fragment
- * Created by lovexujh on 2017/10/9
+ * @author 盛放Fragment
+ *         Created by lovexujh on 2017/10/9
  */
 
 public class ContainerActivity extends AbstractTabFragmentActivity implements RadioGroup.OnCheckedChangeListener {
@@ -40,6 +42,20 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Ra
 
     @Override
     protected int getLayoutId() {
+//        if (Build.VERSION.SDK_INT >= LOLLIPOP) {
+//            View decorView = getWindow().getDecorView();
+//            decorView.setSystemUiVisibility(
+//                    View.SYSTEM_UI_FLAG_FULLSCREEN |
+//                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//            getWindow().setStatusBarColor(Color.RED);
+//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+            // Translucent status bar
+            window.setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         return R.layout.activity_container;
     }
 
