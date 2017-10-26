@@ -197,6 +197,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="@dimen/dip200"
+                    android:background="@color/c_60000000"
                     android:paddingBottom="20dp"
                     android:paddingTop="20dp" />
             </HorizontalScrollView>
