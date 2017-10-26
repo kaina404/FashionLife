@@ -12,6 +12,7 @@ import fashionlife.com.base.component.AbstractTabFragmentActivity;
 import fashionlife.com.common.FragmentId;
 import fashionlife.com.manager.PermissionMangerHelper;
 import fashionlife.com.util.Utils;
+import fashionlife.com.util.location.LocationHelper;
 
 /**
  * @author 盛放Fragment
@@ -99,6 +100,7 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Ra
             showFragment(FragmentId.HOME);
             rg.getChildAt(mFragmentIndex).performClick();
         } else {
+            LocationHelper.getInstance().stop();
             AppUtils.exitAPP();
         }
     }
