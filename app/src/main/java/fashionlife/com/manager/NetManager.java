@@ -6,9 +6,11 @@ import fashionlife.com.app.APPConstant;
 import fashionlife.com.app.AppUtils;
 import fashionlife.com.common.SpConstant;
 import fashionlife.com.common.UrlConstant;
+import fashionlife.com.listener.ProgressResponseListener;
 import fashionlife.com.net.INetCall;
 import fashionlife.com.net.NetId;
 import fashionlife.com.net.NetRequest;
+import fashionlife.com.util.LogUtil;
 import fashionlife.com.util.SpUtils;
 import fashionlife.com.util.Utils;
 
@@ -95,9 +97,8 @@ public class NetManager {
     }
 
     /**
-     *
      * @param netCall
-     * @param city 天津
+     * @param city     天津
      * @param district 塘沽
      */
     public static void queryWeatherTmp(INetCall netCall, String city, String district) {
@@ -112,5 +113,28 @@ public class NetManager {
 
         NetRequest netRequest = new NetRequest();
         netRequest.getMobAPI(NetId.QUERY_SUPPORT_CITY_WEATHER, null, UrlConstant.QUERY_SUPPORT_WEATHER, NetRequest.JSON_TYPE, netCall);
+    }
+
+    /**
+     * 查询bing美图的response
+     *
+     * @param netCall
+     */
+    public static void queryBingWallpaperUrl(INetCall netCall) {
+        NetRequest netRequest = new NetRequest();
+        netRequest.http(NetId.QUERY_BING_WALLPAPER_URL, null, UrlConstant.QUERY_BING_WALLPAPER_URL, NetRequest.Method.GET, NetRequest.JSON_TYPE, netCall);
+    }
+
+    public static void downloadImg(int requestId, final String url, final INetCall netCall) {
+        NetRequest netRequest = new NetRequest();
+        netRequest.downloadFile(requestId, url, netCall, new ProgressResponseListener() {
+            @Override
+            public void onResponseProgress(double read, double all) {
+                if(read == all){
+                    LogUtil.d("NetManager", "下载壁纸成功");
+                }
+
+            }
+        });
     }
 }

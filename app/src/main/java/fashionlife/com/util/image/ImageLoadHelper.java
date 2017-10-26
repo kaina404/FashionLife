@@ -1,29 +1,33 @@
 package fashionlife.com.util.image;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 
 import java.io.File;
 
 /**
+ * @author
  * Created by lovexujh on 2017/10/11
  */
 
-public class FLImageLoader implements IFLImageLoader {
+public class ImageLoadHelper implements IFLImageLoader {
 
-    private static FLImageLoader sFLImageLoader;
+    private static ImageLoadHelper sFLImageLoader;
     private static volatile IFLImageLoader sLoader;
 
-    private FLImageLoader() {
+    private ImageLoadHelper() {
 
     }
 
-    public static FLImageLoader getFLImageLoader() {
+    public static ImageLoadHelper getFLImageLoader() {
         if (sFLImageLoader == null) {
-            synchronized (FLImageLoader.class) {
+            synchronized (ImageLoadHelper.class) {
                 if (sFLImageLoader == null) {
-                    sFLImageLoader = new FLImageLoader();
+                    sFLImageLoader = new ImageLoadHelper();
                 }
             }
         }
@@ -77,5 +81,20 @@ public class FLImageLoader implements IFLImageLoader {
     @Override
     public IFLImageLoader init(Context context) {
         return sLoader.init(context);
+    }
+
+    @Override
+    public IFLImageLoader init(Activity activity) {
+        return sLoader.init(activity);
+    }
+
+    @Override
+    public IFLImageLoader init(Fragment fragment) {
+        return sLoader.init(fragment);
+    }
+
+    @Override
+    public IFLImageLoader init(FragmentActivity fragmentActivity) {
+        return sLoader.init(fragmentActivity);
     }
 }

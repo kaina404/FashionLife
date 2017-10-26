@@ -48,7 +48,7 @@ public class HomeFragment extends BaseFragment<HomeWXPresenter> implements HomeW
     @Override
     public void onResume() {
         super.onResume();
-//        FLImageLoader.getFLImageLoader().init(getActivity()).loadImage(mIV, "https://www.baidu.com/img/bd_logo1.png");
+//        ImageLoadHelper.getFLImageLoader().init(getActivity()).loadImage(mIV, "https://www.baidu.com/img/bd_logo1.png");
     }
 
     @Override

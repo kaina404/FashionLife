@@ -2,7 +2,7 @@ package fashionlife.com.base.component;
 
 import android.app.Application;
 
-import fashionlife.com.util.image.FLImageLoader;
+import fashionlife.com.util.image.ImageLoadHelper;
 import fashionlife.com.util.image.GlideImageLoaderFrameWork;
 
 /**
@@ -17,7 +17,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        FLImageLoader.getFLImageLoader().init(new GlideImageLoaderFrameWork());
+        ImageLoadHelper.getFLImageLoader().init(new GlideImageLoaderFrameWork());
     }
 
     public static BaseApplication getInstance(){

@@ -155,7 +155,7 @@ public class Utils {
 
     public static String createDownloadFilePath(String url) {
         //   /data/wallpapers/
-        String fileDownloadPath = Utils.getDefaultPath() + Utils.getUrlType(url);
+        String fileDownloadPath = Utils.getDefaultPath() + "/" + Utils.getUrlType(url);
         File dir = new File(fileDownloadPath);
         boolean isCreateFileSuc = true;
         if (!dir.exists()) {
@@ -207,7 +207,7 @@ public class Utils {
     }
 
     public static String getDefaultPath() {
-        String path = Environment.getExternalStorageDirectory().getPath() + APPConstant.APP_NAME;
+        String path = Environment.getExternalStorageDirectory().getPath() + "/" + APPConstant.APP_NAME;
         File dir = new File(path);
         if (!dir.exists()) {
             try {
@@ -223,7 +223,7 @@ public class Utils {
         return integer == null;
     }
 
-    public static int getColor(@ColorRes int color){
+    public static int getColor(@ColorRes int color) {
         return BaseApplication.getInstance().getResources().getColor(color);
     }
 

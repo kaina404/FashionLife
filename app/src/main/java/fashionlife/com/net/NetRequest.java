@@ -188,7 +188,7 @@ public class NetRequest {
         }
 
         private String parseDownloadFile(Response response, String url) throws IOException {
-            LogUtil.d("=======开始解析下载文件" + url + "======");
+            LogUtil.d("=======开始解析下载文件 " + url + " ======");
             ResponseBody responseBody = response.body();
             InputStream inputStream = responseBody.byteStream();
             if (inputStream == null) {
@@ -202,14 +202,14 @@ public class NetRequest {
                 inputStream.close();
                 if (readSuccess) {
                     absolutePath = file.getAbsolutePath();
-                    LogUtil.d("=======下载文件==" + url + "==解析失败===");
+                    LogUtil.d("=======下载文件== " + url + " ==解析失败===");
                 } else {
                     absolutePath = "";
                 }
-                LogUtil.d("=======下载文件====解析成功===路径是===" + absolutePath);
+                LogUtil.d("=======下载文件====解析成功===路径是=== " + absolutePath);
 
             } else {
-                LogUtil.d("=======下载文件==" + url + "==解析失败===");
+                LogUtil.d("=======下载文件== " + url + " ==解析失败===");
             }
             return absolutePath;
         }
@@ -248,7 +248,7 @@ public class NetRequest {
      * @param url
      * @param netCall 回调会返回下载的文件路径
      */
-    public void downloadFile(String url, INetCall netCall, final ProgressResponseListener progressListener) {
+    public void downloadFile(int requestId, String url, INetCall netCall, final ProgressResponseListener progressListener) {
         if (Utils.isEmpty(url)) {
             return;
         }
@@ -256,7 +256,7 @@ public class NetRequest {
         NetRequest.netCall = netCall;
         NetRequest.progressListener = progressListener;
 
-        okHttpClient.newCall(request).enqueue(new OkCallBack(false, url));
+        okHttpClient.newCall(request).enqueue(new OkCallBack(false, url, requestId));
     }
 
     // TODO: 2017/6/1 批量下载文件需要优化

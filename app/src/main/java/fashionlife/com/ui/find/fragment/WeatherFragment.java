@@ -3,7 +3,10 @@ package fashionlife.com.ui.find.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -37,6 +40,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
     private TextView mTvAirCondition;
     private TextView mTvPollutionIndex;
     private CircularBeadView mAirConditionLine;
+    private ImageView mIvWallpaper;
 
     @Override
     protected WeatherPresenter attachPresenter() {
@@ -62,6 +66,9 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
         mTvAirCondition = (TextView) view.findViewById(R.id.tv_air_condition);
         mTvPollutionIndex = (TextView) view.findViewById(R.id.tv_pollutionIndex);
         mAirConditionLine = (CircularBeadView) view.findViewById(R.id.circular_beadview);
+        mIvWallpaper = (ImageView) view.findViewById(R.id.iv_bg);
+
+        mPresenter.downloadWallpaper();
     }
 
     @Override
@@ -115,5 +122,13 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
     @Override
     public void updateLocationView(String city, String district) {
         mTvCityDistrict.setText(city + "  " + district);
+    }
+
+
+    @Override
+    public void downloadWallpaperSucceed(String imgName) {
+        if(mIvWallpaper != null){
+            Glide.with(this).load(imgName).centerCrop().into(mIvWallpaper);
+        }
     }
 }

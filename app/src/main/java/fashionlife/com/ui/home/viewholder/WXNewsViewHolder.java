@@ -10,7 +10,7 @@ import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.viewholder.BaseViewHolder;
 import fashionlife.com.ui.home.data.WXNewsBean;
 import fashionlife.com.util.Utils;
-import fashionlife.com.util.image.FLImageLoader;
+import fashionlife.com.util.image.ImageLoadHelper;
 
 /**
  * Created by lovexujh on 2017/10/15
@@ -43,7 +43,7 @@ public class WXNewsViewHolder extends BaseViewHolder<WXNewsBean.ResultBean.ListB
             mIv.setVisibility(View.GONE);
         }else {
             mIv.setVisibility(View.VISIBLE);
-            FLImageLoader.getFLImageLoader().init(mContext).loadImage(mIv, url);
+            ImageLoadHelper.getFLImageLoader().init(mContext).loadImage(mIv, url);
         }
 
     }

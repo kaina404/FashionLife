@@ -36,6 +36,12 @@ public interface WeatherContract {
          * @param district 区
          */
         void updateLocationView(String city, String district);
+
+        /**
+         * 下载背景图片成功
+         * @param imgName
+         */
+        void downloadWallpaperSucceed(String imgName);
     }
 
     interface Presenter extends IPresenter<WeatherContract.View> {
@@ -50,5 +56,10 @@ public interface WeatherContract {
          * @param district 当前城市的所属省份 如：北京-通州、江苏-通州（url编码）
          */
         void queryWeather(String city, String district);
+
+        /**
+         * 下载背景图片
+         */
+        void downloadWallpaper();
     }
 }

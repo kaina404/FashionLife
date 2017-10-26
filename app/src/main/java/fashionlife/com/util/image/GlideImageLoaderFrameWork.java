@@ -1,6 +1,9 @@
 package fashionlife.com.util.image;
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -59,6 +62,24 @@ public class GlideImageLoaderFrameWork implements IFLImageLoader {
     @Override
     public IFLImageLoader init(Context context) {
          requestManager = Glide.with(context);
+        return this;
+    }
+
+    @Override
+    public IFLImageLoader init(Activity activity) {
+        requestManager = Glide.with(activity);
+        return this;
+    }
+
+    @Override
+    public IFLImageLoader init(Fragment fragment) {
+        requestManager = Glide.with(fragment);
+        return this;
+    }
+
+    @Override
+    public IFLImageLoader init(FragmentActivity fragmentActivity) {
+        requestManager = Glide.with(fragmentActivity);
         return this;
     }
 }

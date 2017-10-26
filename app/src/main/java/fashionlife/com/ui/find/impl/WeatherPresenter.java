@@ -4,7 +4,9 @@ import java.util.List;
 
 import fashionlife.com.base.component.BasePresenter;
 import fashionlife.com.ui.find.data.WeatherBean;
+import fashionlife.com.ui.find.model.IWallpaper;
 import fashionlife.com.ui.find.model.IWeatherModel;
+import fashionlife.com.ui.find.model.WallpaperModel;
 import fashionlife.com.ui.find.model.WeatherModel;
 import fashionlife.com.util.Utils;
 
@@ -14,13 +16,15 @@ import fashionlife.com.util.Utils;
  * @descripition:
  */
 
-public class WeatherPresenter extends BasePresenter<WeatherContract.View> implements IWeatherModel, WeatherContract.Presenter {
+public class WeatherPresenter extends BasePresenter<WeatherContract.View> implements IWeatherModel, WeatherContract.Presenter, IWallpaper {
 
+    private WallpaperModel mWallpaperModel;
     private WeatherModel mWeatherModel;
 
     public WeatherPresenter(WeatherContract.View view) {
         super(view);
         mWeatherModel = new WeatherModel(this);
+        mWallpaperModel = new WallpaperModel(this);
     }
 
     @Override
@@ -43,7 +47,7 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.View> implem
 
     @Override
     public void updateLocation(String city, String district) {
-        if(mView != null){
+        if (mView != null) {
             mView.updateLocationView(city, district);
         }
     }
@@ -56,5 +60,19 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.View> implem
     @Override
     public void queryWeather(String city, String district) {
 
+    }
+
+    @Override
+    public void downloadWallpaper() {
+        if (mWallpaperModel != null){
+            mWallpaperModel.queryWallpaperUrl();
+        }
+    }
+
+    @Override
+    public void downloadImgSucceed(String imgName) {
+       if(mView != null){
+           mView.downloadWallpaperSucceed(imgName);
+       }
     }
 }
