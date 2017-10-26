@@ -2,6 +2,7 @@ package fashionlife.com.ui.find.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ import fashionlife.com.widget.WeatherView;
  * @descripition: 天气
  */
 
-public class WeatherFragment extends BaseFragment<WeatherPresenter> implements WeatherContract.View {
+public class WeatherFragment extends BaseFragment<WeatherPresenter> implements WeatherContract.View, SwipeRefreshLayout.OnRefreshListener {
 
 
     private WeatherView mWeatherView;
@@ -41,6 +42,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
     private TextView mTvPollutionIndex;
     private CircularBeadView mAirConditionLine;
     private ImageView mIvWallpaper;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected WeatherPresenter attachPresenter() {
@@ -67,7 +69,8 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
         mTvPollutionIndex = (TextView) view.findViewById(R.id.tv_pollutionIndex);
         mAirConditionLine = (CircularBeadView) view.findViewById(R.id.circular_beadview);
         mIvWallpaper = (ImageView) view.findViewById(R.id.iv_bg);
-
+        mSwipeRefreshLayout = (SwipeRefreshLayout) mContainerView;
+        mSwipeRefreshLayout.setOnRefreshListener(this);
         mPresenter.downloadWallpaper();
     }
 
@@ -76,6 +79,10 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
         super.onHiddenChanged(hidden);
         if (!hidden) {
             mPresenter.queryWeather();
+        }else {
+            if(mSwipeRefreshLayout != null){
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
         }
     }
 
@@ -83,6 +90,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
     public void updateFutureView(final List<WeatherBean.ResultBean.FutureBean> future) {
         if (!Utils.isEmpty(future) && mWeatherView != null) {
             ToastHelper.showToast("更新天气成功");
+            mSwipeRefreshLayout.setRefreshing(false);
             mWeatherView.updateView(future);
         }
     }
@@ -116,7 +124,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
 
     @Override
     public void onError() {
-
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -130,5 +138,10 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
         if(mIvWallpaper != null){
             Glide.with(this).load(imgName).centerCrop().into(mIvWallpaper);
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        mPresenter.queryWeather();
     }
 }
