@@ -1,210 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/c_6EA9D0"
-    android:orientation="vertical"
-    android:scrollbars="none">
+                                              android:layout_width="match_parent"
+                                              android:layout_height="match_parent">
 
-
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/c_6EA9D0"
+        android:orientation="vertical"
+        android:scrollbars="none">
 
-        <ImageView
-            android:id="@+id/iv_bg"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/dip_tool_bar">
-
-            <RelativeLayout
+            <ImageView
+                android:id="@+id/iv_bg"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp">
+                android:layout_height="match_parent"/>
 
-                <TextView
-                    android:id="@+id/tv_city_distrct"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-- --"
-                    android:textColor="@color/c_FFFFFF"
-                    android:textSize="@dimen/txt_15sp" />
-
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_alignBottom="@id/tv_city_distrct"
-                    android:layout_alignTop="@id/tv_city_distrct"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@id/tv_city_distrct"
-                    android:src="@mipmap/location_icon" />
-
-                <TextView
-                    android:id="@+id/tv_temperature"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_city_distrct"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="sans-serif-thin"
-                    android:text="--"
-                    android:textColor="@color/c_FFFFFF"
-                    android:textSize="90sp" />
-
-                <TextView
-                    android:id="@+id/tv_weather"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_city_distrct"
-                    android:layout_toRightOf="@id/tv_temperature"
-                    android:text="--"
-                    android:textColor="@color/c_FFFFFF"
-                    android:textSize="@dimen/txt_17sp" />
-
-
-                <ImageView
-                    android:id="@+id/iv_1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_below="@id/tv_temperature"
-                    android:layout_marginRight="@dimen/dip5"
-                    android:src="@mipmap/wind_power" />
-
-                <TextView
-                    android:id="@+id/tv_wind"
-                    style="@style/text_view_fragment_weather"
-                    android:layout_toRightOf="@id/iv_1"
-                    android:text="--" />
-
-                <ImageView
-                    android:id="@+id/iv_2"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_below="@id/tv_temperature"
-                    android:layout_marginLeft="@dimen/dip35"
-                    android:layout_marginRight="@dimen/dip5"
-                    android:layout_toRightOf="@id/tv_wind"
-                    android:src="@mipmap/humidity" />
-
-                <TextView
-                    android:id="@+id/tv_humidity"
-                    style="@style/text_view_fragment_weather"
-                    android:layout_toRightOf="@id/iv_2"
-                    android:text="湿度：--" />
-
-                <ImageView
-                    android:id="@+id/iv_3"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_below="@id/tv_wind"
-                    android:layout_marginRight="@dimen/dip5"
-                    android:layout_marginTop="@dimen/dip10"
-                    android:src="@mipmap/clothes" />
-
-                <TextView
-                    android:id="@+id/tv_dressingIndex"
-                    style="@style/text_view_fragment_weather"
-                    android:layout_alignBottom="@id/iv_3"
-                    android:layout_below="@id/tv_wind"
-                    android:layout_marginTop="@dimen/dip10"
-                    android:layout_toRightOf="@id/iv_3"
-                    android:text="--" />
-
-                <ImageView
-                    android:id="@+id/iv_4"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignLeft="@id/iv_2"
-                    android:layout_below="@id/tv_wind"
-                    android:layout_marginRight="@dimen/dip5"
-                    android:layout_marginTop="@dimen/dip10"
-                    android:src="@mipmap/sport" />
-
-                <TextView
-                    android:id="@+id/tv_exerciseIndex"
-                    style="@style/text_view_fragment_weather"
-                    android:layout_below="@id/tv_wind"
-                    android:layout_marginTop="@dimen/dip10"
-                    android:layout_toRightOf="@id/iv_4"
-                    android:text="--" />
-
-                <ImageView
-                    android:id="@+id/iv_share"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:clickable="true"
-                    android:src="@mipmap/share" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dip_tool_bar">
 
                 <RelativeLayout
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/tv_temperature"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/dip20"
-                    android:background="@drawable/rectangle_4e83a9"
-                    android:orientation="vertical"
-                    android:padding="@dimen/dip8">
-
-                    <fashionlife.com.widget.CircularBeadView
-                        android:id="@+id/circular_beadview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="invisible" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tv_air_condition"
-                        style="@style/text_view_fff_13sp"
+                        android:id="@+id/tv_city_distrct"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/circular_beadview"
-                        android:layout_marginTop="@dimen/dip10"
-                        android:text="--" />
-
-                    <TextView
-                        android:id="@+id/tv_pollutionIndex"
-                        style="@style/text_view_fff_16sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_air_condition"
-                        android:layout_marginTop="@dimen/dip2"
-                        android:text="--" />
+                        android:text="-- --"
+                        android:textColor="@color/c_FFFFFF"
+                        android:textSize="@dimen/txt_15sp"/>
 
                     <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignBottom="@id/tv_city_distrct"
+                        android:layout_alignTop="@id/tv_city_distrct"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_city_distrct"
+                        android:src="@mipmap/location_icon"/>
+
+                    <TextView
+                        android:id="@+id/tv_temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_city_distrct"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="sans-serif-thin"
+                        android:text="--"
+                        android:textColor="@color/c_FFFFFF"
+                        android:textSize="90sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_city_distrct"
+                        android:layout_toRightOf="@id/tv_temperature"
+                        android:text="--"
+                        android:textColor="@color/c_FFFFFF"
+                        android:textSize="@dimen/txt_17sp"/>
+
+
+                    <ImageView
+                        android:id="@+id/iv_1"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignBottom="@id/tv_pollutionIndex"
+                        android:layout_below="@id/tv_temperature"
+                        android:layout_marginRight="@dimen/dip5"
+                        android:src="@mipmap/wind_power"/>
+
+                    <TextView
+                        android:id="@+id/tv_wind"
+                        style="@style/text_view_fragment_weather"
+                        android:layout_toRightOf="@id/iv_1"
+                        android:text="--"/>
+
+                    <ImageView
+                        android:id="@+id/iv_2"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_below="@id/tv_temperature"
+                        android:layout_marginLeft="@dimen/dip35"
+                        android:layout_marginRight="@dimen/dip5"
+                        android:layout_toRightOf="@id/tv_wind"
+                        android:src="@mipmap/humidity"/>
+
+                    <TextView
+                        android:id="@+id/tv_humidity"
+                        style="@style/text_view_fragment_weather"
+                        android:layout_toRightOf="@id/iv_2"
+                        android:text="湿度：--"/>
+
+                    <ImageView
+                        android:id="@+id/iv_3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/tv_wind"
+                        android:layout_marginRight="@dimen/dip5"
+                        android:layout_marginTop="@dimen/dip10"
+                        android:src="@mipmap/clothes"/>
+
+                    <TextView
+                        android:id="@+id/tv_dressingIndex"
+                        style="@style/text_view_fragment_weather"
+                        android:layout_alignBottom="@id/iv_3"
+                        android:layout_below="@id/tv_wind"
+                        android:layout_marginTop="@dimen/dip10"
+                        android:layout_toRightOf="@id/iv_3"
+                        android:text="--"/>
+
+                    <ImageView
+                        android:id="@+id/iv_4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignLeft="@id/iv_2"
+                        android:layout_below="@id/tv_wind"
+                        android:layout_marginRight="@dimen/dip5"
+                        android:layout_marginTop="@dimen/dip10"
+                        android:src="@mipmap/sport"/>
+
+                    <TextView
+                        android:id="@+id/tv_exerciseIndex"
+                        style="@style/text_view_fragment_weather"
+                        android:layout_below="@id/tv_wind"
+                        android:layout_marginTop="@dimen/dip10"
+                        android:layout_toRightOf="@id/iv_4"
+                        android:text="--"/>
+
+                    <ImageView
+                        android:id="@+id/iv_share"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_alignParentRight="true"
-                        android:src="@mipmap/air" />
+                        android:clickable="true"
+                        android:src="@mipmap/share"/>
+
+                    <RelativeLayout
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/tv_temperature"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/dip20"
+                        android:background="@drawable/rectangle_4e83a9"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dip8">
+
+                        <fashionlife.com.widget.CircularBeadView
+                            android:id="@+id/circular_beadview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="invisible"/>
+
+                        <TextView
+                            android:id="@+id/tv_air_condition"
+                            style="@style/text_view_fff_13sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/circular_beadview"
+                            android:layout_marginTop="@dimen/dip10"
+                            android:text="--"/>
+
+                        <TextView
+                            android:id="@+id/tv_pollutionIndex"
+                            style="@style/text_view_fff_16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_air_condition"
+                            android:layout_marginTop="@dimen/dip2"
+                            android:text="--"/>
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignBottom="@id/tv_pollutionIndex"
+                            android:layout_alignParentRight="true"
+                            android:src="@mipmap/air"/>
+                    </RelativeLayout>
+
+
                 </RelativeLayout>
 
 
-            </RelativeLayout>
-
-
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scrollbars="none">
-
-                <fashionlife.com.widget.WeatherView
-                    android:id="@+id/weather_view"
+                <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="@dimen/dip200"
-                    android:background="@color/c_60000000"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp" />
-            </HorizontalScrollView>
+                    android:scrollbars="none">
 
-        </LinearLayout>
+                    <fashionlife.com.widget.WeatherView
+                        android:id="@+id/weather_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="@dimen/dip200"
+                        android:background="@color/c_60000000"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="20dp"/>
+                </HorizontalScrollView>
 
-    </FrameLayout>
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </ScrollView>
 
 
 </android.support.v4.widget.SwipeRefreshLayout>
