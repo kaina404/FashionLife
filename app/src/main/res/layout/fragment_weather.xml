@@ -40,7 +40,7 @@
                 android:layout_below="@id/tv_city_distrct"
                 android:layout_marginLeft="5dp"
                 android:fontFamily="sans-serif-thin"
-                android:text="25°"
+                android:text="--"
                 android:textColor="@color/c_FFFFFF"
                 android:textSize="90sp" />
 
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_city_distrct"
                 android:layout_toRightOf="@id/tv_temperature"
-                android:text="多云"
+                android:text="--"
                 android:textColor="@color/c_FFFFFF"
                 android:textSize="@dimen/txt_17sp" />
 
@@ -67,14 +67,14 @@
                 android:id="@+id/tv_wind"
                 style="@style/text_view_fragment_weather"
                 android:layout_toRightOf="@id/iv_1"
-                android:text="南风2级" />
+                android:text="--" />
 
             <ImageView
                 android:id="@+id/iv_2"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:layout_below="@id/tv_temperature"
-                android:layout_marginLeft="@dimen/dip5"
+                android:layout_marginLeft="@dimen/dip35"
                 android:layout_marginRight="@dimen/dip5"
                 android:layout_toRightOf="@id/tv_wind"
                 android:src="@mipmap/humidity" />
@@ -83,7 +83,7 @@
                 android:id="@+id/tv_humidity"
                 style="@style/text_view_fragment_weather"
                 android:layout_toRightOf="@id/iv_2"
-                android:text="湿度：46%" />
+                android:text="湿度：--" />
 
             <ImageView
                 android:id="@+id/iv_3"
@@ -101,7 +101,7 @@
                 android:layout_below="@id/tv_wind"
                 android:layout_marginTop="@dimen/dip10"
                 android:layout_toRightOf="@id/iv_3"
-                android:text="单衣类" />
+                android:text="--" />
 
             <ImageView
                 android:id="@+id/iv_4"
@@ -119,7 +119,7 @@
                 android:layout_below="@id/tv_wind"
                 android:layout_marginTop="@dimen/dip10"
                 android:layout_toRightOf="@id/iv_4"
-                android:text="非常适宜" />
+                android:text="--" />
 
             <ImageView
                 android:id="@+id/iv_share"
@@ -142,7 +142,8 @@
                 <fashionlife.com.widget.CircularBeadView
                     android:id="@+id/circular_beadview"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/tv_air_condition"
@@ -151,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/circular_beadview"
                     android:layout_marginTop="@dimen/dip10"
-                    android:text="轻度污染" />
+                    android:text="--" />
 
                 <TextView
                     android:id="@+id/tv_pollutionIndex"
@@ -160,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_air_condition"
                     android:layout_marginTop="@dimen/dip2"
-                    android:text="120" />
+                    android:text="--" />
 
                 <ImageView
                     android:layout_width="20dp"

@@ -83,7 +83,7 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
                                     //市级名称
                                     String city = cityBean.getCity();
 
-                                    // TODO: 2017/10/25  由于MOBAPI的入参数据格式较百度地图返回的位置比较十分不准确，故这里不再精确到县，
+                                    //由于MOBAPI的入参数据格式较百度地图返回的位置比较十分不准确，故这里不再精确到县，
                                     // 只是确定下MOBAPI中是否支持该城市。
                                     //其实向这样的无用北鼻无奈的选择，我是拒绝的。
                                     if (entity.city.contains(province) || entity.city.contains(city)) {

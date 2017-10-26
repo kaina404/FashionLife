@@ -23,4 +23,6 @@
     <dimen name="dip20">20dp</dimen>
     <dimen name="dip15">15dp</dimen>
     <dimen name="dip200">200dp</dimen>
+    <dimen name="dip25">25dp</dimen>
+    <dimen name="dip35">35dp</dimen>
 </resources>

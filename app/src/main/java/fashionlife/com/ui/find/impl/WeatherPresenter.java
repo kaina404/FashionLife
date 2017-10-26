@@ -26,17 +26,17 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.View> implem
     @Override
     public void updateView(List<WeatherBean.ResultBean> resultBeen) {
         if (mView != null && !Utils.isEmpty(resultBeen)) {
-            //解决MOBAPI坑人的当前不返还白天天气，只能从外围取出来
+//            //解决MOBAPI坑人的当前不返还白天天气，只能从外围取出来
             WeatherBean.ResultBean resultBean = resultBeen.get(0);
             mView.updateCurDayView(resultBean);
-
-            String weather = resultBean.getWeather();
-            //哎，无奈的格式化
-            String temperature = resultBean.getTemperature().replace("°", "").replace("C", "").replace("℃", "").trim();
+//
+//            String weather = resultBean.getWeather();
+//            //哎，MOB 的天气 不怎么样 到了晚上就查询不到上午的天气了。。。
+//            String temperature = resultBean.getTemperature().replace("°", "").replace("C", "").replace("℃", "").trim();
             List<WeatherBean.ResultBean.FutureBean> future = resultBean.getFuture();
-            String temperature1 = future.get(0).getTemperature();
-            future.get(0).setDayTime(weather);
-            future.get(0).setTemperature(temperature + "/" + temperature1);
+//            String temperature1 = future.get(0).getTemperature();
+//            future.get(0).setDayTime(weather);
+//            future.get(0).setTemperature(temperature + "/" + temperature1);
             mView.updateFutureView(future);
         }
     }
