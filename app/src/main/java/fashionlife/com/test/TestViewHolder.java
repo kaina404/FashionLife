@@ -23,8 +23,8 @@ public class TestViewHolder extends BaseViewHolder<TestBean.ResultBean> {
 
 
     private void initView() {
-        mTextView = (TextView) mItemView.findViewById(R.id.textView);
-        mTextView2 = (TextView) mItemView.findViewById(R.id.textView2);
+//        mTextView = (TextView) mItemView.findViewById(R.id.textView);
+//        mTextView2 = (TextView) mItemView.findViewById(R.id.textView2);
     }
 
     @Override
