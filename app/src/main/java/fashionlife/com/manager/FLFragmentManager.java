@@ -9,7 +9,7 @@ import fashionlife.com.base.component.BaseActivity;
 import fashionlife.com.common.FragmentId;
 import fashionlife.com.ui.find.fragment.WeatherFragment;
 import fashionlife.com.ui.home.fragment.HomeFragment;
-import fashionlife.com.ui.user.UserFragment;
+import fashionlife.com.ui.tool.ToolFragment;
 
 /**
  * Created by lovexujh on 2017/10/9
@@ -42,7 +42,7 @@ public class FLFragmentManager {
     private void initData() {
         fragmentRecordMap.put(FragmentId.HOME, new FragmentRecord("", HomeFragment.class));
         fragmentRecordMap.put(FragmentId.WEATHER, new FragmentRecord("", WeatherFragment.class));
-        fragmentRecordMap.put(FragmentId.USER, new FragmentRecord("", UserFragment.class));
+        fragmentRecordMap.put(FragmentId.TOOL, new FragmentRecord("", ToolFragment.class));
     }
 
 

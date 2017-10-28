@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.Display;
 import android.view.WindowManager;
 
+import fashionlife.com.base.component.BaseApplication;
+
 /**
  * Created by lovexujh on 2017/10/16
  */
@@ -11,7 +13,7 @@ import android.view.WindowManager;
 public class ScreenUtils {
 
     public static int getScreenWidth(Context context) {
-        WindowManager manager = (WindowManager) context
+        WindowManager manager = (WindowManager) BaseApplication.getInstance().getApplicationContext()
                 .getSystemService(Context.WINDOW_SERVICE);
         Display display = manager.getDefaultDisplay();
         return display.getWidth();

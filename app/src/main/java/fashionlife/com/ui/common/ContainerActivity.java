@@ -62,13 +62,13 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Bo
 
     @Override
     public String[] getFragments() {
-        return new String[]{FragmentId.HOME, FragmentId.WEATHER, FragmentId.USER};
+        return new String[]{FragmentId.HOME, FragmentId.WEATHER, FragmentId.TOOL};
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mBottomView.setCheck(0, true);
+        mBottomView.setCheck(mFragmentIndex >= 0 ? mFragmentIndex : 0, true);
 
     }
 
@@ -94,7 +94,7 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Bo
                 showFragment(FragmentId.WEATHER);
                 break;
             case 2:
-                showFragment(FragmentId.USER);
+                showFragment(FragmentId.TOOL);
                 break;
             default:
         }
