@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/listview_bg"
-    android:padding="5dp">
+    android:layout_margin="5dp">
 
     <ImageView
         android:id="@+id/item_wx_news_iv"
@@ -17,5 +17,5 @@
         android:layout_height="wrap_content"
         android:lines="2"
         android:textColor="@color/c_0a0a0a"
-        android:textSize="15sp" />
+        android:textSize="13sp" />
 </LinearLayout>

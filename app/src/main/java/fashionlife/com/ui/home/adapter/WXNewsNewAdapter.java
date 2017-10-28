@@ -44,26 +44,10 @@ public class WXNewsNewAdapter extends RecycleBaseAdapter<WXNewsBean.ResultBean.L
         if (imageHeight <= 0) {
             imageHeight = getRandomHeight();
             bean.setImageHeight(imageHeight);
-//            LogUtil.d(this, position + " <= 0 " + imageHeight);
-//            Glide.with(mContext).load(bean.getThumbnails()).asBitmap().placeholder(R.mipmap.loading).diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop().override(mImgWidth, SIZE_ORIGINAL).into(new SimpleTarget<Bitmap>() {
-//                @Override
-//                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-//                    if (mData.get(position).getImageHeight() <= 0) {
-//                        int height = resource.getHeight();
-//                        mData.get(position).setImageHeight(height);
-//                    }
-//                    holder.mIv.setImageBitmap(resource);
-//                }
-//            });
         }
-//        else {
-//        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.mIv.getLayoutParams();
-//        params.height = imageHeight;
         Glide.with(mContext).load(bean.getThumbnails()).placeholder(R.mipmap.loading)
                 .override(mImgWidth, imageHeight).centerCrop().override(mImgWidth, imageHeight)
                 .into((ImageView) holder.findViewById(R.id.item_wx_news_iv));
-//        }
-
         holder.setText(R.id.item_wx_news_tv_title, bean.getSubTitle());
 
     }
