@@ -35,8 +35,8 @@ public class BottomTabData implements INetCall {
         // TODO: 2017/10/27  TEST
         //int checkedIconRes, int noCheckIconRes, int text, int checkedTxtColor, int noCheckTxtColor
         List<BottomTabEntity> bottomTabEntities = new ArrayList<>();
-        int checkedColor = Utils.getColor(R.color.colorPrimary);
-        int noCheckColor = Utils.getColor(R.color.c_f6f6f6);
+        int checkedColor = Utils.getColor(R.color.c_2e77fb);
+        int noCheckColor = Utils.getColor(R.color.c_000000);
         BottomTabEntity home = new BottomTabEntity(R.mipmap.home_checked, R.mipmap.home_no_checked,
                 "首页", checkedColor, noCheckColor);
 
