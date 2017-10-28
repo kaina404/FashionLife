@@ -5,5 +5,6 @@ package fashionlife.com.common;
  */
 
 public class IntentKeys {
+    public static final String IMG_URL = "IMG_URL";
     public static String URL = "URL";
 }

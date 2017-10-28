@@ -3,15 +3,22 @@ package fashionlife.com.ui.web;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.widget.LinearLayout;
 
 import fashionlife.com.R;
 import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.component.BaseActivity;
+import fashionlife.com.common.ActivityId;
+import fashionlife.com.common.CommonConstant;
 import fashionlife.com.common.IntentKeys;
+import fashionlife.com.manager.StartManager;
 import fashionlife.com.util.NetStatusUtil;
 
+/**
+ * @author
+ */
 public class WebViewActivity extends BaseActivity {
 
 
@@ -51,7 +58,25 @@ public class WebViewActivity extends BaseActivity {
         mWebChromeClient = new BaseWebChromeClient();
         webView.setWebViewClient(mWebViewClient);
         webView.setWebChromeClient(mWebChromeClient);
+        webView.removeJavascriptInterface("searchBoxJavaBridge_");
+        webView.removeJavascriptInterface("accessibility");
+        webView.removeJavascriptInterface("accessibilityTraversal");
+        webView.addJavascriptInterface(new WebViewJsInterface() {
+
+            @JavascriptInterface
+            @Override
+            public void onClickImg(String url) {
+                Intent intent = new Intent();
+                intent.putExtra(IntentKeys.IMG_URL, url);
+                StartManager.startActivity(ActivityId.ZOOM_IMAGE_ACTIVITY, WebViewActivity.this, intent);
+            }
+
+        }, CommonConstant.JS_IMG_LISTENER);
         return webView;
+    }
+
+    public interface WebViewJsInterface {
+        void onClickImg(String url);
     }
 
     private void initWebSettings() {

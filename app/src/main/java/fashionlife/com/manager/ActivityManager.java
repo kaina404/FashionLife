@@ -10,6 +10,7 @@ import java.util.Map;
 import fashionlife.com.base.component.BaseActivity;
 import fashionlife.com.common.ActivityId;
 import fashionlife.com.test.TestActivity;
+import fashionlife.com.ui.ZoomImageActivity;
 import fashionlife.com.ui.common.ContainerActivity;
 import fashionlife.com.ui.web.WebViewActivity;
 
@@ -45,6 +46,7 @@ public class ActivityManager {
         activityRecordMap.put(ActivityId.Container_Activity, new ActivityRecord("", ContainerActivity.class));
         activityRecordMap.put(ActivityId.Test_Activity, new ActivityRecord("", TestActivity.class));
         activityRecordMap.put(ActivityId.WEB_VIEW_ACTIVITY, new ActivityRecord("", WebViewActivity.class));
+        activityRecordMap.put(ActivityId.ZOOM_IMAGE_ACTIVITY, new ActivityRecord("", ZoomImageActivity.class));
     }
 
     /**

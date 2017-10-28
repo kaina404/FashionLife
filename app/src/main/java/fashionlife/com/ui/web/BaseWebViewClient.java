@@ -10,6 +10,8 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import fashionlife.com.common.CommonConstant;
+
 /**
  * 处理各种通知 & 请求事件
  * Created by lovexujh on 2017/10/15
@@ -41,6 +43,8 @@ public class BaseWebViewClient extends WebViewClient {
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
         // TODO: 2017/10/15
+        setWebImageClick(view);
+
     }
 
     @Override
@@ -68,4 +72,15 @@ public class BaseWebViewClient extends WebViewClient {
         // handler.cancel();      //表示挂起连接，为默认方式
         // handler.handleMessage(null);    //可做其他处理
     }
+
+    private void setWebImageClick(WebView view) {
+        String jsCode = "javascript:(function(){" +
+                "var imgs=document.getElementsByTagName(\"img\");" +
+                "for(var i=0;i<imgs.length;i++){" +
+                "imgs[i].onclick=function(){" +
+                "window." + CommonConstant.JS_IMG_LISTENER + ".onClickImg(this.src);" +
+                "}}})()";
+        view.loadUrl(jsCode);
+    }
+
 }
