@@ -14,32 +14,6 @@
 
     <View style="@style/view_line" />
 
-    <RadioGroup
-        android:id="@+id/rg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:visibility="gone"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/home"
-            style="@style/activity_container_bottom_home"
-            android:background="@drawable/home_rg"
-            android:button="@null"
-            android:layout_gravity="center"
-            android:text="@string/home" />
-
-        <RadioButton
-            android:id="@+id/find"
-            style="@style/activity_container_bottom_home"
-            android:text="@string/find" />
-
-        <RadioButton
-            android:id="@+id/user"
-            style="@style/activity_container_bottom_home"
-            android:text="@string/user" />
-    </RadioGroup>
 
     <fashionlife.com.widget.BottomTabWidget
         android:id="@+id/bottom_tab_view"

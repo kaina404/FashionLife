@@ -5,9 +5,6 @@ import java.util.List;
 
 import fashionlife.com.R;
 import fashionlife.com.common.BottomTabEntity;
-import fashionlife.com.net.INetCall;
-import fashionlife.com.net.NetRequest;
-import fashionlife.com.util.LogUtil;
 import fashionlife.com.util.Utils;
 import fashionlife.com.widget.BottomTabWidget;
 
@@ -17,7 +14,7 @@ import fashionlife.com.widget.BottomTabWidget;
  * @descripition:
  */
 
-public class BottomTabData implements INetCall {
+public class BottomTabData  {
 
     private BottomTabWidget mBottomView;
 
@@ -32,7 +29,6 @@ public class BottomTabData implements INetCall {
     }
 
     public void initView(){
-        // TODO: 2017/10/27  TEST
         //int checkedIconRes, int noCheckIconRes, int text, int checkedTxtColor, int noCheckTxtColor
         List<BottomTabEntity> bottomTabEntities = new ArrayList<>();
         int checkedColor = Utils.getColor(R.color.c_2e77fb);
@@ -52,25 +48,7 @@ public class BottomTabData implements INetCall {
 
         mBottomView.updateView(bottomTabEntities);
 
-        queryBottomTab();
 
     }
 
-    public void queryBottomTab(){
-        // TODO: 2017/10/27  https://github.com/xujianhui404/FashionLifeConsole/blob/master/testjson
-        String url = "https://github.com/xujianhui404/FashionLifeConsole/blob/master/testjson";
-        //int requestId, Object params, String url, String method, MediaType mediaType, INetCall netCall
-        NetRequest.http(100, null, url, NetRequest.Method.GET, NetRequest.JSON_TYPE, this);
-    }
-
-
-    @Override
-    public void onResponse(int requestId, String response) {
-        LogUtil.d(this, "返回结果是："+response);
-    }
-
-    @Override
-    public void onFailure(int requestId, String errObj) {
-
-    }
 }

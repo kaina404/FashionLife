@@ -4,7 +4,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.RadioGroup;
 
 import fashionlife.com.R;
 import fashionlife.com.app.AppUtils;
@@ -20,9 +19,8 @@ import fashionlife.com.widget.BottomTabWidget;
  *         Created by lovexujh on 2017/10/9
  */
 
-public class ContainerActivity extends AbstractTabFragmentActivity implements RadioGroup.OnCheckedChangeListener, BottomTabWidget.OnCheckedListener {
+public class ContainerActivity extends AbstractTabFragmentActivity implements BottomTabWidget.OnCheckedListener {
 
-    private RadioGroup rg;
     private BottomTabWidget mBottomView;
 
     @Override
@@ -38,8 +36,6 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Ra
     }
 
     private void initViews() {
-        rg = (RadioGroup) findViewById(R.id.rg);
-        rg.setOnCheckedChangeListener(this);
         mBottomView = (BottomTabWidget) findViewById(R.id.bottom_tab_view);
         BottomTabData.create().setBottomView(mBottomView).initView();
         mBottomView.setOnCheckedListener(this);
@@ -72,31 +68,16 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Ra
     @Override
     protected void onResume() {
         super.onResume();
-        rg.getChildAt(0).performClick();
+        mBottomView.setCheck(0, true);
 
     }
 
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId) {
-            case R.id.home:
-                showFragment(FragmentId.HOME);
-                break;
-            case R.id.find:
-                showFragment(FragmentId.WEATHER);
-                break;
-            case R.id.user:
-                showFragment(FragmentId.USER);
-                break;
-            default:
-        }
-    }
 
     @Override
     public void onBackPressed() {
         if (!Utils.isEmpty(mFragmentName) && !mFragmentName.endsWith(FragmentId.HOME)) {
             showFragment(FragmentId.HOME);
-            rg.getChildAt(mFragmentIndex).performClick();
+            mBottomView.setCheck(mFragmentIndex, true);
         } else {
             LocationHelper.getInstance().stop();
             AppUtils.exitAPP();
