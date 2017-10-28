@@ -5,12 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 
 import fashionlife.com.base.component.BaseApplication;
+import fashionlife.com.common.ActivityId;
+import fashionlife.com.common.IntentKeys;
 
 /**
  * Created by lovexujh on 2017/10/9
  */
 
 public class StartManager {
+
+    private static final int START_WEB = 1;
+
 
     public static void startActivity(String activityId, Context context, Intent intent) {
         if (activityId == null) {
@@ -37,4 +42,17 @@ public class StartManager {
             }
         }
     }
+
+    public static void startWeb( String url, Context context){
+        startWeb(url, null, context);
+    }
+
+    public static void startWeb(String url, Intent intent, Context context) {
+        if (intent == null) {
+            intent = new Intent();
+        }
+        intent.putExtra(IntentKeys.URL, url);
+        StartManager.startActivity(ActivityId.WEB_VIEW_ACTIVITY, context, intent);
+    }
+
 }
