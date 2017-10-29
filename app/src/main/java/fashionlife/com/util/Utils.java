@@ -1,6 +1,9 @@
 package fashionlife.com.util;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.support.annotation.ColorRes;
@@ -19,6 +22,9 @@ import java.util.List;
 import fashionlife.com.app.APPConstant;
 import fashionlife.com.base.component.BaseApplication;
 import fashionlife.com.listener.ProgressResponseListener;
+import fashionlife.com.widget.AlertUtils;
+
+import static android.provider.Settings.ACTION_WIRELESS_SETTINGS;
 
 /**
  * Created by lovexujh on 2017/9/19
@@ -227,4 +233,23 @@ public class Utils {
         return BaseApplication.getInstance().getResources().getColor(color);
     }
 
+    public static boolean isActivityRunning(Activity activity) {
+
+        return activity != null && !activity.isFinishing() && !activity.isDestroyed();
+
+    }
+
+    public static void handlerNoNet(final Context context) {
+        if (NetStatusUtil.getAPNType(context) == NetStatusUtil.CONNECTION_FAILED) {
+            AlertUtils.showMessage(context, "网络飞走了~~", "打开网络", "不管了", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent();
+                    intent.setAction(ACTION_WIRELESS_SETTINGS);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            });
+        }
+    }
 }

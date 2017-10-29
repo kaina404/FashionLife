@@ -13,7 +13,9 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import fashionlife.com.app.APPConstant;
+import fashionlife.com.base.component.BaseApplication;
 import fashionlife.com.listener.ProgressResponseListener;
+import fashionlife.com.util.NetStatusUtil;
 import fashionlife.com.util.URLEncodedUtils;
 import fashionlife.com.util.Utils;
 import okhttp3.Call;
@@ -24,8 +26,7 @@ import okhttp3.RequestBody;
 import okhttp3.internal.Util;
 
 /**
- * @author
- * Created by lovexujh on 2017/10/9
+ * @author Created by lovexujh on 2017/10/9
  */
 
 public class NetRequest {
@@ -61,6 +62,11 @@ public class NetRequest {
     }
 
     public static void http(int requestId, Object params, String url, String method, MediaType mediaType, INetCall netCall) {
+
+        if (NetStatusUtil.getAPNType(BaseApplication.getInstance().getApplicationContext()) == NetStatusUtil.CONNECTION_FAILED) {
+            Utils.handlerNoNet(BaseApplication.getInstance().getApplicationContext());
+            return;
+        }
 
         RequestBody body = null;
         Map<String, List<String>> headers = new HashMap<>();
@@ -123,7 +129,6 @@ public class NetRequest {
         url = URLEncodedUtils.attachHttpGetParams(url, params);
         http(requestId, "", url, Method.GET, mediaType, netCall);
     }
-
 
 
     /**

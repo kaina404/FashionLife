@@ -178,5 +178,6 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
     @Override
     public void onRefresh() {
         mPresenter.queryWeather();
+        mPresenter.downloadWallpaper();
     }
 }

@@ -26,4 +26,15 @@ public class LogUtil {
             }
         }
     }
+
+    public static void e(Object obj, String params) {
+        if (DEBUG) {
+            if (obj instanceof String) {
+                Log.e((String) obj, params);
+            } else {
+                android.util.Log.e(obj.getClass().getSimpleName(), params);
+
+            }
+        }
+    }
 }

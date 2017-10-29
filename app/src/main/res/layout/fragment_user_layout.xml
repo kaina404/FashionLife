@@ -19,9 +19,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:paddingLeft="@dimen/dip10"
-            android:paddingRight="@dimen/dip10"
-            android:orientation="horizontal">
+            android:paddingRight="@dimen/dip10">
 
 
             <TextView
@@ -30,7 +30,8 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:drawableTop="@mipmap/select_icon"
-                android:text="选择图片"/>
+                android:text="选择图片"
+                android:textColor="@color/c_6E6E6E"/>
 
             <View
                 android:layout_width="0dp"
@@ -44,6 +45,7 @@
                 android:clickable="true"
                 android:drawableTop="@mipmap/find_icon"
                 android:text="百度识图"
+                android:textColor="@color/c_6E6E6E"
                 />
 
 

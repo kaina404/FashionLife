@@ -1,15 +1,24 @@
 package fashionlife.com.ui.web;
 
 import android.graphics.Bitmap;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.ProgressBar;
 
 /**
+ * @author
  * 辅助 WebView 处理 Javascript 的对话框,网站图标,网站标题等等。
  * Created by lovexujh on 2017/10/15
  */
 
 public class BaseWebChromeClient extends WebChromeClient {
+
+    private ProgressBar mProgressBar;
+
+    public BaseWebChromeClient(ProgressBar progressBar) {
+        mProgressBar = progressBar;
+    }
 
     /**
      * web加载进度
@@ -20,6 +29,14 @@ public class BaseWebChromeClient extends WebChromeClient {
     @Override
     public void onProgressChanged(WebView view, int newProgress) {
         super.onProgressChanged(view, newProgress);
+        if(mProgressBar != null){
+            mProgressBar.setProgress(newProgress);
+            if(newProgress >= 100){
+                mProgressBar.setVisibility(View.GONE);
+            }else {
+                mProgressBar.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     @Override

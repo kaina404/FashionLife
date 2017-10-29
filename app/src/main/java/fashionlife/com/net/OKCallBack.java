@@ -114,7 +114,7 @@ public class OkCallBack implements Callback {
                         responseParams.getRequestParams().getNetCall().onResponse(responseParams.getRequestId(), responseParams.getResponse());
                         break;
                     case HTTP_ERROR:
-                        // TODO: 2017/10/27
+
                         String err = msg.obj == null ? "未知错误" : ((ResponseParams) msg.obj).getResponse();
                         responseParams.getRequestParams().getNetCall().onFailure(msg.what, err);
                         break;

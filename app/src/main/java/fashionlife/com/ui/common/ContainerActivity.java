@@ -61,7 +61,7 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Bo
     protected void onResume() {
         super.onResume();
         mBottomView.setCheck(mFragmentIndex >= 0 ? mFragmentIndex : 0, true);
-
+        Utils.handlerNoNet(this);
     }
 
 

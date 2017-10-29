@@ -58,7 +58,7 @@ public class PermissionMangerHelper {
 
         if (fragment.getActivity().checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 fragment.getActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            AlertUtils.showMessageOKCancel(fragment.getActivity(), "查看天气需要定位哦~~", "查看天气", "不要天气", new DialogInterface.OnClickListener() {
+            AlertUtils.showMessage(fragment.getActivity(), "查看天气需要定位哦~~", "查看天气", "不要天气", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     fragment.requestPermissions(new String[]{

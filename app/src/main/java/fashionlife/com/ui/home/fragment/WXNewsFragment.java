@@ -31,9 +31,7 @@ import fashionlife.com.ui.home.impl.WXNewsPresenter;
 
 public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXNewsContract.View, BaseRefreshListener, AdapterView.OnItemClickListener {
 
-//    private BaseListView mListView;
     private String mCid = "1";//查询新闻的cid
-//    private WXNewsAdapter mAdapter;
     private List<WXNewsBean.ResultBean.ListBean> mDatas;
     private PullToRefreshLayout mPullToRefresh;
     private int mPager;
@@ -47,12 +45,6 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
         mDatas = new ArrayList<>();
         mPullToRefresh = (PullToRefreshLayout) view.findViewById(R.id.pull_to_refresh);
         mPullToRefresh.setRefreshListener(this);
-//        mPullToRefresh.setHeaderView();
-
-//        mAdapter = new WXNewsAdapter(getContext(), mDatas);
-//        mListView = (BaseListView) view.findViewById(R.id.lv);
-//        mListView.setAdapter(mAdapter);
-//        mListView.setOnItemClickListener(this);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         mRecyclerViewAdapter = new WXNewsNewAdapter(getContext(), mDatas);
@@ -107,14 +99,8 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
             mDatas.clear();
         }
         mDatas.addAll(result.getList());
-//        mAdapter.notifyDataSetChanged();
         mRecyclerViewAdapter.setData(mDatas);
         mRecyclerViewAdapter.notifyItemInserted(mDatas.size());
-
-        // TODO: 2017/10/15  TEST
-//        DBCache DBCache = new DBCache();
-//        String cache = DBCache.getCache(AppUtils.getWXNewsKey(mCid, mPager), "");
-//        LogUtil.d(this, "缓存是=", cache);
     }
 
     @Override

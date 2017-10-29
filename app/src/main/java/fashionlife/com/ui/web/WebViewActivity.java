@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class WebViewActivity extends BaseActivity {
     private BaseWebViewClient mWebViewClient;
     private BaseWebChromeClient mWebChromeClient;
     private SwipeBackController mSwipeBackController;
+    private ProgressBar mProgressBar;
 
     @Override
     protected int getLayoutId() {
@@ -46,8 +48,9 @@ public class WebViewActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mWebView = getWebView();
         mRootView = (LinearLayout) findViewById(R.id.root_view);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        mWebView = getWebView();
         mRootView.addView(mWebView);
         initWebSettings();
         handlerIntent(getIntent());
@@ -74,17 +77,17 @@ public class WebViewActivity extends BaseActivity {
         shortCutPopWindow.setOnItemClickListener(new ShortCutPopWindow.OnItemClickListener() {
             @Override
             public void onItemClick(int index) {
-                switch (index){
+                switch (index) {
                     case 0:
 
                         break;
                     case 1:
-                        if(mWebView != null){
+                        if (mWebView != null) {
                             mWebView.pageUp(true);
                         }
                         break;
                     case 2:
-                        if(mWebView != null){
+                        if (mWebView != null) {
                             mWebView.pageDown(true);
                         }
                         break;
@@ -104,7 +107,7 @@ public class WebViewActivity extends BaseActivity {
     private BaseWebView getWebView() {
         BaseWebView webView = new BaseWebView(getApplicationContext());
         mWebViewClient = new BaseWebViewClient();
-        mWebChromeClient = new BaseWebChromeClient();
+        mWebChromeClient = new BaseWebChromeClient(mProgressBar);
         webView.setWebViewClient(mWebViewClient);
         webView.setWebChromeClient(mWebChromeClient);
         webView.removeJavascriptInterface("searchBoxJavaBridge_");

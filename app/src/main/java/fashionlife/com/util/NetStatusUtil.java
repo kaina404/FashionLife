@@ -12,6 +12,8 @@ import android.telephony.TelephonyManager;
 
 public class NetStatusUtil {
 
+    public static final int CONNECTION_FAILED = 0;
+
     /**
      * 判断是否有网络连接
      *
@@ -85,7 +87,7 @@ public class NetStatusUtil {
      */
     public static int getAPNType(Context context) {
         //结果返回值
-        int netType = 0;
+        int netType = CONNECTION_FAILED;
         //获取手机所有连接管理对象
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         //获取NetworkInfo对象

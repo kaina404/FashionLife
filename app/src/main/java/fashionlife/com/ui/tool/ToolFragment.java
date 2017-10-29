@@ -19,13 +19,14 @@ import fashionlife.com.base.component.BaseFragment;
 import fashionlife.com.base.component.IPresenter;
 import fashionlife.com.common.ThreadHelper;
 import fashionlife.com.common.UrlConstant;
+import fashionlife.com.manager.PermissionMangerHelper;
 import fashionlife.com.manager.StartManager;
 import fashionlife.com.util.LogUtil;
 import fashionlife.com.util.ShituUtils;
-import fashionlife.com.util.ToastHelper;
 import fashionlife.com.util.Utils;
 import fashionlife.com.util.image.ImageLoadHelper;
 import fashionlife.com.widget.AlertUtils;
+import fashionlife.com.widget.ProgressDialogHepler;
 
 /**
  * @author Created by lovexujh on 2017/10/9
@@ -73,15 +74,18 @@ public class ToolFragment extends BaseFragment implements View.OnClickListener {
         switch (v.getId()) {
             //选择图片
             case R.id.selectImage:
+                PermissionMangerHelper.checkAllPermission(getActivity());
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_PICK);
                 startActivityForResult(intent, 1);
                 break;
             case R.id.uploadImage:
+                PermissionMangerHelper.checkAllPermission(getActivity());
                 if (picPath == null) {
-                    ToastHelper.showToast("picPath == null");
+                    AlertUtils.showMessage(getActivity(), "没有看到图片哦");
                 } else {
+                    ProgressDialogHepler.show(getActivity(), "", "正在识别...");
                     new ThreadHelper().executorRunnable(new Runnable() {
                         @Override
                         public void run() {
@@ -89,6 +93,7 @@ public class ToolFragment extends BaseFragment implements View.OnClickListener {
                             if (!Utils.isEmpty(url)) {
                                 StartManager.startWeb(UrlConstant.BAIDU_SHITU_URL + url, getActivity());
                             }
+                            ProgressDialogHepler.dismiss();
 
                         }
                     });
@@ -120,14 +125,14 @@ public class ToolFragment extends BaseFragment implements View.OnClickListener {
                         picPath = path;
                         Glide.with(this).load(uri).into(imageView);
                     } else {
-                        AlertUtils.showMessageOKCancel(getActivity(), "没有找到图片哦", "确定", "", null);
+                        AlertUtils.showMessage(getActivity(), "没有找到图片哦", "确定", "", null);
                     }
                 } else {
-                    AlertUtils.showMessageOKCancel(getActivity(), "没有找到图片哦", "确定", "", null);
+                    AlertUtils.showMessage(getActivity(), "没有找到图片哦", "确定", "", null);
                 }
 
             } catch (Exception e) {
-                AlertUtils.showMessageOKCancel(getActivity(), "没有找到图片哦", "确定", "", null);
+                AlertUtils.showMessage(getActivity(), "没有找到图片哦", "确定", "", null);
             }
         }
 
