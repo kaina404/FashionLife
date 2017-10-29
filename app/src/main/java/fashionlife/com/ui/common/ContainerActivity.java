@@ -1,15 +1,13 @@
 package fashionlife.com.ui.common;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
 
 import fashionlife.com.R;
 import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.component.AbstractTabFragmentActivity;
 import fashionlife.com.common.FragmentId;
 import fashionlife.com.manager.PermissionMangerHelper;
+import fashionlife.com.util.ScreenUtils;
 import fashionlife.com.util.Utils;
 import fashionlife.com.util.location.LocationHelper;
 import fashionlife.com.widget.BottomTabWidget;
@@ -44,13 +42,7 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Bo
 
     @Override
     protected int getLayoutId() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window window = getWindow();
-            // Translucent status bar
-            window.setFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
+        ScreenUtils.translucentTitle(this);
         return R.layout.activity_container;
     }
 

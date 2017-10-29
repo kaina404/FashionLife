@@ -46,7 +46,7 @@ public class ScreenUtils {
         return (int) (sp * scale + 0.5f);
     }
 
-    public static void noTitle(Activity activity) {
+    public static void translucentTitle(Activity activity) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = activity.getWindow();

@@ -6,8 +6,7 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 
 /**
- * @author
- * Created by lovexujh on 2017/10/11
+ * @author Created by lovexujh on 2017/10/11
  */
 
 public class PermissionMangerHelper {

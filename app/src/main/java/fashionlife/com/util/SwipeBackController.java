@@ -18,13 +18,11 @@ import android.view.animation.DecelerateInterpolator;
 
 public class SwipeBackController {
 
-    private static final String TAG = SwipeBackController.class.getSimpleName();
-    public static final int ANIMATION_DURATION = 1000;//默认动画时间
+    public static final int ANIMATION_DURATION = 500;//默认动画时间
     public static final int DEFAULT_TOUCH_THRESHOLD = ScreenUtils.getScreenWidth() / 2;//默认开始滑动的位置距离左边缘的距离
     private int mScreenWidth;
     private int mTouchSlop;
-
-    private boolean isMoving = false;
+    private boolean mIsMoving = false;
     private float mInitX;
     private float mInitY;
 
@@ -77,14 +75,14 @@ public class SwipeBackController {
                 mInitY = event.getRawY();
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (!isMoving) {
+                if (!mIsMoving) {
                     float dx = Math.abs(event.getRawX() - mInitX);
                     float dy = Math.abs(event.getRawY() - mInitY);
                     if (dx > mTouchSlop && dx > dy && mInitX < DEFAULT_TOUCH_THRESHOLD) {
-                        isMoving = true;
+                        mIsMoving = true;
                     }
                 }
-                if (isMoving) {
+                if (mIsMoving) {
                     mContentView.setTranslationX((int) ((int) event.getRawX() - mInitX));
                 }
 
@@ -97,14 +95,14 @@ public class SwipeBackController {
                 //获取x方向上的速度
                 float velocityX = mVelTracker.getXVelocity(pointId);
 
-                if (isMoving && Math.abs(mContentView.getTranslationX()) >= 0) {
+                if (mIsMoving && Math.abs(mContentView.getTranslationX()) >= 0) {
                     if (velocityX > 1000f || distance >= mScreenWidth / 4) {
                         mAnimator.setIntValues((int) event.getRawX(), mScreenWidth);
                     } else {
                         mAnimator.setIntValues((int) event.getRawX(), 0);
                     }
                     mAnimator.start();
-                    isMoving = false;
+                    mIsMoving = false;
                 }
 
                 mInitX = 0;

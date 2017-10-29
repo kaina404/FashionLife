@@ -33,7 +33,7 @@ public class WebViewActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        ScreenUtils.noTitle(this);
+        ScreenUtils.translucentTitle(this);
         return R.layout.activity_web_view;
     }
 
