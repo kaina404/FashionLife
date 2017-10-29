@@ -3,6 +3,7 @@ package fashionlife.com.ui.web;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
@@ -90,7 +91,7 @@ public class WebViewActivity extends BaseActivity {
                 }
             }
         });
-        shortCutPopWindow.createList(this, R.mipmap.duoyun, beans);
+        shortCutPopWindow.createList(this, R.mipmap.duoyun, beans).showAtLocation(Gravity.BOTTOM | Gravity.RIGHT, 100, 100);
     }
 
     private void handlerIntent(Intent intent) {

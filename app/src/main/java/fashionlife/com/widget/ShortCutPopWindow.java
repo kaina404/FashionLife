@@ -40,6 +40,9 @@ public class ShortCutPopWindow {
     private PopupWindow mPopupWindow;
     private Activity mActivity;
     private OnItemClickListener mOnItemClickListener;
+    //弹出Pop的控制器
+    private ImageView mImageView;
+    private LinearLayout mContentView;
 
     public ShortCutPopWindow() {
         Context context = BaseApplication.getInstance().getApplicationContext();
@@ -53,7 +56,7 @@ public class ShortCutPopWindow {
         mActivity = activity;
         mDecorView = (ViewGroup) activity.getWindow().getDecorView();
 
-        final LinearLayout mContentView = getPopwindowContentView(mShortcutBeans);
+        mContentView = getPopwindowContentView(mShortcutBeans);
 
         if (mContentView == null) {
             return this;
@@ -64,14 +67,14 @@ public class ShortCutPopWindow {
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable(activity.getResources(), (Bitmap) null));
 
-        final ImageView imageView = new ImageView(activity);
+        mImageView = new ImageView(activity);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.gravity = Gravity.BOTTOM | Gravity.RIGHT;
         layoutParams.setMargins(0, 0, 30, 30);
-        imageView.setLayoutParams(layoutParams);
-        Glide.with(activity).load(resId).override(150, 150).into(imageView);
-        mDecorView.addView(imageView);
-        imageView.setClickable(true);
+        mImageView.setLayoutParams(layoutParams);
+        Glide.with(activity).load(resId).override(150, 150).into(mImageView);
+        mDecorView.addView(mImageView);
+        mImageView.setClickable(true);
         mImageViewScaleAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -80,13 +83,13 @@ public class ShortCutPopWindow {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if(imageView == null){
+                if(mImageView == null){
                     return;
                 }
-                if (imageView.getVisibility() == View.VISIBLE) {
-                    imageView.setVisibility(View.GONE);
+                if (mImageView.getVisibility() == View.VISIBLE) {
+                    mImageView.setVisibility(View.GONE);
                 } else {
-                    imageView.setVisibility(View.VISIBLE);
+                    mImageView.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -99,24 +102,31 @@ public class ShortCutPopWindow {
         mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                if(imageView == null){
+                if(mImageView == null){
                     return;
                 }
-                imageView.setVisibility(View.VISIBLE);
+                mImageView.setVisibility(View.VISIBLE);
             }
         });
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageView.startAnimation(mImageViewScaleAnimation);
-                mContentView.startAnimation(mContentViewScaleAnimation);
-                mPopupWindow.showAtLocation(imageView, Gravity.BOTTOM | Gravity.RIGHT, 100, 100);
-
-            }
-        });
 
         return this;
+
+    }
+
+    public void showAtLocation(final int gravity, final int x, final int y){
+        if(mImageView == null || mContentView == null){
+            return;
+        }
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mImageView.startAnimation(mImageViewScaleAnimation);
+                mContentView.startAnimation(mContentViewScaleAnimation);
+                mPopupWindow.showAtLocation(mImageView, gravity, x, y);
+
+            }
+        });
 
     }
 
