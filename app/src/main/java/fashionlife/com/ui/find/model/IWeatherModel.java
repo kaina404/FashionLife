@@ -2,6 +2,7 @@ package fashionlife.com.ui.find.model;
 
 import java.util.List;
 
+import fashionlife.com.ui.find.data.SupportWeatherCityBean;
 import fashionlife.com.ui.find.data.WeatherBean;
 
 /**
@@ -15,4 +16,6 @@ public interface IWeatherModel {
     void updateLocation(String city, String district);
 
     void locationFailed();
+
+    void initCityJsonData(SupportWeatherCityBean supportWeatherCityBean);
 }

@@ -165,6 +165,9 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
         mNeedQuery = mSupportWeatherCityBean == null;
         mSupportWeatherCityBeanObservableEmitter.onNext(mSupportWeatherCityBean);
 //        mSupportWeatherCityBeanObservableEmitter.onComplete();
+        if(mSupportWeatherCityBean != null && mModel != null){
+            mModel.initCityJsonData(mSupportWeatherCityBean);
+        }
     }
 
 
@@ -215,6 +218,10 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
     @Override
     public void onLocationResultString(String result) {
 
+    }
+
+    public void queryWeather(String province, String city) {
+        NetManager.queryWeatherTmp(this, province, city);
     }
 
     private class CityEntity {

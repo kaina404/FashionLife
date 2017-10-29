@@ -1,5 +1,6 @@
 package fashionlife.com.ui.find.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fashionlife.com.base.data.BaseBean;
@@ -20,7 +21,7 @@ public class SupportWeatherCityBean extends BaseBean {
 
     private String msg;
     private String retCode;
-    private List<ResultBean> result;
+    private ArrayList<ResultBean> result;
 
     public String getMsg() {
         return msg;
@@ -38,11 +39,11 @@ public class SupportWeatherCityBean extends BaseBean {
         this.retCode = retCode;
     }
 
-    public List<ResultBean> getResult() {
+    public ArrayList<ResultBean> getResult() {
         return result;
     }
 
-    public void setResult(List<ResultBean> result) {
+    public void setResult(ArrayList<ResultBean> result) {
         this.result = result;
     }
 

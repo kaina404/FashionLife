@@ -60,13 +60,13 @@ public class NetManager {
 
     /**
      * @param netCall
-     * @param city     天津
-     * @param district 塘沽
+     * @param province     天津
+     * @param city 塘沽
      */
-    public static void queryWeatherTmp(INetCall netCall, String city, String district) {
+    public static void queryWeatherTmp(INetCall netCall, String province, String city) {
         HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put(APPConstant.Weather.PROVINCE, province);
         hashMap.put(APPConstant.Weather.CITY, city);
-        hashMap.put(APPConstant.Weather.PROVINCE, district);
         NetRequest.getMobAPI(NetId.QUERY_WEATHER, hashMap, UrlConstant.QUERY_WEATHER, NetRequest.JSON_TYPE, netCall);
     }
 

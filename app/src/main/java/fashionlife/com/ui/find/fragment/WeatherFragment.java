@@ -30,7 +30,7 @@ import fashionlife.com.widget.WeatherView;
  * @descripition: 天气
  */
 
-public class WeatherFragment extends BaseFragment<WeatherPresenter> implements WeatherContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class WeatherFragment extends BaseFragment<WeatherPresenter> implements WeatherContract.View, SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
 
     private static final int PERMISSION_OK = 100;
@@ -77,7 +77,9 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
         mSwipeRefreshLayout = (SwipeRefreshLayout) mContainerView;
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mPresenter.downloadWallpaper();
+        mTvCityDistrict.setOnClickListener(this);
     }
+
 
     @Override
     public void onHiddenChanged(boolean hidden) {
@@ -155,6 +157,9 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
 
     @Override
     public void updateLocationView(String city, String district) {
+        if(city.equals(district)){
+            city = "";
+        }
         mTvCityDistrict.setText(city + "  " + district);
     }
 
@@ -183,5 +188,16 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
     public void onRefresh() {
         mPresenter.queryWeather();
         mPresenter.downloadWallpaper();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_city_distrct:
+                if (mPresenter != null) {
+                    mPresenter.ShowPickerView(getContext());
+                }
+                break;
+        }
     }
 }
