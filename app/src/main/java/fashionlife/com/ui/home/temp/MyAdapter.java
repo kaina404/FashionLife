@@ -28,7 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     public MyAdapter(Context context) {
         this.mContext = context;
-        mScreenWidth = ScreenUtils.getScreenWidth(mContext);
+        mScreenWidth = ScreenUtils.getScreenWidth();
         mImgWidth = mScreenWidth / 2;
     }
 

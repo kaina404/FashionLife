@@ -92,17 +92,26 @@ public class WebViewActivity extends BaseActivity {
         //如果访问的页面中要与Javascript交互，则webview必须设置支持Javascript
         webSettings.setJavaScriptEnabled(true);
         //设置自适应屏幕，两者合用
-        webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
-        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
-        //缩放操作
-        webSettings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
-        webSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。若为false，则该WebView不可缩放
-        webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
+        //将图片调整到适合webview的大小
+        webSettings.setUseWideViewPort(true);
+        // 缩放至屏幕的大小
+        webSettings.setLoadWithOverviewMode(true);
+        /**
+         * 缩放操作
+         */
+        //支持缩放，默认为true。是下面那个的前提。
+        webSettings.setSupportZoom(true);
+        //设置内置的缩放控件。若为false，则该WebView不可缩放
+        webSettings.setBuiltInZoomControls(true);
+        //隐藏原生的缩放控件
+        webSettings.setDisplayZoomControls(false);
         //设置缓存
         if (NetStatusUtil.isNetworkConnected(getApplicationContext())) {
-            webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);//根据cache-control决定是否从网络上取数据。
+            //根据cache-control决定是否从网络上取数据。
+            webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         } else {
-            webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);//没网，则从本地获取，即离线加载
+            //没网，则从本地获取，即离线加载
+            webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         }
 
         webSettings.setDomStorageEnabled(true); // 开启 DOM storage API 功能
@@ -196,94 +205,5 @@ public class WebViewActivity extends BaseActivity {
             return super.dispatchTouchEvent(ev);
         }
     }
-
-
-    //
-//    //手指上下滑动时的最小速度
-//    private static final int YSPEED_MIN = 1000;
-//
-//    //手指向右滑动时的最小距离
-//    private static final int XDISTANCE_MIN = 50;
-//
-//    //手指向上滑或下滑时的最小距离
-//    private static final int YDISTANCE_MIN = 100;
-//
-//    //记录手指按下时的横坐标。
-//    private float xDown;
-//
-//    //记录手指按下时的纵坐标。
-//    private float yDown;
-//
-//    //记录手指移动时的横坐标。
-//    private float xMove;
-//
-//    //记录手指移动时的纵坐标。
-//    private float yMove;
-//
-//    //用于计算手指滑动的速度。
-//    private VelocityTracker mVelocityTracker;
-//
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent event) {
-//        createVelocityTracker(event);
-//        switch (event.getAction()) {
-//            case MotionEvent.ACTION_DOWN:
-//                xDown = event.getRawX();
-//                yDown = event.getRawY();
-//                break;
-//            case MotionEvent.ACTION_MOVE:
-//                xMove = event.getRawX();
-//                yMove = event.getRawY();
-//                //滑动的距离
-//                int distanceX = (int) (xMove - xDown);
-//                int distanceY = (int) (yMove - yDown);
-//                //获取顺时速度
-//                int ySpeed = getScrollVelocity();
-//                //关闭Activity需满足以下条件：
-//                //1.x轴滑动的距离>XDISTANCE_MIN
-//                //2.y轴滑动的距离在YDISTANCE_MIN范围内
-//                //3.y轴上（即上下滑动的速度）<XSPEED_MIN，如果大于，则认为用户意图是在上下滑动而非左滑结束Activity
-//                if (distanceX > XDISTANCE_MIN && (distanceY < YDISTANCE_MIN && distanceY > -YDISTANCE_MIN) && ySpeed < YSPEED_MIN) {
-//                    finish();
-//                }
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                recycleVelocityTracker();
-//                break;
-//            default:
-//                break;
-//        }
-//        return super.dispatchTouchEvent(event);
-//    }
-//
-//    /**
-//     * 创建VelocityTracker对象，并将触摸界面的滑动事件加入到VelocityTracker当中。
-//     *
-//     * @param event
-//     */
-//    private void createVelocityTracker(MotionEvent event) {
-//        if (mVelocityTracker == null) {
-//            mVelocityTracker = VelocityTracker.obtain();
-//        }
-//        mVelocityTracker.addMovement(event);
-//    }
-//
-//    /**
-//     * 回收VelocityTracker对象。
-//     */
-//    private void recycleVelocityTracker() {
-//        mVelocityTracker.recycle();
-//        mVelocityTracker = null;
-//    }
-//
-//    /**
-//     * @return 滑动速度，以每秒钟移动了多少像素值为单位。
-//     */
-//    private int getScrollVelocity() {
-//        mVelocityTracker.computeCurrentVelocity(1000);
-//        int velocity = (int) mVelocityTracker.getYVelocity();
-//        return Math.abs(velocity);
-//    }
-
 
 }

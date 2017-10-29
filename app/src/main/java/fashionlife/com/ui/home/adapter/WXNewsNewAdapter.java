@@ -32,7 +32,7 @@ public class WXNewsNewAdapter extends RecycleBaseAdapter<WXNewsBean.ResultBean.L
 
     public WXNewsNewAdapter(Context context, List<WXNewsBean.ResultBean.ListBean> data) {
         super(context, R.layout.item_wxnews_layout, data);
-        mScreenWidth = ScreenUtils.getScreenWidth(mContext);
+        mScreenWidth = ScreenUtils.getScreenWidth();
         mImgWidth = mScreenWidth / 2;
     }
 

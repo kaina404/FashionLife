@@ -20,7 +20,7 @@ public class SwipeBackController {
 
     private static final String TAG = SwipeBackController.class.getSimpleName();
     public static final int ANIMATION_DURATION = 1000;//默认动画时间
-    public static final int DEFAULT_TOUCH_THRESHOLD = ScreenUtils.getScreenWidth(null) / 2;//默认开始滑动的位置距离左边缘的距离
+    public static final int DEFAULT_TOUCH_THRESHOLD = ScreenUtils.getScreenWidth() / 2;//默认开始滑动的位置距离左边缘的距离
     private int mScreenWidth;
     private int mTouchSlop;
 
@@ -36,21 +36,16 @@ public class SwipeBackController {
      * content布局
      */
     private ViewGroup mContentView;
-    /**
-     * 用户添加的布局
-     */
-    private ViewGroup mUserView;
 
     private ValueAnimator mAnimator;
     private VelocityTracker mVelTracker;
 
     public SwipeBackController(final Activity activity) {
-        mScreenWidth = activity.getResources().getDisplayMetrics().widthPixels;
+        mScreenWidth = ScreenUtils.getScreenWidth();
         mTouchSlop = ViewConfiguration.get(activity).getScaledTouchSlop();
         mDecorView = (ViewGroup) activity.getWindow().getDecorView();
         mDecorView.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
-        mContentView = (ViewGroup) activity.findViewById(android.R.id.content);
-        mUserView = (ViewGroup) mContentView.getChildAt(0);
+        mContentView = (ViewGroup) ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
 
         mAnimator = new ValueAnimator();
         mAnimator.setDuration(ANIMATION_DURATION);
@@ -62,15 +57,11 @@ public class SwipeBackController {
                 if (x >= mScreenWidth) {
                     activity.finish();
                 }
-
-                handleView(x);
+                mContentView.setTranslationX(x);
             }
         });
     }
 
-    public void handleView(int x) {
-        mUserView.setTranslationX(x);
-    }
 
     public boolean processEvent(MotionEvent event) {
         getVelocityTracker(event);
@@ -94,7 +85,7 @@ public class SwipeBackController {
                     }
                 }
                 if (isMoving) {
-                    handleView((int) ((int) event.getRawX() - mInitX));
+                    mContentView.setTranslationX((int) ((int) event.getRawX() - mInitX));
                 }
 
                 break;
@@ -106,7 +97,7 @@ public class SwipeBackController {
                 //获取x方向上的速度
                 float velocityX = mVelTracker.getXVelocity(pointId);
 
-                if (isMoving && Math.abs(mUserView.getTranslationX()) >= 0) {
+                if (isMoving && Math.abs(mContentView.getTranslationX()) >= 0) {
                     if (velocityX > 1000f || distance >= mScreenWidth / 4) {
                         mAnimator.setIntValues((int) event.getRawX(), mScreenWidth);
                     } else {

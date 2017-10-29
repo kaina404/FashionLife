@@ -100,7 +100,7 @@ public class WeatherView extends View {
         // 周一
         mTxtPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTxtPaint.setColor(mPaintColor);
-        mTxtPaint.setTextSize(ScreenUtils.spToPx(15, getContext()));
+        mTxtPaint.setTextSize(ScreenUtils.spToPx(15));
         mTxtPaint.setStrokeWidth(1.0f);
         mTxtPaint.setTextAlign(Paint.Align.CENTER);
         mAscent = mTxtPaint.getFontMetrics().ascent;
@@ -388,15 +388,15 @@ public class WeatherView extends View {
         //绘制天
         canvas.save();
         canvas.translate(0, -mAscent + mTitleTxtPaddingTopBottom);
-        mTxtPaint.setTextSize(ScreenUtils.spToPx(15, getContext()));
+        mTxtPaint.setTextSize(ScreenUtils.spToPx(15));
         drawDefaultText(mWeeks, mTxtPaint, canvas);
         canvas.translate(0, -mAscent + mTitleTxtPaddingTopBottom);
         //绘制日期
-        mTxtPaint.setTextSize(ScreenUtils.spToPx(10, getContext()));
+        mTxtPaint.setTextSize(ScreenUtils.spToPx(10));
         drawDefaultText(mDates, mTxtPaint, canvas);
         canvas.translate(0, -mAscent + mTitleTxtPaddingTopBottom);
         //绘制白天的天气
-        mTxtPaint.setTextSize(ScreenUtils.spToPx(13, getContext()));
+        mTxtPaint.setTextSize(ScreenUtils.spToPx(13));
         drawDefaultText(mDayWeathers, mTxtPaint, canvas);
         canvas.restore();
         //绘制白天的天气图标
@@ -423,13 +423,13 @@ public class WeatherView extends View {
         //绘制晚上的天气图标
         drawWeatherIcon(height1, mNightWeathers, canvas);
         //绘制晚上的天气状况
-        mTxtPaint.setTextSize(ScreenUtils.spToPx(13, getContext()));
+        mTxtPaint.setTextSize(ScreenUtils.spToPx(13));
         drawDefaultText(mNightWeathers, mTxtPaddingTop + height1 + mDefaultWeatherBitmapHeight - mAscent, mTxtPaint, canvas);
         //绘制晚上的风向
-        mTxtPaint.setTextSize(ScreenUtils.spToPx(11, getContext()));
+        mTxtPaint.setTextSize(ScreenUtils.spToPx(11));
         drawDefaultText(mWinds, mTxtPaddingTop * 2 + height1 + mDefaultWeatherBitmapHeight - mAscent - mAscent, mTxtPaint, canvas);
         //绘制风的强度
-        mTxtPaint.setTextSize(ScreenUtils.spToPx(9, getContext()));
+        mTxtPaint.setTextSize(ScreenUtils.spToPx(9));
         drawDefaultText(mWindLevels, mTxtPaddingTop * 3 + height1 + mDefaultWeatherBitmapHeight - mAscent - mAscent - mAscent, mTxtPaint, canvas);
     }
 
@@ -446,7 +446,7 @@ public class WeatherView extends View {
         if(Utils.isEmpty(temperatures) || Utils.isEmpty(location)){
             return;
         }
-        paint.setTextSize(ScreenUtils.spToPx(10, getContext()));
+        paint.setTextSize(ScreenUtils.spToPx(10));
         for (int i = 0; i < temperatures.size(); i++) {
             canvas.drawText(String.valueOf(temperatures.get(i).y) + "°", location.get(i).x, (float) (location.get(i).y + (day ? mAscent / 2 : -mAscent * 1.2)), paint);// mAscent/2 代表上移一点位置
         }

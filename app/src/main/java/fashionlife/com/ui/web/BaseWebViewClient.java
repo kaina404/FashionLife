@@ -13,6 +13,7 @@ import android.webkit.WebViewClient;
 import fashionlife.com.common.CommonConstant;
 
 /**
+ * @author
  * 处理各种通知 & 请求事件
  * Created by lovexujh on 2017/10/15
  */
@@ -67,10 +68,7 @@ public class BaseWebViewClient extends WebViewClient {
 
     @Override
     public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-//        super.onReceivedSslError(view, handler, error);
         handler.proceed();    //表示等待证书响应
-        // handler.cancel();      //表示挂起连接，为默认方式
-        // handler.handleMessage(null);    //可做其他处理
     }
 
     private void setWebImageClick(WebView view) {
