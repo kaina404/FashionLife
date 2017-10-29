@@ -8,16 +8,21 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fashionlife.com.R;
 import fashionlife.com.app.AppUtils;
 import fashionlife.com.base.component.BaseActivity;
 import fashionlife.com.common.ActivityId;
 import fashionlife.com.common.CommonConstant;
 import fashionlife.com.common.IntentKeys;
+import fashionlife.com.common.bean.ShortcutBean;
 import fashionlife.com.manager.StartManager;
 import fashionlife.com.util.NetStatusUtil;
 import fashionlife.com.util.ScreenUtils;
 import fashionlife.com.util.SwipeBackController;
+import fashionlife.com.widget.ShortCutPopWindow;
 
 /**
  * @author
@@ -50,6 +55,42 @@ public class WebViewActivity extends BaseActivity {
         }
 
         mSwipeBackController = new SwipeBackController(this);
+
+        initData();
+    }
+
+    private void initData() {
+        ShortcutBean bean1 = new ShortcutBean(R.mipmap.duoyun, "分享");
+        ShortcutBean bean2 = new ShortcutBean(R.mipmap.duoyun, "回到顶端");
+        ShortcutBean bean3 = new ShortcutBean(R.mipmap.duoyun, "滑到最后");
+
+        List<ShortcutBean> beans = new ArrayList<>(3);
+        beans.add(bean1);
+        beans.add(bean2);
+        beans.add(bean3);
+
+        ShortCutPopWindow shortCutPopWindow = new ShortCutPopWindow();
+        shortCutPopWindow.setOnItemClickListener(new ShortCutPopWindow.OnItemClickListener() {
+            @Override
+            public void onItemClick(int index) {
+                switch (index){
+                    case 0:
+
+                        break;
+                    case 1:
+                        if(mWebView != null){
+                            mWebView.pageUp(true);
+                        }
+                        break;
+                    case 2:
+                        if(mWebView != null){
+                            mWebView.pageDown(true);
+                        }
+                        break;
+                }
+            }
+        });
+        shortCutPopWindow.createList(this, R.mipmap.duoyun, beans);
     }
 
     private void handlerIntent(Intent intent) {

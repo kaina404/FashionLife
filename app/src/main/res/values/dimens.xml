@@ -26,4 +26,7 @@
     <dimen name="dip25">25dp</dimen>
     <dimen name="dip35">35dp</dimen>
     <dimen name="dip_tool_bar">25dp</dimen>
+    <dimen name="dip60">60dp</dimen>
+    <dimen name="dip7">7dp</dimen>
+    <dimen name="dip3">3dp</dimen>
 </resources>

@@ -4,7 +4,7 @@
               android:id="@+id/root_view"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/c_transparent"
+              android:background="@color/c_FFFFFF"
               android:orientation="vertical"
               tools:context="fashionlife.com.ui.web.WebViewActivity">
 
