@@ -13,4 +13,12 @@
         <item name="android:windowBackground">@color/c_f6f6f6</item>
     </style>
 
+    <style name="transparentTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+
 </resources>

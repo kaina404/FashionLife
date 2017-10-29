@@ -66,7 +66,8 @@
         <activity
             android:name=".ui.web.WebViewActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/transparentTheme"/>
 
         <service
             android:name="com.baidu.location.f"
