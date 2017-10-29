@@ -8,4 +8,6 @@
               android:orientation="vertical"
               tools:context="fashionlife.com.ui.web.WebViewActivity">
 
+
+
 </LinearLayout>

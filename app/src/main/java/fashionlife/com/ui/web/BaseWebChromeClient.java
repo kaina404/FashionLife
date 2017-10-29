@@ -13,6 +13,7 @@ public class BaseWebChromeClient extends WebChromeClient {
 
     /**
      * web加载进度
+     *
      * @param view
      * @param newProgress
      */
@@ -28,6 +29,7 @@ public class BaseWebChromeClient extends WebChromeClient {
 
     /**
      * 获取Web页中的标题
+     *
      * @param view
      * @param title
      */

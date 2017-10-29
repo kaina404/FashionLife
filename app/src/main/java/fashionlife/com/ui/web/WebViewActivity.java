@@ -16,6 +16,7 @@ import fashionlife.com.common.CommonConstant;
 import fashionlife.com.common.IntentKeys;
 import fashionlife.com.manager.StartManager;
 import fashionlife.com.util.NetStatusUtil;
+import fashionlife.com.util.ScreenUtils;
 import fashionlife.com.util.SwipeBackController;
 
 /**
@@ -32,6 +33,7 @@ public class WebViewActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
+        ScreenUtils.noTitle(this);
         return R.layout.activity_web_view;
     }
 

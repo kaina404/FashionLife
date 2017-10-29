@@ -1,7 +1,10 @@
 package fashionlife.com.util;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.view.Display;
+import android.view.Window;
 import android.view.WindowManager;
 
 import fashionlife.com.base.component.BaseApplication;
@@ -43,4 +46,13 @@ public class ScreenUtils {
         return (int) (sp * scale + 0.5f);
     }
 
+    public static void noTitle(Activity activity) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = activity.getWindow();
+            window.setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
 }
