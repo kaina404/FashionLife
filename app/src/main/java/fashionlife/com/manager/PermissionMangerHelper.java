@@ -3,7 +3,12 @@ package fashionlife.com.manager;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.support.v4.app.Fragment;
+
+import fashionlife.com.common.CommonConstant;
+import fashionlife.com.widget.AlertUtils;
 
 /**
  * @author Created by lovexujh on 2017/10/11
@@ -18,14 +23,17 @@ public class PermissionMangerHelper {
         checkAllPermission(activity);
     }
 
-    @TargetApi(23)
-    public static void checkAllPermission(Activity activity) {
-        String[] permissions = new String[]{
-                Manifest.permission.READ_PHONE_STATE,
+    public static String[] getPermissions(){
+        return new String[]{
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    }
+
+    @TargetApi(23)
+    public static void checkAllPermission(Activity activity) {
+        String[] permissions = getPermissions();
         for (int i = 0; i < permissions.length; i++) {
             checkPermission(activity, permissions[i]);
         }
@@ -37,6 +45,23 @@ public class PermissionMangerHelper {
         if (activity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
             // 申请一个（或多个）权限，并提供用于回调返回的获取码（用户定义)
             activity.requestPermissions(new String[]{permission}, REQUEST_CODE);
+        }
+    }
+
+    @TargetApi(23)
+    public static void requestLocationPermission(final Fragment fragment) {
+
+        if (fragment.getActivity().checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                fragment.getActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            AlertUtils.showMessageOKCancel(fragment.getActivity(), "查看天气需要定位哦~~", "查看天气", "不要天气", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    fragment.requestPermissions(new String[]{
+                                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                                    Manifest.permission.ACCESS_FINE_LOCATION,},
+                            CommonConstant.PERMISSION_OK);
+                }
+            });
         }
     }
 }

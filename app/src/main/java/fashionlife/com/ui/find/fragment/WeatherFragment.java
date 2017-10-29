@@ -1,6 +1,8 @@
 package fashionlife.com.ui.find.fragment;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
@@ -13,6 +15,7 @@ import java.util.List;
 
 import fashionlife.com.R;
 import fashionlife.com.base.component.BaseFragment;
+import fashionlife.com.manager.PermissionMangerHelper;
 import fashionlife.com.ui.find.data.WeatherBean;
 import fashionlife.com.ui.find.impl.WeatherContract;
 import fashionlife.com.ui.find.impl.WeatherPresenter;
@@ -30,6 +33,7 @@ import fashionlife.com.widget.WeatherView;
 public class WeatherFragment extends BaseFragment<WeatherPresenter> implements WeatherContract.View, SwipeRefreshLayout.OnRefreshListener {
 
 
+    private static final int PERMISSION_OK = 100;
     private WeatherView mWeatherView;
     private TextView mTvCityDistrict;
     private TextView mTvTemperature;
@@ -78,12 +82,27 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
-            mPresenter.queryWeather();
-        }else {
-            if(mSwipeRefreshLayout != null){
+            tryQueryWeather();
+        } else {
+            if (mSwipeRefreshLayout != null) {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         }
+    }
+
+    /**
+     * 判断权限后
+     */
+    private void tryQueryWeather() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            PermissionMangerHelper.requestLocationPermission(this);
+
+        } else {
+            mPresenter.queryWeather();
+
+        }
+
+
     }
 
     @Override
@@ -135,8 +154,21 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
 
     @Override
     public void downloadWallpaperSucceed(String imgName) {
-        if(mIvWallpaper != null){
+        if (mIvWallpaper != null) {
             Glide.with(this).load(imgName).centerCrop().into(mIvWallpaper);
+        }
+    }
+
+    @Override
+    public void checkLocationPermission() {
+        requestPermissions(PermissionMangerHelper.getPermissions(), PERMISSION_OK);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_OK) {
+            mPresenter.queryWeather();
         }
     }
 

@@ -13,4 +13,6 @@ import fashionlife.com.ui.find.data.WeatherBean;
 public interface IWeatherModel {
     void updateView(List<WeatherBean.ResultBean> resultBeen);
     void updateLocation(String city, String district);
+
+    void locationFailed();
 }

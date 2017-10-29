@@ -205,8 +205,10 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
             }
 
             mCityEntityObservableEmitter.onNext(new CityEntity(city, district));
-
-//            mCityEntityObservableEmitter.onComplete();
+        }else {
+            if(mModel != null){
+                mModel.locationFailed();
+            }
         }
     }
 

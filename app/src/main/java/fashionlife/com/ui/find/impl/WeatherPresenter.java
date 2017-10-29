@@ -53,6 +53,13 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.View> implem
     }
 
     @Override
+    public void locationFailed() {
+        if(mView != null){
+            mView.checkLocationPermission();
+        }
+    }
+
+    @Override
     public void queryWeather() {
         mWeatherModel.queryWeather();
     }

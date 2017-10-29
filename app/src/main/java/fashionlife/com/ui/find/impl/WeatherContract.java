@@ -42,6 +42,11 @@ public interface WeatherContract {
          * @param imgName
          */
         void downloadWallpaperSucceed(String imgName);
+
+        /**
+         * 定位失败后检查定位权限
+         */
+        void checkLocationPermission();
     }
 
     interface Presenter extends IPresenter<WeatherContract.View> {
