@@ -94,8 +94,11 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
      * 判断权限后
      */
     private void tryQueryWeather() {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            PermissionMangerHelper.requestLocationPermission(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            boolean result = PermissionMangerHelper.needRequestLocationPermission(this);
+            if (!result) {
+                mPresenter.queryWeather();
+            }
 
         } else {
             mPresenter.queryWeather();
@@ -161,7 +164,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
 
     @Override
     public void checkLocationPermission() {
-        requestPermissions(PermissionMangerHelper.getPermissions(), PERMISSION_OK);
+        PermissionMangerHelper.needRequestLocationPermission(this);
     }
 
     @Override

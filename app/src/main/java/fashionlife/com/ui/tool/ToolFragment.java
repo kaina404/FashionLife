@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +25,7 @@ import fashionlife.com.util.ShituUtils;
 import fashionlife.com.util.ToastHelper;
 import fashionlife.com.util.Utils;
 import fashionlife.com.util.image.ImageLoadHelper;
+import fashionlife.com.widget.AlertUtils;
 
 /**
  * @author Created by lovexujh on 2017/10/9
@@ -33,10 +33,8 @@ import fashionlife.com.util.image.ImageLoadHelper;
 
 public class ToolFragment extends BaseFragment implements View.OnClickListener {
     private ImageView mIvHead;
-    private Button mBtn;
-    private Button selectImage;
-    private Button uploadImage;
-    private TextView textView;
+    private TextView selectImage;
+    private TextView uploadImage;
     private ImageView imageView;
     private static final String requestURL = "http://image.baidu.com/pictureup/uploadshitu?fr=flash&fm=index&pos=upload";
     private String picPath;
@@ -50,11 +48,10 @@ public class ToolFragment extends BaseFragment implements View.OnClickListener {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mIvHead = (ImageView) view.findViewById(R.id.iv_head);
-        selectImage = (Button) view.findViewById(R.id.selectImage);
-        uploadImage = (Button) view.findViewById(R.id.uploadImage);
+        selectImage = (TextView) view.findViewById(R.id.selectImage);
+        uploadImage = (TextView) view.findViewById(R.id.uploadImage);
         selectImage.setOnClickListener(this);
         uploadImage.setOnClickListener(this);
-        textView = (TextView) view.findViewById(R.id.textView);
         imageView = (ImageView) view.findViewById(R.id.imageView);
         ImageLoadHelper.getFLImageLoader().init(this).loadImage(mIvHead, UrlConstant.TOOL_FRAGMENT_HEAD_IMG_URL);
     }
@@ -90,7 +87,7 @@ public class ToolFragment extends BaseFragment implements View.OnClickListener {
                         public void run() {
                             String url = ShituUtils.postFile(picPath, requestURL);
                             if (!Utils.isEmpty(url)) {
-                                StartManager.startWeb(UrlConstant.BAIDU_SHITU_URL +url, getActivity());
+                                StartManager.startWeb(UrlConstant.BAIDU_SHITU_URL + url, getActivity());
                             }
 
                         }
@@ -123,14 +120,14 @@ public class ToolFragment extends BaseFragment implements View.OnClickListener {
                         picPath = path;
                         Glide.with(this).load(uri).into(imageView);
                     } else {
-                        ToastHelper.showToast("没有数据");
+                        AlertUtils.showMessageOKCancel(getActivity(), "没有找到图片哦", "确定", "", null);
                     }
                 } else {
-                    ToastHelper.showToast("cursor == null");
+                    AlertUtils.showMessageOKCancel(getActivity(), "没有找到图片哦", "确定", "", null);
                 }
 
             } catch (Exception e) {
-                ToastHelper.showToast("exception = " + e.getMessage());
+                AlertUtils.showMessageOKCancel(getActivity(), "没有找到图片哦", "确定", "", null);
             }
         }
 

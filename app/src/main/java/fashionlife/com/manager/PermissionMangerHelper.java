@@ -48,8 +48,13 @@ public class PermissionMangerHelper {
         }
     }
 
+    /**
+     *
+     * @param fragment
+     * @return true  已经授权
+     */
     @TargetApi(23)
-    public static void requestLocationPermission(final Fragment fragment) {
+    public static boolean needRequestLocationPermission(final Fragment fragment) {
 
         if (fragment.getActivity().checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 fragment.getActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -62,6 +67,8 @@ public class PermissionMangerHelper {
                             CommonConstant.PERMISSION_OK);
                 }
             });
+            return true;
         }
+        return false;
     }
 }
