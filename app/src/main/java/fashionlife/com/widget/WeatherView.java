@@ -157,11 +157,11 @@ public class WeatherView extends View {
                 "雨夹雪", "阵雪", "霾"};
         mWeatherBitmapMap = initWeatherBitmap(weatherConditions,
                 new Integer[]{
-                        R.mipmap.duoyun, R.mipmap.duoyun, R.mipmap.duoyun,
-                        R.mipmap.duoyun, R.mipmap.duoyun, R.mipmap.duoyun,
-                        R.mipmap.duoyun, R.mipmap.duoyun, R.mipmap.duoyun,
-                        R.mipmap.duoyun, R.mipmap.duoyun, R.mipmap.duoyun,
-                        R.mipmap.duoyun, R.mipmap.duoyun, R.mipmap.duoyun});
+                        R.mipmap.duoyun, R.mipmap.shaoyun, R.mipmap.qing,
+                        R.mipmap.yintian, R.mipmap.xiaoyu, R.mipmap.yu,
+                        R.mipmap.leizhenyu, R.mipmap.zhongyu, R.mipmap.zhenyu,
+                        R.mipmap.zhenyu, R.mipmap.leizhenyu, R.mipmap.xiaoxue,
+                        R.mipmap.yujiaxue, R.mipmap.zhenxue, R.mipmap.mai});
         //解析默认图片
         Matrix matrix = new Matrix();
         matrix.reset();

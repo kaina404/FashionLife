@@ -64,9 +64,9 @@ public class WebViewActivity extends BaseActivity {
     }
 
     private void initData() {
-        ShortcutBean bean1 = new ShortcutBean(R.mipmap.duoyun, "分享");
-        ShortcutBean bean2 = new ShortcutBean(R.mipmap.duoyun, "回到顶端");
-        ShortcutBean bean3 = new ShortcutBean(R.mipmap.duoyun, "滑到最后");
+        ShortcutBean bean1 = new ShortcutBean(R.mipmap.shaoyun, "分享");
+        ShortcutBean bean2 = new ShortcutBean(R.mipmap.shaoyun, "回到顶端");
+        ShortcutBean bean3 = new ShortcutBean(R.mipmap.shaoyun, "滑到最后");
 
         List<ShortcutBean> beans = new ArrayList<>(3);
         beans.add(bean1);
@@ -94,7 +94,7 @@ public class WebViewActivity extends BaseActivity {
                 }
             }
         });
-        shortCutPopWindow.createList(this, R.mipmap.duoyun, beans).showAtLocation(Gravity.BOTTOM | Gravity.RIGHT, 100, 100);
+        shortCutPopWindow.createList(this, R.mipmap.shaoyun, beans).showAtLocation(Gravity.BOTTOM | Gravity.RIGHT, 100, 100);
     }
 
     private void handlerIntent(Intent intent) {

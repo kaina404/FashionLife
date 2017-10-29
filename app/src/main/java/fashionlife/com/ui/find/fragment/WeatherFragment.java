@@ -47,6 +47,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
     private CircularBeadView mAirConditionLine;
     private ImageView mIvWallpaper;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private boolean mIsFirstEnter = true;
 
     @Override
     protected WeatherPresenter attachPresenter() {
@@ -82,7 +83,10 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
-            tryQueryWeather();
+            if (mIsFirstEnter) {
+                tryQueryWeather();
+                mIsFirstEnter = false;
+            }
         } else {
             if (mSwipeRefreshLayout != null) {
                 mSwipeRefreshLayout.setRefreshing(false);
