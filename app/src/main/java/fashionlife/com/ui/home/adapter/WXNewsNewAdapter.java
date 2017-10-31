@@ -21,6 +21,7 @@ import fashionlife.com.ui.home.data.WXNewsBean;
 import fashionlife.com.util.ScreenUtils;
 
 /**
+ * @author
  * Created by lovexujh on 2017/10/17
  */
 
