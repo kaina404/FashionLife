@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/c_0a0a0a"
-    tools:context="fashionlife.com.ui.ZoomImageActivity">
+    tools:context="com.fashionlife.ui.ZoomImageActivity">
 
-    <fashionlife.com.widget.ZoomImageView
+    <com.fashionlife.widget.ZoomImageView
         android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

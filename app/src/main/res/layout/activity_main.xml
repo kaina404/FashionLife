@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fashionlife.com.base.ui.BaseListView
+    <com.fashionlife.base.ui.BaseListView
         android:id="@+id/lv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></fashionlife.com.base.ui.BaseListView>
+        android:layout_height="wrap_content"></com.fashionlife.base.ui.BaseListView>
 </LinearLayout>

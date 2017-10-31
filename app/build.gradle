@@ -13,7 +13,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -36,7 +36,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
     compile files('libs/httpcore.jar')
-    compile 'com.xu.viewpagerflextitle:viewpagerflextitle:1.0.3'
     compile 'com.jwenfeng.pulltorefresh:library:1.2.5'
     compile 'com.android.support:recyclerview-v7:21.0.+'
     compile files('libs/BaiduLBS_Android.jar')

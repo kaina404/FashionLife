@@ -29,4 +29,6 @@
     <dimen name="dip60">60dp</dimen>
     <dimen name="dip7">7dp</dimen>
     <dimen name="dip3">3dp</dimen>
+    <dimen name="dip13">13dp</dimen>
+    <dimen name="dip16">16dp</dimen>
 </resources>
