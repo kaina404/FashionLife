@@ -16,6 +16,7 @@ import fashionlife.com.util.SpUtils;
 import fashionlife.com.util.Utils;
 import fashionlife.com.util.location.LocationHelper;
 import fashionlife.com.util.location.LocationListenerImpl;
+import fashionlife.com.widget.AlertUtils;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -34,11 +35,15 @@ import io.reactivex.schedulers.Schedulers;
 public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, LocationListenerImpl.LocationResultListener {
 
     private static final int NEED_REPLACE_LENGTH = 3;
+    private static final String NO_FIND_CITY_WEATHER_CODE = "20402";
     private ThreadHelper mThreadHepler;
     private SupportWeatherCityBean mSupportWeatherCityBean;
     private boolean mNeedQuery = true;
     private ObservableEmitter<SupportWeatherCityBean> mSupportWeatherCityBeanObservableEmitter;
     private ObservableEmitter<CityEntity> mCityEntityObservableEmitter;
+    private int mQueryOnce = 0;
+    private String mLastQueryCity;
+    private String mLastQueryDistrict;
 
     public WeatherModel(IWeatherModel iWeatherModel) {
         super(iWeatherModel);
@@ -92,13 +97,6 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
                                         entity.district = city;
                                     }
                                     return entity;
-
-//                                    List<SupportWeatherCityBean.ResultBean.CityBean.DistrictBean> districts = cityBean.getDistrict();
-//                                    for (int k = 0; k < districts.size(); k++) {
-//                                        //县级名称
-//                                        String district = districts.get(k).getDistrict();
-//
-//                                    }
                                 }
                             }
 
@@ -109,6 +107,8 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
                 }).observeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<CityEntity>() {
             @Override
             public void accept(CityEntity cityEntity) throws Exception {
+                mLastQueryCity = cityEntity.city;
+                mLastQueryDistrict = cityEntity.district;
                 NetManager.queryWeatherTmp(WeatherModel.this, cityEntity.city, cityEntity.district);
             }
         }, new Consumer<Throwable>() {
@@ -133,13 +133,19 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
     }
 
     public void queryWeather() {
-        querySupportCity();
-        mThreadHepler.executorRunnable(new Runnable() {
-            @Override
-            public void run() {
-                LocationHelper.getInstance().init().requestLocationOnce();
-            }
-        });
+        mQueryOnce = 0;
+        if (Utils.isEmpty(mLastQueryCity) || Utils.isEmpty(mLastQueryDistrict)) {
+            querySupportCity();
+            mThreadHepler.executorRunnable(new Runnable() {
+                @Override
+                public void run() {
+                    LocationHelper.getInstance().init().requestLocationOnce();
+                }
+            });
+        } else {
+            queryWeather(mLastQueryCity, mLastQueryDistrict);
+        }
+
 //        new Thread(new Runnable() {
 //            @Override
 //            public void run() {
@@ -164,8 +170,7 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
         mSupportWeatherCityBean = JsonHelper.parseObject(response, SupportWeatherCityBean.class);
         mNeedQuery = mSupportWeatherCityBean == null;
         mSupportWeatherCityBeanObservableEmitter.onNext(mSupportWeatherCityBean);
-//        mSupportWeatherCityBeanObservableEmitter.onComplete();
-        if(mSupportWeatherCityBean != null && mModel != null){
+        if (mSupportWeatherCityBean != null && mModel != null) {
             mModel.initCityJsonData(mSupportWeatherCityBean);
         }
     }
@@ -174,7 +179,18 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
     private void handlerQueryWeather(String response) {
         WeatherBean weatherBean = JsonHelper.parseObject(response, WeatherBean.class);
         if (mModel != null) {
-            mModel.updateView(weatherBean.getResult());
+            if (NO_FIND_CITY_WEATHER_CODE.equals(weatherBean.getRetCode())) {
+                if (mQueryOnce <= 0) {
+                    NetManager.queryWeatherTmp(this, mLastQueryCity, mLastQueryCity);
+                    mQueryOnce++;
+                } else {
+                    AlertUtils.showMessage(null, "没有查询到当前城市天气哦~~");
+                }
+            } else {
+                AlertUtils.showMessage(null, "开启新一天的" + weatherBean.getResult().get(0).getDistrct() + "天气哦");
+                mModel.updateView(weatherBean.getResult());
+            }
+
         }
     }
 
@@ -208,8 +224,8 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
             }
 
             mCityEntityObservableEmitter.onNext(new CityEntity(city, district));
-        }else {
-            if(mModel != null){
+        } else {
+            if (mModel != null) {
                 mModel.locationFailed();
             }
         }
@@ -221,6 +237,8 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
     }
 
     public void queryWeather(String province, String city) {
+        mLastQueryCity = province;
+        mLastQueryDistrict = city;
         NetManager.queryWeatherTmp(this, province, city);
     }
 

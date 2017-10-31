@@ -3,7 +3,6 @@ package fashionlife.com.ui.find.impl;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 
@@ -173,7 +172,7 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.View> implem
                         options2Items.get(options1).get(options2) +
                         options3Items.get(options1).get(options2).get(options3);
 
-                Toast.makeText(context, tx, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, tx, Toast.LENGTH_SHORT).show();
                 String province = options1Items.get(options1);
                 String city = options2Items.get(options1).get(options2);
                 mWeatherModel.queryWeather(province, city);

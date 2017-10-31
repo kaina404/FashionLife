@@ -28,7 +28,7 @@ public class AlertUtils {
                 return;
             }
 
-            if (message.equals(mMsg) || mOkListener == okListener) {
+            if (message.equals(mMsg)) {
                 return;
             }
 
