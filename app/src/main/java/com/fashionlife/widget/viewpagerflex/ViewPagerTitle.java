@@ -155,6 +155,7 @@ public class ViewPagerTitle extends HorizontalScrollView{
 
     private void createTextViews(String[] titles) {
         removeAllViews();
+        textViews.clear();
         LinearLayout contentLl = new LinearLayout(getContext());
         contentLl.setBackgroundColor(backgroundColor);
         contentLl.setLayoutParams(contentParams);
