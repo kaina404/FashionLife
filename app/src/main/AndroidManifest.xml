@@ -39,7 +39,10 @@
         <!--下面的是debug斑斑-->
         <!--<meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="hX5u0GZx9DVhlTxhjAY4D0cgD1xHxiZl"/>-->
 
-        <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="hX5u0GZx9DVhlTxhjAY4D0cgD1xHxiZl"/>
+        <!--下面的是release斑斑-->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="3UgHHriwhOHnWASwRQChdQMtuFyFrTgU"/>
 
         <activity
             android:name=".ui.common.ContainerActivity"
@@ -87,12 +90,17 @@
         <receiver android:name=".net.NetworkBroadcastReceiver">
 
             <intent-filter>
-                <action android:name="android.NET.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.Net.wifi.WIFI_STATE_CHANGED" />
-                <action android:name="android.net.wifi.STATE_CHANGE" />
+                <action android:name="android.NET.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.Net.wifi.WIFI_STATE_CHANGED"/>
+                <action android:name="android.net.wifi.STATE_CHANGE"/>
             </intent-filter>
 
         </receiver>
+
+        <service
+            android:name=".base.server.MyService"
+            android:exported="false"
+            />
 
     </application>
 
