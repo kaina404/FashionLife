@@ -3,6 +3,7 @@ package com.fashionlife.base.component;
 import android.app.Application;
 import android.content.Intent;
 
+import com.fashionlife.UncaughtExceptionHandlerHelper;
 import com.fashionlife.base.server.MyService;
 import com.fashionlife.util.image.GlideImageLoaderFrameWork;
 import com.fashionlife.util.image.ImageLoadHelper;
@@ -30,6 +31,8 @@ public class BaseApplication extends Application {
     private void initData() {
         ImageLoadHelper.getFLImageLoader().init(new GlideImageLoaderFrameWork());
         startMyService();
+        UncaughtExceptionHandlerHelper uncaughtExceptionHandlerHelper = new UncaughtExceptionHandlerHelper();
+        Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandlerHelper);
     }
 
     private void startMyService() {

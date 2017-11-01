@@ -68,11 +68,10 @@ public class HomeFragment extends BaseFragment<HomeWXPresenter> implements HomeW
         for (int i = 0; i < beanList.size(); i++) {
             titles[i] = beanList.get(i).getName();
         }
-        if (mAdapter == null) {
-            mAdapter = new HomeAdapter(getFragmentManager(), beanList);
-        }
+        mAdapter = new HomeAdapter(getFragmentManager(), beanList);
         mViewPager.setAdapter(mAdapter);
         mViewPagerTitle.initData(titles, mViewPager, 0);
+        mViewPagerTitle.invalidate();
     }
 
     @Override
