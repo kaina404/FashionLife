@@ -37,12 +37,12 @@
         android:theme="@style/AppTheme">
 
         <!--下面的是debug斑斑-->
-        <!--<meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="hX5u0GZx9DVhlTxhjAY4D0cgD1xHxiZl"/>-->
+        <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="hX5u0GZx9DVhlTxhjAY4D0cgD1xHxiZl"/>
 
         <!--下面的是release斑斑-->
-        <meta-data
+        <!--<meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="3UgHHriwhOHnWASwRQChdQMtuFyFrTgU"/>
+            android:value="3UgHHriwhOHnWASwRQChdQMtuFyFrTgU"/>-->
 
         <activity
             android:name=".ui.common.ContainerActivity"

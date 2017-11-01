@@ -5,7 +5,5 @@ package com.fashionlife.common;
  */
 
 public class CommonConstant {
-    public static final String TITLE = "title";
     public static final String JS_IMG_LISTENER = "JsImgListener";
-    public static final int PERMISSION_OK = 100;
 }

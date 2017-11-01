@@ -21,6 +21,10 @@ public class AlertUtils {
     private static String mCancel;
     private static DialogInterface.OnClickListener mOkListener;
 
+    public static void showMessage(String message, String ok, String cancel, DialogInterface.OnClickListener okListener) {
+        showMessage(null, message, ok, cancel, okListener);
+    }
+
     public static void showMessage(Context context, String message, String ok, String cancel, DialogInterface.OnClickListener okListener) {
         try {
 

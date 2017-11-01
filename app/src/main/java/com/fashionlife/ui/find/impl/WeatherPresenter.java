@@ -5,10 +5,6 @@ import android.graphics.Color;
 import android.view.View;
 
 import com.bigkoo.pickerview.OptionsPickerView;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fashionlife.base.component.BasePresenter;
 import com.fashionlife.ui.find.data.SupportWeatherCityBean;
 import com.fashionlife.ui.find.data.WeatherBean;
@@ -18,6 +14,9 @@ import com.fashionlife.ui.find.model.WallpaperModel;
 import com.fashionlife.ui.find.model.WeatherModel;
 import com.fashionlife.util.ToastHelper;
 import com.fashionlife.util.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: lovexujh
@@ -101,7 +100,7 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.View> implem
     private void initJsonData(ArrayList<SupportWeatherCityBean.ResultBean> jsonBean) {//解析数据
 
         if (jsonBean == null) {
-            ToastHelper.showToast("省三级数据为空");
+            ToastHelper.showDebugToast("省三级数据为空");
         }
 
         /**

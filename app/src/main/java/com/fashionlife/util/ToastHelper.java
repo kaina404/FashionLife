@@ -2,6 +2,7 @@ package com.fashionlife.util;
 
 import android.widget.Toast;
 
+import com.fashionlife.BuildConfig;
 import com.fashionlife.base.component.BaseApplication;
 
 /**
@@ -12,8 +13,10 @@ import com.fashionlife.base.component.BaseApplication;
 
 public class ToastHelper {
 
-    public static void showToast(String msg) {
-        Toast.makeText(BaseApplication.getInstance().getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+    public static void showDebugToast(String msg) {
+        if (BuildConfig.DEBUG) {
+            Toast.makeText(BaseApplication.getInstance().getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

@@ -1,7 +1,5 @@
 package com.fashionlife.ui.find.model;
 
-import java.util.List;
-
 import com.fashionlife.base.data.BaseModel;
 import com.fashionlife.common.SpConstant;
 import com.fashionlife.common.ThreadHelper;
@@ -17,6 +15,9 @@ import com.fashionlife.util.Utils;
 import com.fashionlife.util.location.LocationHelper;
 import com.fashionlife.util.location.LocationListenerImpl;
 import com.fashionlife.widget.AlertUtils;
+
+import java.util.List;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -187,7 +188,7 @@ public class WeatherModel extends BaseModel<IWeatherModel> implements INetCall, 
                     AlertUtils.showMessage(null, "没有查询到当前城市天气哦~~");
                 }
             } else {
-                AlertUtils.showMessage(null, "开启新一天的" + weatherBean.getResult().get(0).getDistrct() + "天气哦");
+//                AlertUtils.showMessage(null, "开启新一天的" + weatherBean.getResult().get(0).getDistrct() + "天气哦");
                 mModel.updateView(weatherBean.getResult());
             }
 

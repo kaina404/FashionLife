@@ -1,11 +1,18 @@
 package com.fashionlife.util.location;
 
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.provider.Settings;
+
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
-
+import com.fashionlife.R;
+import com.fashionlife.base.component.BaseApplication;
 import com.fashionlife.util.LogUtil;
+import com.fashionlife.util.ResourceUtils;
+import com.fashionlife.widget.AlertUtils;
 
 /**
  * @author: lovexujh
@@ -84,6 +91,23 @@ public class LocationListenerImpl extends BDAbstractLocationListener {
             //当前缺少定位依据，可能是用户没有授权，建议弹出提示框让用户开启权限
             //可进一步参考onLocDiagnosticMessage中的错误返回码
             LogUtil.d(this, "当前缺少定位依据，可能是用户没有授权，建议弹出提示框让用户开启权限");
+            AlertUtils.showMessage(null, ResourceUtils.getString(R.string.need_location_persmisson),
+                    ResourceUtils.getString(R.string.yes),
+                    ResourceUtils.getString(R.string.abandon),
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // 转到手机设置界面，用户设置GPS
+                            try{
+                                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                BaseApplication.getInstance().getApplicationContext().startActivity(intent); // 设置完成后返回到原来的界面
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
 
         } else {
             LogUtil.d(this, "百度地图SDK，未知错误, onReceiveLocation LocType :" + location.getLocType());

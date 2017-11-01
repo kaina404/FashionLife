@@ -3,4 +3,8 @@
     <string name="home">首页</string>
     <string name="find">发现</string>
     <string name="user">我的</string>
+    <string name="you_shold_access_permission">为了极佳体验，请同意权限哦</string>
+    <string name="yes">同意</string>
+    <string name="abandon">放弃</string>
+    <string name="need_location_persmisson">使用定位功能，能够得到更好的天气数据哦</string>
 </resources>

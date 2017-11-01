@@ -1,14 +1,23 @@
 package com.fashionlife.util;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.ColorRes;
 import android.util.Base64;
 import android.util.DisplayMetrics;
+
+import com.fashionlife.app.APPConstant;
+import com.fashionlife.base.component.BaseApplication;
+import com.fashionlife.listener.ProgressResponseListener;
+import com.fashionlife.widget.AlertUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,11 +27,6 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.List;
-
-import com.fashionlife.app.APPConstant;
-import com.fashionlife.base.component.BaseApplication;
-import com.fashionlife.listener.ProgressResponseListener;
-import com.fashionlife.widget.AlertUtils;
 
 import static android.provider.Settings.ACTION_WIRELESS_SETTINGS;
 
@@ -251,5 +255,11 @@ public class Utils {
                 }
             });
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public static boolean hadFilePermissions(Activity activity) {
+        return activity.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                activity.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
     }
 }

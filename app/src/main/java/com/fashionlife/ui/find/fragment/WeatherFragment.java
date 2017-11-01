@@ -1,5 +1,7 @@
 package com.fashionlife.ui.find.fragment;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -32,7 +34,6 @@ import java.util.List;
 public class WeatherFragment extends BaseFragment<WeatherPresenter> implements WeatherContract.View, SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
 
-    private static final int PERMISSION_OK = 100;
     private WeatherView mWeatherView;
     private TextView mTvCityDistrict;
     private TextView mTvTemperature;
@@ -75,8 +76,17 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
         mIvWallpaper = (ImageView) view.findViewById(R.id.iv_bg);
         mSwipeRefreshLayout = (SwipeRefreshLayout) mContainerView;
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        mPresenter.downloadWallpaper();
         mTvCityDistrict.setOnClickListener(this);
+        handlerDownloadWallpaper();
+    }
+
+    private void handlerDownloadWallpaper() {
+        if (Utils.hadFilePermissions(getActivity())) {
+            mPresenter.downloadWallpaper();
+        } else {
+            PermissionMangerHelper.checkPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE, PermissionMangerHelper.PERMISSION_FILE_OK);
+        }
+
     }
 
 
@@ -116,7 +126,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
     @Override
     public void updateFutureView(final List<WeatherBean.ResultBean.FutureBean> future) {
         if (!Utils.isEmpty(future) && mWeatherView != null) {
-            ToastHelper.showToast("更新天气成功");
+            ToastHelper.showDebugToast("更新天气成功");
             mSwipeRefreshLayout.setRefreshing(false);
             mWeatherView.updateView(future);
         }
@@ -156,7 +166,7 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
 
     @Override
     public void updateLocationView(String city, String district) {
-        if(city.equals(district)){
+        if (city.equals(district)) {
             city = "";
         }
         mTvCityDistrict.setText(city + "  " + district);
@@ -178,8 +188,17 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_OK) {
-            mPresenter.queryWeather();
+        switch (requestCode) {
+            case PermissionMangerHelper.PERMISSION_LOCATION_OK:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//授权定位成功
+                    mPresenter.queryWeather();
+                }
+                break;
+            case PermissionMangerHelper.PERMISSION_FILE_OK:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//读写文件权限
+                    mPresenter.downloadWallpaper();
+                }
+                break;
         }
     }
 

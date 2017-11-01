@@ -7,7 +7,8 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.support.v4.app.Fragment;
 
-import com.fashionlife.common.CommonConstant;
+import com.fashionlife.R;
+import com.fashionlife.util.ResourceUtils;
 import com.fashionlife.widget.AlertUtils;
 
 /**
@@ -17,13 +18,15 @@ import com.fashionlife.widget.AlertUtils;
 public class PermissionMangerHelper {
 
     private static final int REQUEST_CODE = 600;
+    public static final int PERMISSION_LOCATION_OK = 100;
+    public static final int PERMISSION_FILE_OK = 200;
+
 
     public static void init(Activity activity) {
-        // TODO: 2017/10/12  关于权限的要封装起来
         checkAllPermission(activity);
     }
 
-    public static String[] getPermissions(){
+    public static String[] getPermissions() {
         return new String[]{
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
@@ -41,22 +44,61 @@ public class PermissionMangerHelper {
 
 
     @TargetApi(23)
-    public static void checkPermission(Activity activity, String permission) {
-        if (activity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+    public static void checkPermission(final Activity activity, final String permission) {
+        if (!activity.shouldShowRequestPermissionRationale(permission)) {
+            AlertUtils.showMessage(ResourceUtils.getString(R.string.you_shold_access_permission),
+                    ResourceUtils.getString(R.string.yes), ResourceUtils.getString(R.string.abandon), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            activity.requestPermissions(new String[]{permission}, REQUEST_CODE);
+                        }
+                    });
+        } else if (activity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
             // 申请一个（或多个）权限，并提供用于回调返回的获取码（用户定义)
             activity.requestPermissions(new String[]{permission}, REQUEST_CODE);
         }
     }
 
+
     /**
+     * 判断是否需要改权限
      *
+     * @param fragment
+     * @param permission
+     */
+    @TargetApi(23)
+    public static void checkPermission(final Fragment fragment, final String permission, final int requestCode) {
+        if (!fragment.shouldShowRequestPermissionRationale(permission)) {
+            AlertUtils.showMessage(ResourceUtils.getString(R.string.you_shold_access_permission),
+                    ResourceUtils.getString(R.string.yes), ResourceUtils.getString(R.string.abandon), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            fragment.requestPermissions(new String[]{permission}, requestCode);
+                        }
+                    });
+        } else {
+            fragment.requestPermissions(new String[]{permission}, requestCode);
+        }
+    }
+
+    /**
      * @param fragment
      * @return true  已经授权
      */
     @TargetApi(23)
     public static boolean needRequestLocationPermission(final Fragment fragment) {
+        if (!fragment.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION) ||
+                !fragment.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-        if (fragment.getActivity().checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+            AlertUtils.showMessage(ResourceUtils.getString(R.string.you_shold_access_permission),
+                    ResourceUtils.getString(R.string.yes), ResourceUtils.getString(R.string.abandon), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            fragment.requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
+                                    Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_LOCATION_OK);
+                        }
+                    });
+        } else if (fragment.getActivity().checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 fragment.getActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             AlertUtils.showMessage(fragment.getActivity(), "查看天气需要定位哦~~", "查看天气", "不要天气", new DialogInterface.OnClickListener() {
                 @Override
@@ -64,7 +106,7 @@ public class PermissionMangerHelper {
                     fragment.requestPermissions(new String[]{
                                     Manifest.permission.ACCESS_COARSE_LOCATION,
                                     Manifest.permission.ACCESS_FINE_LOCATION,},
-                            CommonConstant.PERMISSION_OK);
+                            PermissionMangerHelper.PERMISSION_LOCATION_OK);
                 }
             });
             return true;
