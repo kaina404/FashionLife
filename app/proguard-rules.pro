@@ -15,3 +15,14 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-keep class com.squareup.okhttp.** {*;}
+-keep class okio.** {*;}
+
+-dontwarn com.alibaba.fastjson.**
+-keep class com.alibaba.fastjson.** {*; }
+
+-keep class org.apache.http.** {*; }
