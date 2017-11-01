@@ -5,6 +5,7 @@ import com.fashionlife.manager.NetManager;
 import com.fashionlife.net.INetCall;
 import com.fashionlife.net.NetId;
 import com.fashionlife.ui.home.data.WXNewsTitleBean;
+import com.fashionlife.util.CacheUtils;
 import com.fashionlife.util.JsonHelper;
 import com.fashionlife.util.Utils;
 
@@ -38,6 +39,7 @@ public class HomeWXNewsModel extends BaseModel<HomeWXNewsTitleImpl> implements I
             if (Utils.isEmpty(bean.getResult())) {
                 mModel.onTitleEmpty();
             } else {
+                CacheUtils.setWXNewsTitleCache(response);
                 mModel.refreshTitle(bean.getResult());
             }
 

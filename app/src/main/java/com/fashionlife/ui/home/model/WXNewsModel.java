@@ -40,14 +40,14 @@ public class WXNewsModel extends BaseModel<WXNewsImpl> implements INetCall {
         }
         mResponse = response;
 
-        // TODO: 2017/10/15  test
-//        DBCache cacheDb = new DBCache();
-//        long value = cacheDb.update(AppUtils.getWXNewsKey(mCid, mPage), "你好中国");
-
-        SpUtils spUtils = new SpUtils(SpConstant.WXNEWS);
-        spUtils.insert(AppUtils.getWXNewsKey(mCid, mPage), mResponse);
 
         WXNewsBean wxNewsBean = JsonHelper.parseObject(response, WXNewsBean.class);
+
+        if(wxNewsBean != null){
+            SpUtils spUtils = new SpUtils(SpConstant.WXNEWS);
+            spUtils.insert(AppUtils.getWXNewsKey(mCid, mPage), mResponse);
+        }
+
         if (wxNewsBean == null || wxNewsBean.getResult() == null || wxNewsBean.getResult().getList() == null) {
             mModel.onError("");
             return;

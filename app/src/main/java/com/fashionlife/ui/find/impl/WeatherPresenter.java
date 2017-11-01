@@ -162,7 +162,9 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.View> implem
 
 
     public void ShowPickerView(final Context context) {// 弹出选择器
-
+        if (Utils.isEmpty(options1Items) || Utils.isEmpty(options2Items) || Utils.isEmpty(options3Items)){
+            return;
+        }
         OptionsPickerView pvOptions = new OptionsPickerView.Builder(context, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {

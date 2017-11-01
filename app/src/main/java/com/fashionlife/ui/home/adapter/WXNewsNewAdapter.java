@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fashionlife.R;
 import com.fashionlife.base.adapter.RecycleBaseAdapter;
 import com.fashionlife.base.impl.OnRecycleViewItemClickListener;
@@ -45,9 +46,14 @@ public class WXNewsNewAdapter extends RecycleBaseAdapter<WXNewsBean.ResultBean.L
             imageHeight = getRandomHeight();
             bean.setImageHeight(imageHeight);
         }
-        Glide.with(mContext).load(bean.getThumbnails()).placeholder(R.mipmap.loading)
-                .override(mImgWidth, imageHeight).centerCrop().override(mImgWidth, imageHeight)
-                .into((ImageView) holder.findViewById(R.id.item_wx_news_iv));
+        Glide.with(mContext).
+                load(bean.getThumbnails()).
+                diskCacheStrategy(DiskCacheStrategy.ALL).
+                placeholder(R.mipmap.loading).
+                override(mImgWidth, imageHeight).
+                centerCrop().
+                override(mImgWidth, imageHeight).
+                into((ImageView) holder.findViewById(R.id.item_wx_news_iv));
         holder.setText(R.id.item_wx_news_tv_title, bean.getSubTitle());
 
     }

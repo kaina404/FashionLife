@@ -18,6 +18,7 @@ import com.fashionlife.manager.PermissionMangerHelper;
 import com.fashionlife.ui.find.data.WeatherBean;
 import com.fashionlife.ui.find.impl.WeatherContract;
 import com.fashionlife.ui.find.impl.WeatherPresenter;
+import com.fashionlife.util.NetStatusUtil;
 import com.fashionlife.util.ToastHelper;
 import com.fashionlife.util.Utils;
 import com.fashionlife.widget.CircularBeadView;
@@ -204,6 +205,10 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
 
     @Override
     public void onRefresh() {
+        if(NetStatusUtil.CONNECTION_FAILED == NetStatusUtil.getAPNType(getContext())){
+            mSwipeRefreshLayout.setRefreshing(false);
+            return;
+        }
         mPresenter.queryWeather();
         mPresenter.downloadWallpaper();
     }

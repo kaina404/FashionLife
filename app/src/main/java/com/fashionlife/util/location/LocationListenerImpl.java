@@ -1,18 +1,10 @@
 package com.fashionlife.util.location;
 
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.provider.Settings;
-
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
-import com.fashionlife.R;
-import com.fashionlife.base.component.BaseApplication;
 import com.fashionlife.util.LogUtil;
-import com.fashionlife.util.ResourceUtils;
-import com.fashionlife.widget.AlertUtils;
 
 /**
  * @author: lovexujh
@@ -91,7 +83,7 @@ public class LocationListenerImpl extends BDAbstractLocationListener {
             //当前缺少定位依据，可能是用户没有授权，建议弹出提示框让用户开启权限
             //可进一步参考onLocDiagnosticMessage中的错误返回码
             LogUtil.d(this, "当前缺少定位依据，可能是用户没有授权，建议弹出提示框让用户开启权限");
-            AlertUtils.showMessage(null, ResourceUtils.getString(R.string.need_location_persmisson),
+            /*AlertUtils.showMessage(null, ResourceUtils.getString(R.string.need_location_persmisson),
                     ResourceUtils.getString(R.string.yes),
                     ResourceUtils.getString(R.string.abandon),
                     new DialogInterface.OnClickListener() {
@@ -107,7 +99,7 @@ public class LocationListenerImpl extends BDAbstractLocationListener {
                             }
 
                         }
-                    });
+                    });*/
 
         } else {
             LogUtil.d(this, "百度地图SDK，未知错误, onReceiveLocation LocType :" + location.getLocType());

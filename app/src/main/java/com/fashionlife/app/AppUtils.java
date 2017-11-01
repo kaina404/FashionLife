@@ -27,4 +27,8 @@ public class AppUtils {
     public static String getWXNewsKey(String cid, int page) {
         return COMMON + cid + "AND" + page;
     }
+
+    public static String getWXTitleCacheKey() {
+        return "wxtitlecachekey";
+    }
 }

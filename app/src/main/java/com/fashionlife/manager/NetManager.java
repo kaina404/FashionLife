@@ -1,15 +1,13 @@
 package com.fashionlife.manager;
 
 import com.fashionlife.app.APPConstant;
-import com.fashionlife.app.AppUtils;
-import com.fashionlife.common.SpConstant;
 import com.fashionlife.common.UrlConstant;
 import com.fashionlife.listener.ProgressResponseListener;
 import com.fashionlife.net.INetCall;
 import com.fashionlife.net.NetId;
 import com.fashionlife.net.NetRequest;
+import com.fashionlife.util.CacheUtils;
 import com.fashionlife.util.LogUtil;
-import com.fashionlife.util.SpUtils;
 import com.fashionlife.util.Utils;
 
 import java.util.HashMap;
@@ -28,6 +26,12 @@ public class NetManager {
     }
 
     public static void queryWXNewsTitle(int requestId, INetCall netCall) {
+        //先来一波缓存
+//        SpUtils spUtils = new SpUtils(SpConstant.WXNEWS);
+        String cache = CacheUtils.getWXNewsTitleCache();
+        if (!Utils.isEmpty(cache)) {
+            netCall.onResponse(requestId, cache);
+        }
         NetRequest.getMobAPI(requestId, null, UrlConstant.WXNewsTitle_URL, NetRequest.JSON_TYPE, netCall);
     }
 
@@ -45,11 +49,11 @@ public class NetManager {
      */
     public static void queryWXNews(int requestId, String cid, int page, int size, INetCall netCall) {
         //先来一波缓存
-        SpUtils spUtils = new SpUtils(SpConstant.WXNEWS);
-        String cache = spUtils.getString(AppUtils.getWXNewsKey(cid, page), "");
+        String cache = CacheUtils.getWXNewsInfoCache(cid, page);
         if (!Utils.isEmpty(cache)) {
             netCall.onResponse(requestId, cache);
         }
+
         //请求网络
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(APPConstant.WXNews.CID, cid);

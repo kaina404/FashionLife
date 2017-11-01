@@ -36,7 +36,6 @@ public class HomeFragment extends BaseFragment<HomeWXPresenter> implements HomeW
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter.queryWXNewsTitle();
     }
 
     @Override
@@ -44,6 +43,7 @@ public class HomeFragment extends BaseFragment<HomeWXPresenter> implements HomeW
         super.onViewCreated(view, savedInstanceState);
         mViewPagerTitle = (ViewPagerTitle) view.findViewById(R.id.view_pager_title);
         mViewPager = (ViewPager) view.findViewById(R.id.view_pager);
+        mPresenter.queryWXNewsTitle();
     }
 
 
