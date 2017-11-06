@@ -8,6 +8,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
+import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
 import com.myfashionlife.R;
 import com.myfashionlife.app.APPConstant;
 import com.myfashionlife.base.component.BaseFragment;
@@ -18,8 +20,6 @@ import com.myfashionlife.ui.home.adapter.WXNewsNewAdapter;
 import com.myfashionlife.ui.home.data.WXNewsBean;
 import com.myfashionlife.ui.home.impl.WXNewsContract;
 import com.myfashionlife.ui.home.impl.WXNewsPresenter;
-import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
-import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,10 +45,21 @@ public class WXNewsFragment extends BaseFragment<WXNewsPresenter> implements WXN
         mPullToRefresh = (PullToRefreshLayout) view.findViewById(R.id.pull_to_refresh);
         mPullToRefresh.setRefreshListener(this);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        final StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+
+        mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
+
         mRecyclerViewAdapter = new WXNewsNewAdapter(getContext(), mDatas);
         mRecyclerViewAdapter.setData(mDatas);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
+        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                staggeredGridLayoutManager.invalidateSpanAssignments();
+            }
+        });
 
         initData();
     }
