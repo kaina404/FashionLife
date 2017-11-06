@@ -8,7 +8,7 @@
    <View
        style="@style/default_tool_bar"/>
 
-    <com.fashionlife.widget.viewpagerflex.ViewPagerTitle
+    <com.myfashionlife.widget.viewpagerflex.ViewPagerTitle
         android:id="@+id/view_pager_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

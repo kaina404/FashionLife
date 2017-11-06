@@ -151,17 +151,17 @@
 -keep public class * extends android.content.ContentProvider
 -keep public class * extends android.app.backup.BackupAgentHelper
 -keep public class * extends android.preference.Preference
--keep class com.fashionlife.base.adapter.** {*;}
--keep class com.fashionlife.manager.** {*;}
--keep class com.fashionlife.db.** {*;}
--keep class com.fashionlife.listener.** {*;}
--keep class com.fashionlife.manager.** {*;}
--keep class com.fashionlife.net.** {*;}
--keep class com.fashionlife.test.** {*;}
--keep class com.fashionlife.ui.** {*;}
--keep class com.fashionlife.util.** {*;}
--keep class com.fashionlife.widget.** {*;}
--keep class com.fashionlife.ui.** {*;}
--keep class com.fashionlife.ui.** {*;}
--keep class com.fashionlife.ui.** {*;}
+-keep class com.myfashionlife.base.adapter.** {*;}
+-keep class com.myfashionlife.manager.** {*;}
+-keep class com.myfashionlife.db.** {*;}
+-keep class com.myfashionlife.listener.** {*;}
+-keep class com.myfashionlife.manager.** {*;}
+-keep class com.myfashionlife.net.** {*;}
+-keep class com.myfashionlife.test.** {*;}
+-keep class com.myfashionlife.ui.** {*;}
+-keep class com.myfashionlife.util.** {*;}
+-keep class com.myfashionlife.widget.** {*;}
+-keep class com.myfashionlife.ui.** {*;}
+-keep class com.myfashionlife.ui.** {*;}
+-keep class com.myfashionlife.ui.** {*;}
 

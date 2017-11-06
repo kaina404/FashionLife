@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.fashionlife">
+          package="com.myfashionlife">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -36,16 +36,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--下面的是debug斑斑-->
         <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="mKK0Ee9rfQcVleGBto8njHNDfInyZzbd"/>
 
-        <!--下面的是release斑斑-->
-        <!--<meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="mKK0Ee9rfQcVleGBto8njHNDfInyZzbd"/>
--->
         <activity
-            android:name=".ui.common.ContainerActivity"
+            android:name="com.myfashionlife.ui.common.ContainerActivity"
             android:configChanges="keyboardHidden|orientation|layoutDirection"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
@@ -65,14 +59,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".test.TestActivity"
+            android:name="com.myfashionlife.test.TestActivity"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name=".ui.web.WebViewActivity"
+            android:name="com.myfashionlife.ui.web.WebViewActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/transparentTheme"/>
@@ -83,7 +77,7 @@
             android:process=":bdremote"/>
 
         <activity
-            android:name=".ui.ZoomImageActivity"
+            android:name="com.myfashionlife.ui.ZoomImageActivity"
             android:theme="@style/transparentTheme">
         </activity>
 
@@ -98,7 +92,7 @@
         </receiver>-->
 
         <service
-            android:name=".base.server.MyService"
+            android:name="com.myfashionlife.base.server.MyService"
             android:exported="false"
             />
 

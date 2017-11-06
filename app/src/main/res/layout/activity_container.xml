@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.fashionlife.ui.common.ContainerActivity">
+    tools:context="com.myfashionlife.ui.common.ContainerActivity">
 
     <FrameLayout
         android:id="@+id/container"
@@ -15,9 +15,9 @@
     <View style="@style/view_line" />
 
 
-    <com.fashionlife.widget.BottomTabWidget
+    <com.myfashionlife.widget.BottomTabWidget
         android:id="@+id/bottom_tab_view"
         android:layout_width="match_parent"
         android:background="@color/c_f5f5f5"
-        android:layout_height="45dp"></com.fashionlife.widget.BottomTabWidget>
+        android:layout_height="45dp"></com.myfashionlife.widget.BottomTabWidget>
 </LinearLayout>
