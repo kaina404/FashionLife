@@ -20,6 +20,7 @@ public class MyService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        NotificationService.start(this);
         return super.onStartCommand(intent, flags, startId);
     }
 

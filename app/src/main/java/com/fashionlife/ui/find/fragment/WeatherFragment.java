@@ -158,6 +158,8 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements W
             e.printStackTrace();
         }
         mAirConditionLine.setColor(pollutionIndexInt);
+
+//        NotificationService.start(getActivity());
     }
 
     @Override

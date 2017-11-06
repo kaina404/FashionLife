@@ -24,7 +24,7 @@ public class ContainerActivity extends AbstractTabFragmentActivity implements Bo
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        PermissionMangerHelper.init(this);
+        PermissionMangerHelper.init(ContainerActivity.this);
     }
 
     @Override

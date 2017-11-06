@@ -30,7 +30,7 @@ public class BaseApplication extends Application {
 
     private void initData() {
         ImageLoadHelper.getFLImageLoader().init(new GlideImageLoaderFrameWork());
-        startMyService();
+//        startMyService();
         UncaughtExceptionHandlerHelper uncaughtExceptionHandlerHelper = new UncaughtExceptionHandlerHelper();
         Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandlerHelper);
     }

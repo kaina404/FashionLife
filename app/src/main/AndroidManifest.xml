@@ -37,13 +37,13 @@
         android:theme="@style/AppTheme">
 
         <!--下面的是debug斑斑-->
-        <!--<meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="hX5u0GZx9DVhlTxhjAY4D0cgD1xHxiZl"/>-->
+        <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="mKK0Ee9rfQcVleGBto8njHNDfInyZzbd"/>
 
         <!--下面的是release斑斑-->
-        <meta-data
+        <!--<meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="3UgHHriwhOHnWASwRQChdQMtuFyFrTgU"/>
-
+            android:value="mKK0Ee9rfQcVleGBto8njHNDfInyZzbd"/>
+-->
         <activity
             android:name=".ui.common.ContainerActivity"
             android:configChanges="keyboardHidden|orientation|layoutDirection"
@@ -80,14 +80,14 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"/>
+            android:process=":bdremote"/>
 
         <activity
             android:name=".ui.ZoomImageActivity"
             android:theme="@style/transparentTheme">
         </activity>
 
-        <receiver android:name=".net.NetworkBroadcastReceiver">
+       <!-- <receiver android:name=".net.NetworkBroadcastReceiver">
 
             <intent-filter>
                 <action android:name="android.NET.conn.CONNECTIVITY_CHANGE"/>
@@ -95,7 +95,7 @@
                 <action android:name="android.net.wifi.STATE_CHANGE"/>
             </intent-filter>
 
-        </receiver>
+        </receiver>-->
 
         <service
             android:name=".base.server.MyService"

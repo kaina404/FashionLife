@@ -16,7 +16,7 @@ public class HandlerHelper {
 
     private static final Handler sHandler = new Handler(sHandlerThread.getLooper());
 
-    public static void start() {
+    static {
         sHandlerThread.start();
     }
 
