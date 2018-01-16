@@ -43,7 +43,7 @@
             android:configChanges="keyboardHidden|orientation|layoutDirection"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/defaultTheme"
+            android:theme="@style/transparentTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

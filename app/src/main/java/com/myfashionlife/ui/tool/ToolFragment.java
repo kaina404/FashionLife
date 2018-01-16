@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.myfashionlife.R;
@@ -19,10 +20,8 @@ import com.myfashionlife.base.component.IPresenter;
 import com.myfashionlife.common.ThreadHelper;
 import com.myfashionlife.common.UrlConstant;
 import com.myfashionlife.manager.PermissionMangerHelper;
-import com.myfashionlife.manager.StartManager;
 import com.myfashionlife.util.LogUtil;
 import com.myfashionlife.util.ShituUtils;
-import com.myfashionlife.util.Utils;
 import com.myfashionlife.util.image.ImageLoadHelper;
 import com.myfashionlife.widget.AlertUtils;
 import com.myfashionlife.widget.ProgressDialogHepler;
@@ -69,7 +68,7 @@ public class ToolFragment extends BaseFragment implements View.OnClickListener {
 
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
         switch (v.getId()) {
             //选择图片
             case R.id.selectImage:
@@ -88,10 +87,16 @@ public class ToolFragment extends BaseFragment implements View.OnClickListener {
                     new ThreadHelper().executorRunnable(new Runnable() {
                         @Override
                         public void run() {
-                            String url = ShituUtils.postFile(picPath, requestURL);
-                            if (!Utils.isEmpty(url)) {
+                            final String url = ShituUtils.postFile(picPath);
+                            v.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity(), ("结果->" + url), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            /*if (!Utils.isEmpty(url)) {
                                 StartManager.startWeb(UrlConstant.BAIDU_SHITU_URL + url, getActivity());
-                            }
+                            }*/
                             ProgressDialogHepler.dismiss();
 
                         }
